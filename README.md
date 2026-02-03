@@ -54,4 +54,4 @@ rm -R themes/hugo-foxx
 ## Quick Links
 
 - hugo-brewm:  [`hugo.brewm.co`](https://hugo.brewm.co)
-- hugo-foxx:  [`hugo.brewm.co`](https://hugo.foxx.ink)
+- hugo-foxx:  [`hugo.foxx.ink`](https://hugo.foxx.ink)
