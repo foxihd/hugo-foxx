@@ -10,6 +10,12 @@
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/foxihd/hugo-foxx)
 ![GitHub Sponsor](https://img.shields.io/github/sponsors/foxihd?label=Sponsor&logo=GitHub&color=6a00d1)
 
+![Taxonomy/Author page on 1200px viewport.](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.png)
+***Figure 1.*** Taxonomy/Author page on 1200px viewport.
+
+![Atricle with complex element/shortcode](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/screenshot.png)
+***Figure 2.*** Article with complex elements/shortcodes on 1500px viewport.
+
 > [!NOTE]
 > A short note from the author:  
 >  
@@ -17,7 +23,8 @@
 > Most [hugo-brewm](https://github.com/foxihd/hugo-brewm) configurations are compatible with this theme so you can switched seamlessly with minimal changes.
 > Some content authoring features are retained, some notable feature that is removed is the accessibility panel, footer and font selection options.
 > Javascript is only used for fediscuss, KaTeX or MathJax. Otherwise it's pure HTML and CSS.
-> All assets are reduced to less than 16KB (gzipped) , If your site is rated 98% more carbon friendly with hugo-brewm, then with this theme your site becomes 99% more carbon friendly than the average site.
+> All assets are reduced to less than 16KB (gzipped) , If your site is rated 98% more carbon friendly with hugo-brewm, then with this theme your site becomes 99% more carbon friendly than the average site.  
+>
 > Please feel free to contribute as well!
 
 > [!IMPORTANT]
