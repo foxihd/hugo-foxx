@@ -1,0 +1,66 @@
+/* dim on dark mode */
+/* body {
+    --bg: #f9f9fb;
+    --fg: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        --bg: #e0d7c5;
+        --fg: #000;
+        --mid: #444;
+    }
+
+} */
+
+/* invert on dark mode */
+
+body {
+    --ac: maroon;
+    --bg: #f0eeed;
+    --fg: #2f353b;
+    --mid: #555;
+
+}
+
+a:visited {
+    color: #590d0d;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        --ac: #b49123;
+        --bg: #16161d;
+        --fg: #d4cdbd;
+        --mid: #888;
+    }
+
+    a:visited {
+        color: #98823e;
+    }
+
+}
+
+@media (-ms-high-contrast: active), (prefers-contrast: more) {
+    :root {
+        --y6a: var(--fg); --w8u: var(--fg); --s8i: var(--fg); --n8e: var(--fg);
+        --m4i: var(--fg); --y4i: var(--fg); --f8a: var(--fg); --s4n: var(--fg);
+        --d3u: var(--fg); --r6a: var(--fg); --y4a: var(--fg); --k8i: var(--fg);
+        --y6i: var(--fg); --o5a: var(--fg); --c3u: var(--fg); --s5o: var(--fg);
+        --s5e: var(--fg); --y7i: var(--fg); --i3i: var(--fg); --t9u: var(--fg);
+    }
+
+    body {
+        --bg: #fff;
+        --fg: #000;
+    }
+
+    .chroma * {
+        background: var(--bg) !important;
+        color: var(--fg) !important;
+    }
+    
+
+}

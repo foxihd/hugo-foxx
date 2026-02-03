@@ -1,0 +1,153 @@
+.mstd {
+    --ac: #563acc;
+}
+
+.bsky {
+    --ac: #1185fe;
+}
+
+#comments {
+    margin-top: 3.14rem;
+    border-top: 1pt dotted #80808080;
+    padding-top: 3.14rem;
+}
+
+#comments>summary {
+    letter-spacing: 0.1ex;
+    font-variant: all-small-caps;
+}
+
+#discussion-starter>nav {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: end;
+}
+
+#join-discussion {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+    border-radius: 2rem;
+    background: var(--fg);
+    padding: 3pt 12pt 3pt 8pt;
+    color: var(--bg);
+    gap: 2pt;
+}
+
+#join-discussion:hover,
+#join-discussion:focus {
+    background: var(--ac);
+}
+
+#join-discussion-bluesky {
+    --anm: none;
+    margin-right: 1rem;
+    border-right: 1pt dotted #80808080;
+    border-bottom: none;
+    padding: 3pt 1rem;
+}
+
+/* #comments ul {
+    position: relative;
+    padding-left: 0;
+    list-style: none;
+}
+
+#comments ul>li {
+    border-radius: 1ex;
+    overflow: clip;
+}
+
+#comments ul ul {
+    margin-left: 2rem;
+}
+
+#comments ul::before {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-left: 3pt solid #80808008;
+    border-radius: 1ex;
+    content: '';
+}
+
+.fed-comments {
+    margin: 1.6rem 0;
+    border-left: 3pt solid var(--ac);
+    background: #faf0e633;
+    padding: 1pc;
+    overflow: auto;
+}
+
+.author {
+    justify-content: unset;
+    gap: 1rem;
+    line-height: 1;
+}
+
+.author img {
+    border-radius: 2rem;
+}
+
+.attachments {
+    display: flex;
+    margin: 1ex 0;
+    overflow: auto;
+}
+
+.attachments * {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+}
+
+.attachments a::after {
+    content: '';
+}
+
+a.date,
+.stat a {
+    opacity: 0.5;
+    margin: 0 2pt;
+    color: inherit;
+    font-size: var(--small);
+}
+
+.stat a.active {
+    opacity: 1;
+    color: var(--ac);
+}
+
+.stat .favourites.active {
+    color: red;
+}
+
+.bluesky {
+    display: inline-block;
+}
+
+#join-discussion:hover .blueksy,
+#join-discussion-bluesky:hover .bluesky {
+    transform-origin: center center;
+    animation: flutter 0.2s alternate infinite;
+}
+
+@keyframes flutter {
+    from {
+        transform: rotateY(0);
+    }
+
+    to {
+        transform: rotateY(80deg);
+    }
+}
+
+@media (min-width: 641px) {
+    .fed-comments .content {
+        padding-left: 46pt;
+    }
+} */

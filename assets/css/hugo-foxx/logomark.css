@@ -1,0 +1,21 @@
+/* logomark default */
+
+#logomark--dark {
+    display: none;
+}
+
+#logomark--dark + #logomark {
+    display: inline-block;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    #logomark--dark {
+        display: inline-block;
+    }
+
+    #logomark--dark + #logomark {
+        display: none;
+    }
+
+}

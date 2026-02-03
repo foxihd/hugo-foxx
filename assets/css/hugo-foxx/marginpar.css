@@ -1,0 +1,146 @@
+.marginpar {
+    --marginparwidth: 61.803398%;
+    position: relative;
+    left: calc(var(--marginparwidth) + 1.618pc);
+    float: right;
+    clear: right;
+    margin-right: 0;
+    margin-left: calc(var(--marginparwidth) * -1);
+    width: var(--marginparwidth);
+    font-size: var(--small);
+    font-style: italic;
+}
+
+.marginpar.abs {
+    /* will ignore clear attribute */
+    --marginparwidth: 38.196602%;
+    left: unset;
+    padding-left: 1.618pc;
+}
+
+nav details > summary::after,
+.marginpar-ctrl + label::before {
+    /* add indicator [v] */
+    --tst: 200ms ease-out;
+    position: relative;
+    top: 0.23em;
+    align-self: center;
+    -webkit-transition: var(--tst);
+       -moz-transition: var(--tst);
+         -o-transition: var(--tst);
+            transition: var(--tst);
+    margin-left: auto;
+    background: linear-gradient(to top, transparent 49%, var(--g18) 51%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    font: 8pt 'base-ui';
+    content: '\e913';
+}
+
+nav details[open] > summary::after,
+.marginpar-ctrl:checked + label::before,
+#menu:checked + label {
+    /* change indicator state [x] */
+    --anm: blinking 3s step-end infinite;
+    top: 0;
+    background: unset;
+    color: var(--ac);
+}
+
+.marginpar-ctrl + .has-counter::before {
+    position: unset;
+    counter-increment: marginnote;
+}
+
+.marginpar-ctrl + .has-counter::before,
+.has-counter + .marginpar::before {
+    --anm: unset !important;
+    display: inline-block !important;
+    vertical-align: super;
+    color: inherit !important;
+    font: .7rem normal inherit;
+    content: '[' counter(marginnote) ']' !important;
+}
+
+.has-counter + .marginpar::before {
+    position: absolute;
+    left: -1.618pc;
+    padding-top: 1ex;
+    width: 1.618pc;
+    text-align: center;
+}
+
+.marginpar-ctrl + label.has-counter {
+    display: unset;
+    padding: 0;
+}
+
+li > article,
+nav details[open] > ul,
+.marginpar-ctrl:checked + label + .marginpar,
+#menu:checked + label ~ * {
+    --anm: expand 99ms forwards;
+    --tso: top;
+    -webkit-transform-origin: var(--tso);
+       -moz-transform-origin: var(--tso);
+        -ms-transform-origin: var(--tso);
+         -o-transform-origin: var(--tso);
+            transform-origin: var(--tso);
+}
+
+.marginpar-ctrl,
+.marginpar-ctrl + label::before,
+#to-content,
+#menu {
+    position: absolute;
+    top: -100vh;
+}
+
+li > article,
+nav details[open] > ul,
+nav details > summary:hover,
+nav details > summary:focus,
+.marginpar-ctrl:checked + label::before,
+.marginpar-ctrl:checked + label + .marginpar,
+#logo #logotype__text ,
+#menu:checked ~ * {
+    -webkit-animation: var(--anm);
+       -moz-animation: var(--anm);
+         -o-animation: var(--anm);
+            animation: var(--anm);
+}
+
+@media screen and (max-width: 640px) {
+
+    .marginpar-ctrl + label {
+        display: inline-flex;
+        padding: 2pt;
+    }
+
+    .marginpar-ctrl + label::before {
+        display: block !important;
+        position: unset;
+        left: 0;
+    }
+
+    .marginpar-ctrl:checked + label::before {
+        --anm: unset;
+    }
+
+    .marginpar,
+    .marginpar.abs,
+    #menu ~ * {
+        --marginparwidth: 100%;
+        display: none;
+        float: unset;
+    }
+
+    .marginpar-ctrl:checked + label + .marginpar {
+        display: block;
+        position: unset;
+        margin: 0 1.618pc 1ex;
+        padding: 0 1.618pc 0 0;
+    }
+
+}
