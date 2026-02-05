@@ -46,6 +46,22 @@
 </nav>
 {{- end }}
 
+{{- if and (not site.Params.disableAuthorMenu ) (ne .Kind "term") (ne .Data.Singular "author") }}
+    {{ partialCached "header/author-menu.html" . }}
+{{- end }}
+
+{{- define "partials/header/author-menu.html" -}}
+    {{- with site.Taxonomies.author }}
+        {{- if eq 1 (len . ) }}
+            {{- range . }}
+                {{- $author := urlize .Page.LinkTitle }}
+                <strong>{{ i18n "TableOfContents" }}</strong>
+                {{- partial "menu.html" (dict "menuID" $author "type" "author" "open" "open" "page" $ )}}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
 {{- define "partials/header/logo.html" -}}
     {{ "<!-- logo.html -->" | safeHTML }}
     {{- $logoMark := site.Params.logo.logoMark }}

@@ -65,7 +65,7 @@ body > header {
     flex-direction: column;
     align-self: start;
     padding: 2rem 0 4rem 2rem;
-    max-height: 100vh;
+    height: 100vh;
     overflow-y: auto;
 }
 

@@ -2,6 +2,7 @@
 {{- $menuID := .menuID }}
 {{- $page := .page }}
 {{- $main := eq $menuID "main" }}
+{{- $type := .type }}
 
 {{- if $main }}
 <input id="menu" type="checkbox" aria-label="" aria-controls="" style="display:none;" hidden>
@@ -9,8 +10,9 @@
 {{- end }}
 
 {{- with index site.Menus $menuID }}
-    <nav id="{{ printf "%s-menu" $menuID }}" aria-label="{{ i18n "nav" }}{{ i18n $menuID }}">
+    <nav id="{{ printf "%s-menu" $menuID }}" {{ with $type}}class="{{ . }}"{{ end }} {{ with  (i18n $menuID) }}aria-label="{{ i18n "nav" }}{{ i18n $menuID }}" {{ end }}>
         {{- if $main }}<strong>{{ i18n "onThisSite" }}</strong>{{ end }}
+        {{- if eq $type }}<strong>{{ i18n "author" 1 }}</strong>{{ end }}
         {{- $n := 1 }}
         {{- $no := printf "l%d" $n }}
         {{- $hasChildFree := partial "menu/hasChildFree.html" (dict "menuEntries" .) }}
