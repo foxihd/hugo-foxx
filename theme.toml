@@ -18,7 +18,8 @@ tags = [
 features = [
     "accessibility",
     "breadcrumbs",
-    "mastodon comments",
+    "comments",
+    "taxonomy",
     ]
 min_version = "0.135.0"
 
@@ -29,4 +30,4 @@ min_version = "0.135.0"
 [original]
     author = "Foxx"
     homepage = "https://foxx.ink"
-    repo = "https://github.com/foxihd/hugo-brewm""
+    repo = "https://github.com/foxihd/hugo-brewm"
