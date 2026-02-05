@@ -291,13 +291,13 @@
                 {{- end }}
             {{- end }}
         </div>
-        <div {{ if or .hasCover }}class="has-cover"{{ end }}>
+        <div {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
             {{- if .hasCover }}
                 <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
             {{- end }}
-            <p>
-                {{- plainify .desc }}
-            </p>
+            {{- with .desc }}
+                <p>{{- plainify . }}</p>
+            {{- end }}
         </div>
         <div>
             <div>

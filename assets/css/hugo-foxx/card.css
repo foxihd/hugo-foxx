@@ -71,7 +71,7 @@ li > article > div.has-cover {
     aspect-ratio: 10/3;
 }
 
-li > article > div:nth-child(2) > img {
+li > article > div.has-cover > img {
     order: 2;
     width: 100%;
     height: auto;
