@@ -31,14 +31,14 @@
 
 {{- if .Params.toc }}
 <nav id="toc">
-<strong>{{ i18n "TableOfContents" }}</a></strong>
+<strong>{{ i18n "TableOfContents" }}</strong>
     {{- replace
         (replace .TableOfContents
             "TableOfContents" "doc-toc")
             "id=" "data-pagefind-body role="
     | safeHTML }}
-{{- end }}
 </nav>
+{{- end }}
 
 {{- if .IsHome }}
 <nav id="home-nav">
