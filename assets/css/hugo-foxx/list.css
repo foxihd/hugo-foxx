@@ -112,5 +112,6 @@ nav.author ul a {
 }
 
 nav.author {
-	margin: auto 0 0;
+    margin: auto 0 0;
+    padding-top: 1.618pc !important;
 }
