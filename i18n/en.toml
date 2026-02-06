@@ -21,8 +21,6 @@
     other = "Authors"
 [bypass]
     other = "Bypass"
-[ifNoAudioSupport]
-    other = "Your browser does not support the audio element."
 [breadcrumb]
     other = "Breadcrumb"
 [categories]
@@ -55,6 +53,10 @@
     other = "Home"
 [in]
     other = "in"
+[ifNoAudioSupport]
+    other = "Your browser does not support the audio element."
+[keepInTouch]
+    other = "Keep in touch!"
 [main]
     other = "Main Menu"
 [marginpar]

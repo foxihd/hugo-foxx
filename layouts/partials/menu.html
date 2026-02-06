@@ -12,7 +12,7 @@
 {{- with index site.Menus $menuID }}
     <nav id="{{ printf "%s-menu" $menuID }}" {{ with $type}}class="{{ . }}"{{ end }} {{ with  (i18n $menuID) }}aria-label="{{ i18n "nav" }}{{ i18n $menuID }}" {{ end }}>
         {{- if $main }}<strong>{{ i18n "onThisSite" }}</strong>{{ end }}
-        {{- if eq $type "author" }}<strong>{{ replace $menuID "-" " " | title }}</strong>{{ end }}
+        {{- if eq $type "author" }}<strong>{{ i18n "keepInTouch" }}</strong>{{ end }}
         {{- $n := 1 }}
         {{- $no := printf "l%d" $n }}
         {{- $hasChildFree := partial "menu/hasChildFree.html" (dict "menuEntries" .) }}
