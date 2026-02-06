@@ -61,9 +61,6 @@
         {{- end }}
         {{- $icon := .Pre }}
         {{- $u := urls.Parse .URL -}}
-        {{- if $u.IsAbs }}
-            {{- $attrs = merge $attrs (dict "target" "_blank" "rel" "external noopener noreferrer nofollow" ) }}
-        {{- end }}
         {{- $identifier := .Identifier }}
         {{- with $identifier }}
             {{- if not $name }}
@@ -74,7 +71,7 @@
             {{- if .Children }}
                 {{- template "menuItemWithChildren" dict "item" . "attrs" $attrs "link" $hasDestination "icon" $icon "name" $name "desc" $desc "menuID" $menuID "l" $l "n" $n "page" $page }}
             {{- else }}
-                {{- template "menuItem" dict "attrs" $attrs "name" $name "desc" $desc "icon" $icon "identifier" $identifier }}
+                {{- template "menuItem" dict "attrs" $attrs "name" $name "desc" $desc "icon" $icon "identifier" $identifier "u" $u }}
             {{- end }}
         </li>
     {{- end }}
@@ -90,6 +87,10 @@
             aria-label="{{ .name }}"
             aria-description="{{ .desc }}"
         {{- end -}}
+        {{- if .u.IsAbs }}
+            target="_blank"
+            rel="external noopener noreferrer nofollow"
+        {{- end }}
         >
         {{- if and .icon (not .desc) }}
             <i class="icon">{{ .icon }}</i>
