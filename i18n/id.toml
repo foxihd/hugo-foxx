@@ -47,7 +47,7 @@
 [ifNoAudioSupport]
     other = "Peramban ini tidak mendukung elemen audio."
 [keepInTouch]
-    other = "Tetap terhubung!"
+    other = "Di tempat lain"
 [main]
     other = "Menu Utama"
 [marginpar]
