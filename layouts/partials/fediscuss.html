@@ -55,14 +55,18 @@
 {{- end }}
 
 {{- define "partials/fediscuss/js.html" -}}
-    {{- $fediscuss := resources.Get "js/fediscuss.js" | minify  }}
-    {{- if eq hugo.Environment "development" }}
-        <script src="{{ $fediscuss.Permalink }}" defer></script>
-    {{- else }}
-        {{- with $fediscuss | fingerprint "sha384" }}
-            <script src="{{ $fediscuss.Permalink }}"
-                integrity="{{ .Data.Integrity }}" crossorigin="anonymous"
-                defer></script>
+    {{- with resources.Get "js/fediscuss.js" }}
+        {{- with resources.ExecuteAsTemplate "fediscuss.js" $ . | minify }}
+            {{- $js := . }}
+            {{- if eq hugo.Environment "development" }}
+                <script src="{{ $js.Permalink }}" defer></script>
+            {{- else }}
+                {{- with . | fingerprint "sha256" }}
+                    <script src="{{ $js.Permalink }}"
+                        integrity="{{ .Data.Integrity }}" crossorigin="anonymous"
+                        defer></script>
+                {{- end }}
+            {{- end }}
         {{- end }}
     {{- end }}
 {{- end }}

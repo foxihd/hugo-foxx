@@ -47,7 +47,7 @@
 
 {{- define "partials/head/js.html" }}
     {{- with resources.Get "js/hugo-foxx.js" }}
-        {{- with resources.ExecuteAsTemplate "js/hugo-foxx.js" $ . | minify }}
+        {{- with resources.ExecuteAsTemplate "hugo-foxx.js" $ . | minify }}
             {{- $js := . }}
             {{- if eq hugo.Environment "development" }}
                 <script src="{{ $js.Permalink }}" defer></script>
@@ -103,9 +103,9 @@
     {{- end }}
 
     {{- $style = $style | append (resources.Get "css/hugo-foxx/media.css") (resources.Get "css/hugo-foxx/custom.css") }}
-    {{- $hugo_foxx := resources.Concat "css/hugo-foxx.css" $style }}
+    {{- $hugo_foxx := resources.Concat "hugo-foxx.css" $style }}
     {{- with $hugo_foxx }}
-        {{- with resources.ExecuteAsTemplate "css/hugo-foxx.css" $ . | minify }}
+        {{- with resources.ExecuteAsTemplate "hugo-foxx.css" $ . | minify }}
             {{- $css := . }}
             {{- if eq hugo.Environment "development" }}
                 <link rel="stylesheet" href="{{ $css.Permalink }}">
