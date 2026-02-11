@@ -1,0 +1,33 @@
+name = "hugo-foxx"
+license = "MIT"
+licenselink = "https://github.com/foxihd/hugo-foxx/LICENSE"
+description = "Bear blog implementation, except it's a foxx design."
+homepage = "https://github.com/foxihd/hugo-foxx/"
+demosite = ""
+tags = [
+    "archive",
+    "blog",
+    "dark",
+    "landing",
+    "light",
+    "minimal",
+    "multilingual",
+    "personal",
+    "responsive"
+    ]
+features = [
+    "accessibility",
+    "breadcrumbs",
+    "comments",
+    "taxonomy",
+    ]
+min_version = "0.41.0"
+
+[author]
+    name = "Foxx"
+    homepage = "https://foxx.ink"
+
+[original]
+    author = "Foxx"
+    homepage = "https://foxx.ink"
+    repo = "https://github.com/foxihd/hugo-brewm"

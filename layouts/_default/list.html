@@ -1,0 +1,312 @@
+{{- define "main" }}
+    {{- $home := .IsHome }}
+    {{- if not $home }}
+        {{ partial "hero.html" . }}
+    {{- end }}
+{{- if and .IsHome site.Taxonomies }}
+        <hr class="hide">
+        <section id="taxonomy" {{ if $home }}class="target"{{ end }}>
+            <h1>{{ i18n "allTaxonomies" }} <a href="#" class="hash">#</a></h1>
+            {{ template "taxonomy" . }}
+        </section>
+        <hr class="hide">
+    {{- end }}
+    {{- if or .Data.Pages (where site.RegularPages "Type" (or "post" "articles")) }}
+        {{- if ne .Kind "taxonomy" }}
+            <section id="feed" {{ if $home }}class="target"{{ end }}>
+                {{- $title := .LinkTitle }}
+                {{- if .IsHome }}
+                    <h1>{{- i18n "allPosts" }} <a href="#" class="hash">#</a></h1>
+                {{- else if not .Content }}
+                    <h1>
+                        {{- if eq .Data.Singular "author" }}
+                            {{- i18n "postsBy" }}: {{ $title }}
+                        {{- else }}
+                            {{- i18n "postsOn" }}: <span class="{{ .Data.Singular }}">{{ $title }}</span>
+                        {{- end }}
+                    </h1>
+                {{- end }}
+                {{ template "feed" . }}
+                <hr class="hide">
+            </section>
+        {{- else }}
+            {{- $title := .LinkTitle }}
+            <h1>{{ i18n "taxonomy" 1 }}: <span class="{{ .Data.Singular }}">{{ $title }}</span></h1>
+            {{- if eq .Data.Plural "tags" }}
+                <div id="list-tags">
+                {{ partial "taxonomies.html" (dict "taxonomy" "tags" "withPages" false ) }}
+                </div>
+            {{- else }}
+                <div id="list-{{ .Data.Plural }}">
+                {{ partial "taxonomies.html" (dict "taxonomy" .Data.Plural "withPages" true) }}
+                </div>
+            {{- end }}
+        {{- end }}
+    {{- end }}
+    {{- if $home }}
+        {{ partial "slide.html" . }}
+        <section class="target">
+            {{ partial "hero.html" . }}
+        </section>
+    {{- end }}
+{{- end }}
+
+{{- define "feed" -}}
+    {{- $active := eq (or .Params.Sitemap.ChangeFreq .Sitemap.ChangeFreq | lower) (or "always" "hourly" "daily" "weekly") }}
+    {{- $descending := or (not .IsHome) (eq $.Data.Plural "series") $.Params.descending }}
+    {{- $pages := .RegularPages }}
+    {{- if $.Params.Recursive }}
+        {{- $pages = .RegularPagesRecursive }}
+    {{- else if .IsHome }}
+        {{- $pages =  where site.RegularPages "Type" (or "post" "articles") }}
+    {{- end }}
+    {{- if not $pages }}
+        <center style="margin: 1in 0;">
+            <img src="https://i.pinimg.com/736x/bf/34/76/bf3476c1569c5af162779ecbb4134c3a.jpg"
+                alt="a cat that's unsure on what to do with his laptop and don't have five year goals"
+                title="a cat that's unsure on what to do with his laptop and don't have five year goals"
+                width="320px" height="320px">
+            <br>
+            <strong class="textssc" style="line-height:1;font-size:1.618pc">{{ i18n "noArticle" }}</strong>
+            <br>
+            <div style="max-width:320px">{{ i18n "noArticlePost" }}</span>
+        </center>
+    {{- end }}
+    {{- $yearGroup := $pages.GroupByDate "2006" }}
+    {{- if $descending }}
+        {{- $yearGroup = $yearGroup.Reverse }}
+    {{- end }}
+    {{- range $yearGroup }}
+    {{- $year := .Key }}
+    <div class="list-year" role="listitem" aria-labelledby="y{{ .Key }}">        
+        <strong id="y{{ $year }}" role="heading" aria-level="1">{{ $year }}</strong>
+        <div role="list" aria-label="{{ $year }}">
+            {{- $monthGroup := .Pages.GroupByDate "January" }}
+            {{- if $descending }}
+                {{ $monthGroup = $monthGroup.Reverse }}
+            {{ end }}
+            {{- range $monthGroup }}
+            {{- $month := .Key }}
+            {{- $postCounter := printf "(%d %s)" (len .Pages) (i18n "posts" (len .Pages)) }}
+            <div role="listitem" aria-labelledby="{{ print "y" $year "-" $month }}">
+                <details aria-expanded="true" class="list-month" {{ if ne $.Data.Singular "author" }}open{{ end }}>
+                    <summary class="has-post" id="{{ print "y" $year "-" $month }}"
+                        role="heading" aria-level="2" aria-label="{{- $month }}" aria-description="{{ $postCounter }}">
+                        {{- $month }}
+                    </summary>
+                    {{- $pageGroup := .Pages }}
+                    {{- if $descending }}
+                        {{- $pageGroup = $pageGroup.Reverse }}
+                    {{- end }}
+                    {{- with $pageGroup }}
+                    <ul class="list-day" role="presentation">
+                        {{- range . }}
+                        {{- $date := .Date.Format "2 Jan " }}
+                        <li>
+                            <a class="has-pre" href="{{ .RelPermalink }}" aria-label="{{ .Title }}" aria-description="{{ $date }}">
+                                <span>{{ .Title }}</span>
+                            </a>
+                            {{- if not $active }}
+                                {{- $author := default site.Params.Author.name .Params.author }}
+                                {{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
+                                {{- $categories := .GetTerms "categories" }}
+                                {{- $stage := .GetTerms "stage" }}
+                                {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
+                                {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
+                                {{- $alt := or .Params.Alt .Params.coverAlt .Params.imagesAlt }}
+                                {{ template "card" (dict "page" . "desc" $desc "hasCover" $hasCover "alt" $alt "author" $author "authors" $authors "stage" $stage "PublishDate" .PublishDate) }}
+                            {{- end }}
+                        </li>
+                        {{- end }}
+                    </ul>
+                    {{- end }}
+                </details>
+            </div>
+            {{- end }}
+        </div>
+    </div>
+    {{- end }}
+{{- end -}}
+
+{{- define "taxonomy" }}
+    {{- range $entry, $taxonomy := site.Taxonomies }}
+        {{- $hasEntry := index site.Taxonomies $entry }}
+        {{- if and $hasEntry (ne $entry "stage") (not (and (eq $entry "author") (eq (len $hasEntry) 1))) }}
+            <section id="list-{{ $entry }}" aria-label="{{ $entry }}">
+                <h2 class="ts">
+                    <a href="{{ absLangURL $entry }}">
+                        <span>{{ title $entry }}</span>
+                    </a>
+                </h2>
+                {{ partial "taxonomies.html" (dict "taxonomy" $entry "withPages" false ) }}
+            </section>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/taxonomies.html" -}}
+    {{- $taxonomy := .taxonomy }}
+    {{- $limit := .limit }}
+    {{- $withPages := .withPages }}
+    {{- with index site.Taxonomies $taxonomy }}
+        <ul role="presentation">
+            {{- $index := 0 }}
+            {{ range .ByCount -}}
+                {{- $index = add $index 1 }}
+                {{- $pages := .Pages }}
+                {{- if or (le $index $limit) (not $limit) -}}
+                    <li>
+                        {{- if $withPages }}
+                            <h2 class="ts">
+                                <a href="{{ .Page.Permalink }}"
+                                    aria-label="{{ i18n $taxonomy 1 }}: {{ .Page.Title }}"
+                                    aria-description="{{ printf "%d %s" .Count (i18n "posts" .Count) }}"
+                                    data-post-counter="{{ printf "%d" .Count }}"
+                                    >
+                                    <span>{{ .Page.Title }}</span>
+                                </a>
+                            </h2>
+                            <ul role="presentation">
+                                {{- range first 5 $pages }}
+                                    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                {{- end }}
+                            </ul>
+                        {{- else }}
+                            <a href="{{ .Page.Permalink }}"
+                                aria-label="{{ i18n $taxonomy 1 }}: {{ .Page.Title }}"
+                                aria-description="{{ printf "%d %s" .Count (i18n "posts" .Count) }}"
+                                data-post-counter="{{ printf "%d" .Count }}"
+                                >
+                                <span>{{ .Page.Title }}</span>
+                            </a>
+                        {{- end }}
+                    </li>
+                {{- end }}
+            {{- end }}
+        </ul>
+    {{- end }}
+{{- end }}
+
+{{- define "partials/slide.html" -}}
+    {{- $slides := where .Site.RegularPages "Type" "slide" }}
+    {{- with $slides }}
+        {{- range $index, $slide := . }}
+            {{- $slideNum := add $index 1 }}
+            <section id="slide-{{ $slideNum }}" class="target"
+                aria-labelledby="slide-{{ $slideNum }}-heading">
+                {{- $hasCover := partial "page/cover.html" (dict "page" .Page) }}
+                {{- $alt := or .Page.Params.Alt .Page.Params.coverAlt .Page.Params.imagesAlt }}
+                {{- if or $hasCover }}
+                <div class="cover">
+                    <img src="{{ $hasCover }}"
+                        alt="{{ with $alt }}{{ . }}{{ end }}" {{ if ne $slideNum 1 }}loading="lazy"{{ end }}>
+                </div>
+                {{- end }}
+                <section class="content">
+                    {{- with .Title }}
+                        <h1 id="slide-{{ $slideNum }}-heading">{{ . }} <a href="#" class="hash">#</a></h1>
+                    {{- end }}
+                    {{ replace .Content "disabled=" "" | safeHTML }}
+                </section>
+                <hr class="hide">
+            </section>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/hero.html" -}}
+    {{- $hasCover := partial "page/cover.html" (dict "page" .Page) }}
+    {{- $alt := or .Page.Params.Alt .Page.Params.coverAlt .Page.Params.imagesAlt }}
+    <section id="index" class="hero {{ if $hasCover }}has-cover{{ end }}">
+        {{- if .Content }}
+            {{- if $hasCover }}
+            <center class="hero__image">
+                <img src="{{ $hasCover }}"
+                    alt="{{ with $alt }}{{ . }}{{ end }}"
+                    loading="eager"
+                    fetchpriority="high">
+            </center>
+            {{- end }}
+            <section class="hero__content">
+                <section class="content">
+                    {{ replace .Content "disabled=" "" | safeHTML }}
+                </section>
+                {{- if and (eq .Kind "term") (eq .Data.Singular "author") }}
+                    {{- $authorName := .Title }}
+                    {{- $co := or site.Params.Author.coauthor site.Params.Author.collabolator }}
+                    {{- range $co }}
+                        {{- if eq $authorName .name }}
+                            <p>{{  or .bio .about }}</p>
+                        {{- end }}
+                    {{- end }}
+                    {{- $author := urlize .Title }}
+                    {{/*
+
+                        author's social links */}}
+                    {{ partial "menu.html" (dict "menuID" $author "type" "author" "open" "open" "page" .)}}
+                {{- end }}
+            </section>
+            <hr class="hide">
+        {{- end }}
+    </section>
+    {{- if .IsHome }}
+        <nav id="home-nav-alt">
+            {{ partialCached "slide/nav.html" . }}
+        </nav>
+    {{- end }}
+{{- end }}
+
+{{- define "partials/slide/nav.html" -}}
+    {{- $slides := where .Site.RegularPages "Type" "slide" }}
+        <strong>{{ i18n "onThisPage" }} <a href="#" id="hash">#</a></strong>
+        <ul>
+            <li><a href="#feed">{{ i18n "allPosts" }}</a></li>
+            <li><a href="#taxonomy">{{ i18n "allTaxonomies" }}</a></li>
+            {{- with $slides }}
+                {{- range $index, $slide := . }}
+                    {{- $slideNum := add $index 1 }}
+                    <li><a href="#slide-{{ $slideNum }}">{{ .Title }}</a></li>
+                {{ end }}
+            {{ end }}
+        </ul>
+{{- end }}
+
+{{- define "card" -}}
+    <article>
+        <div>
+            <span>
+                {{- if .authors }}
+                    {{ partial "terms.html" (dict "taxonomy" "author" "type" "delimiter" "tabindex" "-1" "page" .page) }}
+                {{- else }}
+                    {{- with .author }}<span>{{ . }}</span>{{ end }}
+                {{- end }}
+                {{- if .page.Params.categories }}
+                    <span>{{ i18n "in" | lower }}</span>
+                    {{ partial "terms.html" (dict "taxonomy" "categories" "type" "delimiter" "tabindex" "-1" "page" .page ) }}
+                {{- end }}
+            </span>
+            {{- with .stage }}
+                {{- range . | first 1 }}
+                    <div class="st {{ lower .Name }}"></div>
+                {{- end }}
+            {{- end }}
+        </div>
+        <div {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
+            {{- if .hasCover }}
+                <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
+            {{- end }}
+            {{- with .desc }}
+                <p>{{- plainify . }}</p>
+            {{- end }}
+        </div>
+        <div>
+            <div>
+                {{- printf "%d %s" .page.ReadingTime (i18n "readingTime" .page.ReadingTime | lower ) }}
+            </div>
+            {{- if .page.Params.tags }}
+                {{ partial "terms.html" (dict "taxonomy" "tags" "type" "hashbang" "tabindex" "-1" "page" .page) }}
+            {{- end }}
+        </div>
+    </article>
+    <hr class="hide">
+{{- end -}}

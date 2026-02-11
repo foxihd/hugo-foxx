@@ -1,0 +1,90 @@
+{{ if site.Params.search.pagefind }}
+    {{ partialCached "search/pagefind.html" . }}
+    <noscript id="has-search-fallback" class="textwidth">
+        {{- if eq (lower site.Params.search.fallback) "mojeek" }}
+            {{ partialCached "search/mojeek.html" . }}
+        {{- else }}
+            {{ partialCached "search/duckduckgo.html" . }}
+        {{- end }}
+    </noscript>
+{{ else }}
+    <div id="has-search-fallback" class="textwidth">
+        {{- if eq (lower site.Params.search.fallback) "mojeek" }}
+            {{ partialCached "search/mojeek.html" . }}
+        {{- else }}
+            {{ partialCached "search/duckduckgo.html" . }}
+        {{- end }}
+    </div>
+{{ end }}
+{{- /*-------------------- end of search.html ----------------------*/}}
+
+{{- define "partials/search/pagefind.html" -}}
+    {{ "<!-- pagefind.html -->" | safeHTML }}
+    <div id="search" class="textwidth"></div>
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script>
+        const pfSty = Object.assign(document.createElement('style'), {
+            textContent: `
+                .pagefind-ui__search-input {width: 100%;border-radius: 2rem;border: none;padding: 0 1ex;height: 2pc;}
+                .pagefind-ui__search-clear {float: right;position: relative;top: -1.7pc;right: 0.3pc;border-radius: 2pc;border: none;height: 1.4pc;padding: 0 1ex; background: none;}
+            `
+        });
+        document.head.appendChild(pfSty);
+        let pageFindInitialized = false;
+        const initPageFind = function(event) {
+            if (!pageFindInitialized) {
+                new PagefindUI({
+                    element: "#search",
+                    showImages: false,
+                    translations: {
+                        placeholder: "{{ i18n "search" }}"
+                    }
+                });
+                // fix PageFind missing input label
+                const pFInput = document.querySelector('.pagefind-ui__search-input');
+                if (pFInput) {
+                    pFInput.setAttribute('aria-label', pFInput.getAttribute('placeholder'));
+                    pFInput.setAttribute('name', pFInput.getAttribute('placeholder'));
+                }
+                pageFindInitialized = true;
+                document.removeEventListener('DOMContentLoaded', initPageFind);
+            }
+        };
+        document.addEventListener('DOMContentLoaded', initPageFind);
+    </script>
+{{- end }}
+
+{{- define "partials/search/duckduckgo.html" }}
+    {{ "<!-- duckduckgo.html -->" | safeHTML }}
+    {{- $site := index (split site.BaseURL "/") 2 }}
+    <form id="duckduckgo" class="search"
+        name="{{ i18n "search" }}" action="//duckduckgo.com/"
+        role="search" aria-label="{{ i18n "search" }}" style="display:flex">
+        <input type="hidden" value="{{ $site }}" name="sites"></input>
+        <input type="hidden" value="1" name="kh"></input>
+        <input type="hidden" value="1" name="kn"></input>
+        <input type="hidden" value="1" name="kac"></input>
+        <input class="searchbox" type="search" placeholder="{{ i18n "search" }}" name="q" role="searchbox"
+            style="flex: 1;border-radius: 2rem;border: none;padding: 0 1ex;"></input>
+        <button type="submit" aria-label="{{ i18n "search" }}"
+            style="display:flex;height:2pc;border:none;background:none;">
+            <img src="https://duckduckgo.com/assets/logo_header.v109.svg" alt="{{ i18n "search" }}" role="presentation" aria-hidden="true">
+        </button>
+    </form>
+{{- end }}
+
+{{- define "partials/search/mojeek.html" }}
+    {{ "<!-- mojeek.html -->" | safeHTML }}
+    {{- $site := index (split site.BaseURL "/") 2 }}
+    <form id="mojeek" class="search"
+        name="{{ i18n "search" }}" action="//www.mojeek.com/search"
+        role="search" aria-label="{{ i18n "search" }}" style="display:flex">
+        <input type="hidden" value="{{ $site }}" name="site"></input>
+        <input class="searchbox" type="search" placeholder="{{ i18n "search" }}" name="q" role="searchbox"
+            style="flex: 1;border-radius: 2rem;border: none;padding: 0 1ex;"></input>
+        <button type="submit" aria-label="{{ i18n "search" }}"
+            style="display:flex;height:2pc;border:none;background:none;">
+            <img src="https://www.mojeek.com/logos/icon_cc_73x45.png" alt="{{ i18n "search" }}" role="presentation" aria-hidden="true">
+        </button>
+    </form>
+{{- end }}

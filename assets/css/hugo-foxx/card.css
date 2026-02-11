@@ -1,0 +1,106 @@
+.has-pre {
+    display: block;
+    max-width: fit-content;
+}
+
+.list-day li > article {
+    display: none;
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    border: 1pt solid var(--ac);
+    background: var(--bg);
+    padding: 1rem 3ex;
+    width: 100%;
+    max-width: var(--golden-ratio);
+    font-size: 1.2rem;
+}
+
+li > a:hover + article,
+li > a:focus + article,
+li > article:hover,
+li > article:focus-within {
+    display: block;
+}
+
+li > article h1 {
+    margin: 8pt 0 0 0 !important;
+    color: var(--fg);
+    font-size: var(--Large);
+}
+
+li > article a {
+    color: var(--fg);
+    font-style: italic;
+}
+
+li > article > div {
+    display: flex;
+    flex-flow: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+li > article > div > span {
+    display: inline-block;
+    opacity: 62%;
+    overflow-x: auto;
+    text-overflow: ellipsis;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+li > article > div > ul > li {
+    display: inline;
+    margin-left: 1ex;
+}
+
+li > article > div:nth-child(2) {
+    margin: 8pt 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    gap: 1rem;
+    white-space: unset;
+}
+
+li > article > div.has-cover {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    aspect-ratio: 10/3;
+}
+
+li > article > div.has-cover > img {
+    order: 2;
+    width: 100%;
+    height: auto;
+    max-height: 68.8vw;
+    aspect-ratio: 10/8;
+    object-fit: cover;
+}
+
+li > article > div:nth-child(2) > p {
+    --grd: linear-gradient(#000 50%, transparent 100%);
+    margin: 0 auto 0 0;
+    max-height: 21ex;
+    overflow-y: hidden;
+    line-height: 1.618;
+    -webkit-mask-image: var(--grd);
+            mask-image: var(--grd);
+    clip-path: text;
+}
+
+@media (max-width: 412px) {
+
+    li > article > div:nth-child(2).has-cover {
+        display: block;
+        aspect-ratio: unset;
+    }
+
+    li > article > div:nth-child(2) > img {
+        max-height: unset;
+        aspect-ratio: unset;
+    }
+
+}

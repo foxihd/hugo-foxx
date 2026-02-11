@@ -1,0 +1,140 @@
+# [404PageNotFound]
+#     other = "Halaman Tidak Ditemukan"
+# [404Alert]
+#     other = "Halaman ini sengaja dialihkan"
+# [404ReturnHome]
+#     other = "kembali ke beranda"
+[allPosts]
+    other = "Semua artikel"
+[allTaxonomies]
+    other = "Jelajahi Taksonomi"
+[articles]
+    other = "Artikel"
+[audio]
+    other = "Audio"
+[author]
+    other = "Penulis"
+[bypass]
+    other = "Bypass"
+[breadcrumb]
+    other = "Jejak"
+[categories]
+    other = "Kategori"
+[comments]
+    other = "Diskusi"
+[ctaComments]
+    other = "Bergabung dalam Diskusi"
+[currentLang]
+    other = "Bahasa sekarang adalah"
+[fediverseBluesky]
+    other = "Balas dengan Bluesky"
+[fediverseErr]
+    other = "Terjadi kesalahan saat memuat komentar"
+[fediverseIsLoading]
+    other = "Memuat komentar di Fediverse"
+[fediverseReplies]
+    other = "Balasan"
+[fediverseReblogs]
+    other = "Reblog"
+[fediverseFavourites]
+    other = "Favorit"
+[followRSS]
+    other = "Ikuti dengan RSS"
+[home]
+    other = "Beranda"
+[in]
+    other = "dalam"
+[ifNoAudioSupport]
+    other = "Peramban ini tidak mendukung elemen audio."
+[keepInTouch]
+    other = "Di tempat lain"
+[main]
+    other = "Menu Utama"
+[marginpar]
+    other = "Catatan Tambahan"
+[nav]
+    other = "Navigasi"
+[networkGraph]
+    other = "Grafik Jaringan Konten"
+[noArticle]
+    other = "Tidak ada artikel untuk ditampilkan."
+[noArticlePost]
+    other = "Sepertinya penulis kami kehabisan kopi... Tetap santai, kami akan membuatnya segera!"
+[noGiscus]
+    other = "Giscus memerlukan Javascript dan LocalStorage untuk aktif."
+[noComment]
+    other = "Tidak ada komentar untuk ditampilkan."
+[noScript]
+    other = "Ups... Javascript dinonaktifkan!"
+[on]
+    other = "Pada"
+[onThisPage]
+    other = "Di Halaman ini"
+[onThisSite]
+    other = "Di Situs ini"
+[onThisSection]
+    other = "Di Bagian ini"
+[pages]
+    other = "Halaman"
+[posts]
+    other = "Artikel"
+[postsBy]
+    other = "Artikel oleh"
+[postsOn]
+    other = "Artikel pada"
+[recent]
+    other = "Artikel Terbaru"
+[readingTime]
+    other = "mnt"
+[search]
+    other = "Cari"
+[seeAll]
+    other = "Lihat semua"
+[section]
+    other = "Bagian"
+[series]
+    other = "Seri"
+[signGuestbookWith]
+    other = "Tandatangani buku tamu dengan:"
+[switchLangTo]
+    other = "Ganti Bahasa ke"
+[TableOfContents]
+    other = "Daftar Isi"
+[tags]
+    other = "Kata Kunci"
+[taxonomy]
+    other = "Taksonomi"
+[toContent]
+    other = "Langsung ke Konten Utama"
+[toTop]
+    other = "Ke Atas Konten"
+[appearance]
+    other = "Tampilan"
+[colorSettings]
+    other = "Pengaturan Warna"
+[darkMode]
+    other = "Mode Gelap"
+[light]
+    other = "Terang"
+[dark]
+    other = "Gelap"
+[contrast]
+    other = "Kontras"
+[lessContrast]
+    other = "Rendah"
+[moreContrast]
+    other = "Tinggi"
+[defaultContrast]
+    other = "Bawaan"
+[fontSize]
+    other = "Ukuran Font"
+[menuControls]
+    other = "Kontrol Menu Tampilan"
+[save]
+    other = "Simpan"
+[reset]
+    other = "Reset"
+[close]
+    other = "Tutup"
+[noLocalStorage]
+    other = "LocalStorage tidak tersedia di browser Anda. Pengaturan tidak akan disimpan."

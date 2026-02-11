@@ -1,0 +1,4 @@
+{{- define "main" }}
+<h1>{{ default (i18n "search") .Title }}</h1>
+{{- partialCached "search.html" . }}
+{{- end }}

@@ -1,0 +1,221 @@
+:root {
+    --y6a: #af7c9d; --w8u: #628618; --s8i: #ed7495; --n8e: #6c80b3;
+    --m4i: #355240; --y4i: #921823; --f8a: #7972b6; --s4n: #018ace;
+    --d3u: #654b3c; --r6a: #534b1a; --y4a: #13355b; --k8i: #ee850f;
+    --y6i: #00728c; --o5a: #8d2f4a; --c3u: #5b516a; --s5o: #365b75;
+    --s5e: #493280; --y7i: #00b1dd; --i3i: #e9142a; --t9u: #014d1f;   
+}
+
+kbd,
+code,
+pre > code {
+    line-height: 1.618;
+    letter-spacing: .05em;
+    font-family: var(--tt), monospace;
+    font-kerning: none;
+    font-size: .85em;
+    -webkit-font-feature-settings: 'kern' 0;
+       -moz-font-feature-settings: 'kern' 0;
+            font-feature-settings: 'kern' 0;
+}
+
+kbd {
+    margin-right: 2pt;
+    border: 1pt solid var(--fg);
+    border-radius: 3pt;
+    box-shadow: 2pt 2pt 0 #80808080;
+    padding: 0pt 4pt;
+}
+
+code {
+    border-radius: .25em;
+    background: #80808022;
+}
+
+pre > code {
+    display: block;
+    border-radius: 1ex;
+    background: unset;
+    padding: 1ex 0;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+pre > code table {
+    border: unset;
+}
+
+/* .lntable {
+    display: block;
+} */
+
+.highlight > pre:not(.chroma) {
+    background: unset !important;
+    color: inherit !important;
+}
+
+/* .lntd > .chroma {
+    margin: 0;
+} */
+
+.lntd:first-child * {
+    background: unset !important;
+}
+
+.lntd:first-child .hl {
+    font-weight: 600;
+}
+
+.lntd:first-child pre > code,
+.lnt {/* LineNumbersTable */
+    min-width: 2rem;
+    max-width: 2rem;
+    overflow: hidden;
+    vertical-align: top;
+    color: var(--n8e);
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.lntd { /* LineTableTD */
+    vertical-align: top;
+}
+
+.lntable {/* LineTable */
+    border: unset;
+    border-spacing: 0;
+}
+
+.hl { /* LineHighlight */
+    display: block;
+    background: #80808008;
+    width: auto;
+}
+
+.cl {
+    color: #1349fb;
+}
+
+.m, /* LiteralNumber */
+.mb, /* LiteralNumberBin */
+.mf, /* LiteralNumberFloat */
+.mh, /* LiteralNumberHex */
+.mi, /* LiteralNumberInteger */
+.il, /* LiteralNumberIntegerLong */
+.mo, /* LiteralNumberOct */
+.kc, /* KeywordConstant */
+.kt, /* KeywordType */
+.nt, /* NameTag */
+.x, /* Other */
+.err, /* Error */
+.ln,/* LineNumbers */
+.o, /* Operator */
+.p, /* Punctuation */
+.w { /* TextWhitespace */
+    color: var(--i3i);
+}
+
+.kn {/* KeywordNamespace */
+    color: var(--y4i);
+    font-weight: bold;
+}
+
+.ow { /* OperatorWord */
+    color: var(--y4a);
+}
+
+.c, /* Comment */
+.ch, /* CommentHashbang */
+.cm, /* CommentMultiline */
+.c1, /* CommentSingle */
+.cs, /* CommentSpecial */
+.cp, /* CommentPreproc */
+.cpf {
+    color: var(--mid);
+    font-style: italic;
+}
+
+.n, /* Name */
+.nc, /* NameClass */
+.nd, /* NameDecorator*/
+.ne, /* NameException */
+.fm, /* NameFunctionMagic */
+.nl, /* NameLabel */
+.nn, /* NameNamespace */
+.nx, /* NameOther */
+.py, /* NameProperty ---*/
+.nt, /* NameTag */
+.nv, /* NameVariable */
+.vc, /* NameVariableClass */
+.vg, /* NameVariableGlobal */
+.vi, /* NameVariableInstance */
+.vm {
+    color: var(--y7i);
+}
+
+.nb, /* NameBuiltin */
+.bp, /* NameBuiltinPseudo */
+.l, /* Literal */
+.ld, /* LiteralDate */
+.m, /* LiteralNumber */
+.mb, /* LiteralNumberBin */
+.mf, /* LiteralNumberFloat */
+.mh, /* LiteralNumberHex */
+.mi, /* LiteralNumberInteger */
+.il, /* LiteralNumberIntegerLong */
+.mo {
+    color: var(--k8i);
+}
+
+.na {
+    color: var(--y6a);
+}
+
+.s, /* LiteralString */
+.sa, /* LiteralStringAffix */
+.sb, /* LiteralStringBacktick */
+.sc, /* LiteralStringChar */
+.dl, /* LiteralStringDelimiter */
+.sd, /* LiteralStringDoc */
+.s2, /* LiteralStringDouble */
+.se, /* LiteralStringEscape */
+.sh, /* LiteralStringHeredoc */
+.si, /* LiteralStringInterpol */
+.sx, /* LiteralStringOther */
+.sr, /* LiteralStringRegex */
+.s1, /* LiteralStringSingle */
+.ss {
+    color: var(--s8i);
+}
+
+.no, /* NameConstant */
+.nf, /* NameFunction */
+.ni, /* NameEntity */
+.g, /* Generic */
+.gd, /* GenericDeleted */
+.ge, /* GenericEmph */
+.gr, /* GenericError */
+.gh, /* GenericHeading */
+.gi, /* GenericInserted */
+.go, /* GenericOutput */
+.gp, /* GenericPrompt */
+.gs, /* GenericStrong */
+.gu, /* GenericSubheading */
+.gt, /* GenericTraceback */
+.gl {
+    color: var(--w8u);
+}
+
+.k, /* Keyword */
+.kc, /* KeywordConstant */
+.kt, /* KeywordType */
+.kd, /* KeywordDeclaration */
+.kp, /* KeywordPseudo */
+.kr {
+    color: var(--s4n);
+}

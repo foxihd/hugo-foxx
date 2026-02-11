@@ -1,0 +1,41 @@
+{{ $light := site.Params.style.light }}
+{{ $dark := site.Params.style.dark }}
+
+body {
+    --off: #000;
+    --ac: {{ or $light.ac "#800000" }};
+    --bg: {{ or $light.bg "#f9f9f9" }};
+    --fg: {{ or $light.fg "#111" }};
+    --mid:{{ or $light.mid "gray" }};
+}
+
+@media (prefers-contrast: more),
+(-ms-high-contrast: active) {
+    body {
+    --ac: {{ or $light.more.ac $light.ac "#800000" }};
+    --bg: {{ or $light.more.bg "#fff" }};
+    --fg: {{ or $light.more.fg "#000" }};
+    {{ with $light.more.mid }}
+        --mid: {{ . }};
+    {{ end }}
+    }
+
+    pre > code,
+    .chroma * {
+        background: var(--bg) !important;
+        color: var(--fg) !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --off: #fff;
+        --ac: {{ or $dark.ac "#b49123" }};
+        --bg: {{ or $dark.bg "#111" }};
+        --fg: {{ or $dark.fg "#f9f9f9" }};
+        {{ with $dark.mid }}
+            --mid: {{ . }};
+        {{ end }}
+    }
+
+}

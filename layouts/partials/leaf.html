@@ -1,0 +1,124 @@
+{{- define "partials/terms.html" -}}
+{{- $page := .page }}
+{{- $taxonomy := .taxonomy }}
+{{- $class := .class }}
+{{- $type := .type }}
+{{- with $page.GetTerms $taxonomy }}
+    {{- if eq $type "delimiter" }}
+        {{ $len := len . }}
+        {{- range $i, $e := . }}
+            {{- if and (ne $len 1) (eq $i (sub $len 1)) }} & {{ else if $i }}, {{ end }}
+            <a href="{{ .RelPermalink }}">{{ .Page.Title }}</a>
+        {{- end }}
+    {{- else }}
+        <ul class="{{ $class }}" role="presentation">
+            {{- range . }}
+                <li><a href="{{ .RelPermalink }}">{{ if eq $type "hashbang" }}#{{ end }}{{ .Page.Title }}</a></li>
+            {{- end }}
+        </ul>
+    {{- end }}
+{{- end }}
+{{- end }}
+
+{{- define "partials/page/title.html" -}}
+    {{- "<!-- title.html -->" | safeHTML }}
+    {{- $subtitle := .Params.Subtitle }}
+    {{- $isPost := eq (lower .Params.type) (or "post" "articles") }}
+    {{- if $subtitle }}
+        <hgroup data-bionRead-safe>
+            <h1 id="title"
+                {{- if $isPost }}
+                    data-pagefind-meta="title"
+                {{- end }}
+                >{{ .Title }}</h1>
+            <i  class="subtitle"
+                role="doc-subtitle">{{ $subtitle }}</i>
+        </hgroup>
+    {{- else }}
+        <h1 id="title"
+            {{- if $isPost }}
+                data-pagefind-meta="title"
+            {{- end }}
+            data-bionRead-safe
+            >{{ .Title }}</h1>
+    {{- end }}
+{{- end }}
+
+{{- define "partials/page/cover.html" -}}
+    {{- "<!-- cover.html -->" | safeHTML }}
+    {{- $page := .page }}
+    {{- $src := or .page.Params.cover .page.Params.image }}
+    {{- with .page.Resources.GetMatch "cover.*" }}
+        {{- $src = .Permalink }}
+    {{- end }}
+    {{- return $src }}
+{{- end }}
+
+{{- define "partials/page/audio.html" -}}
+    {{- "<!-- audio.html -->" | safeHTML }}
+    {{- $audioFormats := dict
+        "aac"  "audio/aac"
+        "flac" "audio/flac"
+        "mp3"  "audio/mpeg"
+        "oga"  "audio/ogg"
+        "ogg"  "audio/ogg"
+        "opus" "audio/opus"
+        "wav"  "audio/wav"
+        "weba" "audio/webm"
+        "webm" "audio/webm"
+    }}
+    {{- $audioFiles := dict }}
+    {{- range $format, $type := $audioFormats }}
+        {{- $file := $.Resources.GetMatch (printf "audio.%s" $format) }}
+        {{- if $file }}
+            {{- $audioFiles = merge $audioFiles (dict $format $file) }}
+        {{- end }}
+    {{- end }}
+    {{- $audio := .Params.Audio }}
+    {{- if or $audio $audioFiles }}
+    <audio controls preload="metadata" aria-label="{{ i18n "audio" }} : {{- .Title }}" data-pagefind-ignore="all">
+        {{- $ext := index ( split $audio "." ) ( sub ( len ( split $audio "." ) ) 1 ) }}
+        {{- with $audio }}
+            <source src="{{ . }}"
+                {{- range $format, $type := $audioFormats }}
+                    {{ if eq $ext $format }}
+                        type="{{ $type }}"
+                    {{- end }}
+                {{- end }}>
+        {{- end }}
+        {{ with $audioFiles }}
+            {{ range $fileExt, $file := $audioFiles }}
+            <source src="{{ $file.Permalink }}"
+                    {{- range $format, $type := $audioFormats }}
+                        {{ if eq $fileExt $format }}
+                            type="{{ $type }}"
+                        {{- end }}
+                    {{- end }}>
+            {{ end }}
+        {{ end }}
+        {{- "<!-- article audio download -->" | safeHTML }}
+        <center>
+            <p role="contentinfo">{{ i18n "ifNoAudioSupport" }}</p>
+            <ul role="presentation">
+            {{- $fileName := print site.Title " - " .Title }}
+            {{- with $audio }}
+                <li>
+                    <a href="{{ . }}" download="{{ $fileName }}.{{ $ext }}">
+                        <span>{{ $ext }}</span>
+                    </a>
+                </li>
+            {{- end }}
+            {{ with $audioFiles }}
+                {{ range $fileExt, $file := $audioFiles }}
+                <li>
+                    <a href="{{ $file.Permalink }}" download="{{ $fileName }}.{{ $fileExt }}">
+                        <span>{{ $fileExt }}</span>
+                    </a>
+                </li>
+                {{ end }}
+            {{ end }}
+            </ul>
+        </center>
+    </audio>
+    {{- end }}
+{{- end }}

@@ -1,0 +1,103 @@
+{{- $var := .Get 0 }}
+{{- $pinID := print "pin-" .Page.File.UniqueID "-" .Ordinal }}
+{{- $url := .Get "url" }}
+{{- $label := .Get "label" }}
+{{- $img := .Get "img" }}
+{{- $alt := .Get "alt" }}
+{{- $a := anchorize $var }}
+{{- if .IsNamedParams }}
+    {{- if .Get "quote" }}
+        <div>
+        <a href="{{ $url }}" class="has-img has-aria-label has-quote"
+            {{ with $label }} aria-label="{{ . }}"{{ end }}>
+            {{ with .Get "quote" }}<div>{{ safeHTML . }}</div>{{ end }}
+            {{ with $img }} <img src="{{ . }}" alt="{{ default $alt $label }}" loading="lazy">{{ end }}
+        </a>
+        </div>
+    {{- else }}
+        <div role="figure">
+            {{- with $url }}<a href="{{ . }}" target="_blank">{{ end }}
+            {{- with $img }}<img src="{{ . }}" alt="{{ default $alt $label }}" loading="lazy">{{ end }}
+            {{- if $url }}</a>{{ end }}
+            {{- with $label }}
+                <figcaption>
+                    {{ if $url }}<a href="{{ $url }}"> {{ . }}</a>{{ else }}{{ . }}{{ end }}
+                </figcaption>
+            {{- end }}
+            </div>
+    {{- end }}
+{{- else if or (eq $var "") (eq $var "begin") }}<div class="column pin">
+{{- else if eq $var "end" }}</div>
+{{- end }}
+
+{{- if le (.Page.Scratch.Get "pin") 1 }}
+<style>
+.column {
+    /* auto column count */
+    --col: 16rem;
+    display: block;
+    -webkit-column-gap: 1.618rem;
+       -moz-column-gap: 1.618rem;
+            column-gap: 1.618rem;
+    column-fill: balance;
+    -webkit-column-width: var(--col);
+       -moz-column-width: var(--col);
+            column-width: var(--col);
+}
+
+.column > * {
+    break-after: auto;
+    break-before: auto;
+    break-inside: avoid;
+    margin-bottom: 1.618rem;
+}
+
+.column.pin > * {
+    margin-bottom: 1em;
+    font-size: var(--small);
+}
+
+.column.pin a::after {
+    content: '' !important;
+}
+
+.has-quote {
+    display: flex;
+    flex-direction: column-reverse;
+    color: var(--fg);
+}
+
+.has-quote::after {
+    margin: unset;
+}
+
+.has-quote > div {
+    margin-left: auto;
+}
+
+@media screen and (min-width: 2560px) {
+
+    .column {
+        --col: 20rem;
+    }
+
+}
+
+@media screen and (min-width: 1920px) {
+
+    .column.pin {
+        --col: 16rem;
+    }
+
+}
+
+@media screen and (max-width: 640px) {
+
+    .column.pin {
+        --col: 10rem;
+    }
+
+}
+</style>
+{{- .Page.Scratch.Add "pin" 1 }}
+{{- end }}

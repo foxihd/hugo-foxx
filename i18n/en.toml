@@ -1,0 +1,149 @@
+# Please feel free to contribute to additional translation.
+# Copy this file and rename it to your language code.
+# Then translate the values.
+# [404PageNotFound]
+#     other = "Page Not Found"
+# [404Alert]
+#     other = "This page intentionally redirect"
+# [404ReturnHome]
+#     other = "back to homepage"
+[allPosts]
+    other = "All posts"
+[allTaxonomies]
+    other = "Explore Taxonomy"
+[articles]
+    one = "Article"
+    other = "Articles"
+[audio]
+    other = "Audio"
+[author]
+    one = "Author"
+    other = "Authors"
+[bypass]
+    other = "Bypass"
+[breadcrumb]
+    other = "Breadcrumb"
+[categories]
+    one = "Category"
+    other = "Categories"
+[comments]
+    other = "Discussion"
+[ctaComments]
+    other = "Join Discussion"
+[currentLang]
+    other = "Current Language is"
+[fediverseBluesky]
+    other = "Reply with bluesky"
+[fediverseErr]
+    other = "Error when loading comments"
+[fediverseIsLoading]
+    other = "Loading comments on Fediverse"
+[fediverseReplies]
+    one = "Reply"
+    other = "Replies"
+[fediverseReblogs]
+    one = "Reblog"
+    other = "Reblogs"
+[fediverseFavourites]
+    one = "Favourite"
+    other = "Favourites"
+[followRSS]
+    other = "Follow with RSS"
+[home]
+    other = "Home"
+[in]
+    other = "in"
+[ifNoAudioSupport]
+    other = "Your browser does not support the audio element."
+[keepInTouch]
+    other = "Elsewhere"
+[main]
+    other = "Main Menu"
+[marginpar]
+    other = "Additional Notes"
+[nav]
+    other = "Navigation"
+[noArticle]
+    other = "No articles to show."
+[noArticlePost]
+    other = "It appears that our author ran out of coffee... Keep calm, we'll brew one shortly!"
+[noComment]
+    other = "No comments to display."
+[noScript]
+    other = "Uh-oh... Javascript is disabled!"
+[on]
+    other = "On"
+[onThisPage]
+    other = "On This Page"
+[onThisSite]
+    other = "On This Site"
+[onThisSection]
+    other = "On This Section"
+[pages]
+    one = "Page"
+    other = "Pages"
+[posts]
+    one = "Post"
+    other = "Posts"
+[postsBy]
+    other = "Post by"
+[postsOn]
+    other = "Posts on"
+[recent]
+    other = "Recent Posts"
+[readingTime]
+    other = "min"
+[search]
+    other = "Search"
+[seeAll]
+    other = "See all"
+[section]
+    other = "Section"
+[series]
+    other = "Series"
+[switchLangTo]
+    other = "Switch Language to"
+[signGuestbookWith]
+    other = "Sign the guest book with:"
+[TableOfContents]
+    other = "Table of Contents"
+[tags]
+    one = "Tag"
+    other = "Tags"
+[taxonomy]
+    one = "Taxonomy"
+    other = "Taxonomies"
+[toContent]
+    other = "Skip to Main Content"
+[toTop]
+    other = "To Content Top"
+[appearance]
+    other = "Appearance"
+[colorSettings]
+    other = "Color Settings"
+[darkMode]
+    other = "Dark Mode"
+[light]
+    other = "Light"
+[dark]
+    other = "Dark"
+[contrast]
+    other = "Contrast"
+[lessContrast]
+    other = "Less"
+[moreContrast]
+    other = "More"
+[defaultContrast]
+    other = "Default"
+[fontSize]
+    other = "Font Size"
+[menuControls]
+    other = "Appearance Menu Controls"
+[save]
+    other = "Save"
+[reset]
+    other = "Reset"
+[close]
+    other = "Close"
+[noLocalStorage]
+    other = "LocalStorage is not available in your browser. Settings won't be saved."

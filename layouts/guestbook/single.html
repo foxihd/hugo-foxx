@@ -1,0 +1,59 @@
+{{- define "main" }}
+    {{- partial "page/title.html" . }}
+
+    <div id="content" class="content">
+    {{ .Content }}
+    </div>
+
+    {{- $toot := or .Params.toot  .Params.mstd .Params.mastodon }}
+    {{- $bsky := or .Params.skeet .Params.bsky .Params.bluesky }}
+    {{- if or $toot $bsky -}}
+    <br/>
+    <details id="comments" class="presentation textwidth" aria-label="{{ i18n "comments" }}" style="border: none;"
+        data-i18n-noComment="{{ i18n "noComment" }}"
+        data-i18n-err="{{ i18n "fediverseErr" }}"
+        data-i18n-loading="{{ i18n "fediverseIsLoading" }}"
+        data-i18n-replies="{{ i18n "fediverseReplies" }}"
+        data-i18n-reblogs="{{ i18n "fediverseReblogs" }}"
+        data-i18n-favourites="{{ i18n "fediverseFavourites" }}"
+        open>
+        <summary>
+            <strong class="textssc" style="text-align: center; flex: 1;padding: 1rem;">{{ i18n "signGuestbookWith" }}</strong>
+        </summary>
+        <div id="discussion-starter-content" aria-hidden="true" style="display: none;"></div>
+        <nav id="sign" aria-label="{{ i18n "signGuestbookWith" }}" style="display: flex;flex-direction: row-reverse; justify-content: center;">
+            {{- $mstd := cond $toot $toot $bsky }}
+            {{- $label := cond $toot "mastodon" "bluesky" }}
+            <a id="join-discussion" href="{{ $mstd }}" class="{{ if $toot }}mstd{{ else }}bsky{{ end }}" rel="nofollow" style="height: fit-content;"
+                aria-label="{{ i18n "signGuestbookWith" }} {{ $label }}">
+                <i class="icon {{ $label }}" style="padding-right: 3pt"></i><strong class="textssc">{{ $label }}</strong>
+            </a>
+            {{- if and $toot $bsky }}
+                <a id="join-discussion-bluesky" href="{{ $bsky }}" class="bsky" rel="nofollow" 
+                    aria-label="{{ i18n "signGuestbookWith" }} Bluesky" title="{{ i18n "signGuestbookWith" }} Bluesky">
+                    <i class="icon" style="font-size: 2rem;">bluesky</i>
+                </a>
+            {{- end }}
+        </nav>
+        <noscript><center id="comments-error" role="alert">{{ i18n "noScript" }} {{ i18n "noComment" }}</center></noscript>
+        <br>
+        <center id="stats" class="stat" aria-live="polite"></center>
+        {{ with $toot }}
+            <ul id="mstd-comments" aria-busy="true" aria-label="{{ i18n "comments" }}"
+                data-url="{{ . }}"></ul>
+        {{ end }}
+        {{- with $bsky }}
+            <ul id="bsky-comments" aria-busy="true" aria-label="{{ i18n "comments" }}"
+                data-url="{{ . }}"></ul>
+        {{- end }}
+        {{- if and $toot $bsky }}
+            <ul id="fed-comments" aria-busy="false" aria-label="{{ i18n "comments" }}" ></ul>
+        {{- end }}
+        {{/*  {{- if not site.Params.disableDOMPurify }}
+            <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js" referrerpolicy="no-referrer"
+                integrity="sha256-ieH6dkfLSVNw06mXrOQ4f10V2fTFrxI1LFPapACVYoc=" crossorigin="anonymous" defer></script>
+        {{- end }}  */}}
+        {{ partialCached "fediscuss/js.html" . }}
+    </details>
+    {{- end }}
+{{- end }}

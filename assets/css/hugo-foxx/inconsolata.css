@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 200 900;
+    font-stretch: 100%;
+    font-display: swap;
+    src: local('Inconsolata'),
+         url(https://fonts.gstatic.com/s/inconsolata/v36/QlddNThLqRwH-OJ1UHjlKENVzkWGVkL3GZQmAwLyya15.woff2) format('woff2');
+    ascent-override: 88%;
+    descent-override: 30%;
+}
+
+:root {
+    --tt: 'Inconsolata';
+}

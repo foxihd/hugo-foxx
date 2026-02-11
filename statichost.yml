@@ -1,0 +1,3 @@
+image: hugomods/hugo:git
+command: hugo --minify --gc
+public: public

@@ -1,0 +1,89 @@
+{{- with .Ancestors.Reverse }}
+<nav id="breadcrumb">
+    <strong>{{ i18n "breadcrumb" }} :</strong>
+    <ul class="inline">
+        {{- range . }}
+            {{- if .IsHome }}
+            <li>
+                <a href="{{ .Permalink }}" aria-current="true">{{ i18n "home" }}</a>
+            </li>
+            {{- else }}
+            <li>
+                <a href="{{ .Permalink }}" aria-current="true">{{ .Title }}</a>
+            </li>
+            {{- end }}
+        {{- end }}
+    </ul>
+</nav>
+{{- else with site.Params.License }}
+    <span style="letter-spacing:.1em;font-variant-caps:all-small-caps">{{ safeHTML . }}</span>
+{{- end }}
+
+<span class="hide" role="presentation">|</span>
+
+{{- if .Translations }}
+    {{- range .Translations | first 1 }}
+    {{- $flag := partial "i18n/flag.html" (dict "iso3166" (substr .Language.LanguageCode -2)) }}
+        <a href="{{ .RelPermalink }}" id="i18n" aria-label="{{ printf "%s %s" (i18n "switchLangTo") .Language.LanguageName }}" aria-description="{{ .LinkTitle }}">
+            <span class="icon localization"></span>
+            <span class="emoji">{{ $flag }}</span>
+        </a>
+    {{- end }}
+{{- else }}
+    {{ partialCached "i18n/switchlanghome.html" . }}
+{{- end }}
+
+{{- if ne .Kind "taxonomy" }}
+    {{- with .OutputFormats.Get "rss" }}
+        <span class="hide" role="presentation">|</span>
+        <a id="rss-button" class="icon" href="{{ .Permalink }}" title="{{ i18n "followRSS" }}" role="button" aria-label="{{ i18n "followRSS" }}">rss</a>
+    {{- end }}
+{{- end }}
+
+<a href="#top" id="to-top" accesskey="c" aria-keyshortcuts="c" aria-label="{{ i18n "toTop" }}" style="margin-top: auto;"></a>
+
+{{- define "partials/i18n/switchlanghome.html" }}
+    {{- range where $.Site.Home.AllTranslations "Lang" "ne" $.Lang }}
+        {{- $flag := partial "i18n/flag.html" (dict "iso3166" (substr .Language.LanguageCode -2)) }}
+        <a href="{{ .Permalink }}" id="i18n" aria-label="{{ printf "%s %s" (i18n "switchLangTo") .Language.LanguageName }}" aria-description="{{ .LinkTitle }}">
+            <span class="icon">localization</span>
+            <span class="emoji">{{ $flag }}</span>
+        </a>
+    {{- end }}
+{{- end }}
+
+{{- define "partials/i18n/flag.html" }}
+    {{- $iso3166 := upper .iso3166 }}
+    {{- $ris := dict
+        "A" "🇦"
+        "B" "🇧"
+        "C" "🇨"
+        "D" "🇩"
+        "E" "🇪"
+        "F" "🇫"
+        "G" "🇬"
+        "H" "🇭"
+        "I" "🇮"
+        "J" "🇯"
+        "K" "🇰"
+        "L" "🇱"
+        "M" "🇲"
+        "N" "🇳"
+        "O" "🇴"
+        "P" "🇵"
+        "Q" "🇶"
+        "R" "🇷"
+        "S" "🇸"
+        "T" "🇹"
+        "U" "🇺"
+        "V" "🇻"
+        "W" "🇼"
+        "X" "🇽"
+        "Y" "🇾"
+        "Z" "🇿"
+    }}
+    {{- range $key, $val := $ris }}
+        {{- $iso3166 = replace $iso3166 $key $val }}
+    {{- end }}
+    {{- return $iso3166 }}
+{{- end }}

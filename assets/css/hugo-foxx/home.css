@@ -1,0 +1,50 @@
+.target:target ~ .target:last-of-type,
+.target,
+.hash,
+#home-nav-alt {
+    display: none
+}
+
+.target:last-of-type,
+.target:target {
+    display: block;
+    scroll-snap-margin-top: 100vh;
+    scroll-margin-top: 100vh
+}
+
+.target:focus {
+    outline: 0
+}
+
+.target {
+    width: 100%
+}
+
+.hero__content h1,
+.hero__content h2 {
+    margin-top: 1rem;
+}
+
+#list-tags li {
+    display: inline-block;
+    margin-right: 1ex;
+}
+
+@media only screen and (max-width: 1024px) {
+    #home-nav-alt {
+        display: block;
+        margin: 3.14rem 0;
+    }
+
+    #hash {
+        display: none;
+    }
+
+    .hash {
+        display: inline-block;
+    }
+
+    a.hash::after {
+        content: '';
+    }
+}

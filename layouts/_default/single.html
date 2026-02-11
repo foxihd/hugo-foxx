@@ -1,0 +1,49 @@
+{{- define "main" }}
+
+{{- if eq .Params.type (or "post" "articles") }}
+<header>
+    {{- $author := cond .Params.author .Params.author site.Params.Author.name }}
+    {{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
+    {{- $notMultiAuthor := eq (len $authors) 1 }}
+    {{- if $authors }}
+            {{- if $notMultiAuthor }}
+                    {{- range $authors }}
+                        <a class="author" href="{{ .Permalink }}">{{- .LinkTitle -}}</a>
+                    {{- end }}
+            {{- else }}
+                    {{ partial "terms.html" (dict "taxonomy" "author" "class" "delimiter" "page" .) }}
+            {{- end }}
+    {{- else if $author -}}
+            <span>{{ $author }}</span>
+    {{- end }}
+
+        {{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+        {{- $dateHuman := .Date | time.Format ":date_long" }}
+        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+</header>
+{{- end }}
+
+<article id="main-article" role="document" data-pagefind-body>
+    {{- partial "page/title.html" . }}
+
+    {{- partial "page/audio.html" . }}
+
+    <div id="content" class="content">
+    {{ .Content }}
+    </div>
+
+    {{- with .Params.tags }}
+        <footer>
+            <nav id="keywords" aria-label="{{ i18n "tags" }}">
+                <span>{{ printf "%s:" (i18n "tags" (len . ))}}&nbsp;</span>
+                {{ $class := cond (eq (len .) 1) "inline" "delimiter" }}
+                {{ partial "terms.html" (dict "taxonomy" "tags" "class" $class "page" $) }}
+            </nav>
+        </footer>
+    {{- end }}
+{{- if not site.Params.comments.disabled -}}
+    {{ partial "fediscuss.html" . }}
+{{- end }}
+
+</article>
+{{- end }}

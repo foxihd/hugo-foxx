@@ -1,0 +1,91 @@
+<a id="to-content" 
+    href="{{ if .IsPage }}#content{{ else }}#index{{ end }}"
+    aria-label="{{ i18n "toContent" }}">
+    <span>{{ i18n "toContent" }}</span>
+</a>
+
+{{- if not .IsHome }}
+    {{ partialCached "header/logo.html" . }}
+{{- else }}
+    {{ partial "header/logo.html" . }}
+{{- end }}
+{{- partial "menu.html" (dict "menuID" "main" "page" .) }}
+
+{{- with .Sections }}
+<nav>
+    <strong>{{ i18n "onThisSection" }}</strong>
+    <ul role="presentation">
+        {{- range . }}
+            {{ $hide := eq (substr .Page.Title 0 1) "_" }}
+            {{ if not $hide }}
+            <li>
+                <a href="{{ .Page.Permalink }}" aria-label="{{ i18n "section" 1 }}:{{ .Page.Title }}">
+                    <span>{{ .Page.Title }}</span>
+                </a>
+            </li>
+            {{ end }}
+        {{- end }}
+    </ul>
+</nav>
+{{- end }}
+
+{{- if .Params.toc }}
+<nav id="toc">
+<strong>{{ i18n "TableOfContents" }}</strong>
+    {{- replace
+        (replace .TableOfContents
+            "TableOfContents" "doc-toc")
+            "id=" "data-pagefind-body role="
+    | safeHTML }}
+</nav>
+{{- end }}
+
+{{- if .IsHome }}
+<nav id="home-nav">
+    {{ partialCached "slide/nav.html" . }}
+</nav>
+{{- end }}
+
+{{- if and (not site.Params.disableAuthorMenu ) (ne .Kind "term") (ne .Data.Singular "author") }}
+    {{ partialCached "header/author-menu.html" . }}
+{{- end }}
+
+{{- define "partials/header/author-menu.html" -}}
+    {{- with site.Taxonomies.author }}
+        {{- if eq 1 (len . ) }}
+            {{- range . }}
+                {{- $author := urlize .Page.LinkTitle }}
+                {{- partial "menu.html" (dict "menuID" $author "type" "author" "open" "open" "page" $ )}}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/header/logo.html" -}}
+    {{ "<!-- logo.html -->" | safeHTML }}
+    {{- $logoMark := site.Params.logo.logoMark }}
+    {{- $logoType := site.Params.logo.logoType }}
+    {{- $logoInlineCSS := site.Params.logo.logoInlineCSS }}
+    {{- $siteTitle := or site.Title site.Params.Title }}
+    {{- if or $logoType $logoMark $logoInlineCSS }}
+    <div id="logo">
+        <a href="{{ if .IsHome }}#top{{ else }}{{ absLangURL "" }}{{ end }}" aria-label="{{ $siteTitle }}" aria-description="{{ i18n "home" }}">
+            {{- with site.Params.logo.logoMarkDark }}
+                <img id="logomark--dark" src="{{ . }}" alt="{{ $siteTitle }}" />
+            {{- end }}
+            {{- if or $logoMark $logoInlineCSS }}
+                <img id="logomark" {{ with $logoMark }}src="{{ . }}"{{ end }} alt="{{ $siteTitle }}" />
+            {{- end }}
+            {{- if or $logoType (not (or $logoMark $logoInlineCSS)) }}
+                {{- $siteTitle := or site.Title site.Params.Title }}
+                {{- with $siteTitle -}}
+                    {{- $estimatedWidth := printf "%dpt" (mul (len . ) 28) -}}
+                    <svg id="logotype" xmlns="http://www.w3.org/2000/svg" version="1.1" width="{{ $estimatedWidth }}" aria-label="{{ . }}">
+                        <text id="logotype__text" y="28pt" x="0">{{ . }}</text>
+                    </svg>
+                {{- end }}
+            {{- end }}
+        </a>
+    </div>
+    {{- end }}
+{{- end }}

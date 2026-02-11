@@ -1,0 +1,383 @@
+{{ if or .Params.headless .Params.target .Params.alias -}}
+    {{- $url := "404.html" | absLangURL }}
+    {{- with or .Params.Target .Params.Alias }}
+        {{- $url = . }}
+    {{- end }}
+    <title>{{ $url }}</title>
+    <link rel="canonical" href="{{ $url }}">
+    <meta name="robots" content="noindex">
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ $url }}" />
+{{- else -}}
+    {{ partial "head/meta.html" . -}}
+    {{- $siteTitle := or site.Title site.Params.title | plainify }}
+    {{- $title := cond .IsHome $siteTitle (printf "%s | %s" .Title $siteTitle) | plainify  }}
+    {{ with .OutputFormats.Get "rss" -}}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s (RSS)" />` .Rel .MediaType.Type .Permalink $title | safeHTML }}
+    {{ end -}}
+    {{- if site.Params.EnableAppearance }}
+        {{- partialCached "head/js.html" . -}}
+    {{- end }}
+    {{ partialCached "head/css.html" . -}}
+    {{- with .Resources.GetMatch "*.css" }}
+        <style>{{ .Content | safeCSS }}</style>
+    {{- end }}
+    {{- if .IsHome }}
+        <style>
+            .target:target ~ .target:last-of-type,.target,.hash,#home-nav-alt{display:none}.target:last-of-type,.target:target{display:block;scroll-snap-margin-top:100vh;scroll-margin-top:100vh}.target:focus{outline:0}.target{width:100%}.hero__content h1,.hero__content h2{margin-top:1rem;}#list-tags li{display:inline-block;margin-right:1ex;}@media only screen and (max-width:1024px){#home-nav-alt{display:block;margin:3.14rem 0}#hash{display:none}.hash{display:inline-block} a.hash::after{content:''}}
+        </style>
+    {{- else if eq .Data.Plural "tags" }}
+        <style>
+            #taxonomy #list-tags ul{display:flex;flex-wrap:wrap;max-width:var(--golden-ratio);white-space:nowrap;gap:1rem}#taxonomy #list-tags>ul>li{display:inline-block;margin:0}
+        </style>
+    {{- else if .IsPage }}
+        {{ partial "fediverse/meta.html" . }}
+        {{- $noop := .WordCount }}
+        {{- if .Page.Store.Get "hasMath" }}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css"
+                integrity="sha384-WcoG4HRXMzYzfCgiyfrySxx90XSl2rxY5mnVY5TwtWE6KLrArNKn0T/mOgNL0Mmi" crossorigin="anonymous">
+        {{- end }}
+        {{- if or .Params.math .Params.katex }}
+            {{ partialCached "head/js/katex.html" . }}
+        {{- else if or .Params.maxthjax site.Params.mathjax }}
+            {{ partialCached "head/js/mathjax.html" . }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/head/js.html" }}
+    {{- with resources.Get "js/hugo-foxx.js" }}
+        {{- with resources.ExecuteAsTemplate "js/hugo-foxx.js" $ . | minify }}
+            {{- $js := . }}
+            {{- if eq hugo.Environment "development" }}
+                <script src="{{ $js.Permalink }}" defer></script>
+            {{- else }}
+                {{- with . | fingerprint "sha256" }}
+                    <script src="{{ $js.Permalink }}"
+                        integrity="{{ .Data.Integrity }}" crossorigin="anonymous"
+                        defer></script>
+                {{- end }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/head/css.html" }}
+    {{- $icon := resources.Get "css/hugo-foxx/icon.css" }}
+    {{- if site.Params.typeface.minimalUI }}
+        {{- $icon = resources.Get "css/hugo-foxx/icon-minimal.css" }}
+    {{- end }}
+
+    {{- $style := slice 
+        $icon
+        (resources.Get "css/hugo-foxx/colorscheme.css")
+        (resources.Get "css/hugo-foxx/keyframe.css")
+        (resources.Get "css/hugo-foxx/main.css")
+        (resources.Get "css/hugo-foxx/list.css")
+        (resources.Get "css/hugo-foxx/marginpar.css")
+        (resources.Get "css/hugo-foxx/codefences.css")
+        }}
+
+    {{- if not site.Params.typeface.webSafe }}
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link rel="preload" href="https://fonts.bunny.net/amiri/files/amiri-latin-400-normal.woff2" as="font" type="font/woff" crossorigin="anonymous" />
+        {{- $style = $style | append (resources.Get "css/hugo-foxx/crimson.css") (resources.Get "css/hugo-foxx/inconsolata.css") }}
+    {{- end }}
+
+    {{- if or site.Params.fediverse.instance site.Params.fediverse.host site.Params.fediverse.username site.Params.fediverse.user }}
+        {{- $style = $style | append (resources.Get "css/hugo-foxx/fediscuss.css") }}
+    {{- end }}
+
+    {{- if site.Params.logo.logoType }}
+        {{- $style = $style | append (resources.Get "css/hugo-foxx/logotype.css") }}
+    {{- else if site.Params.logo.logoMark }}
+        {{- $style = $style | append (resources.Get "css/hugo-foxx/logomark.css") }}
+    {{- end }}
+
+    {{- if not site.Params.posts.disableCard }}
+        {{- $style = $style | append (resources.Get "css/hugo-foxx/card.css") }}
+        {{- $hasStage := partial "head/css/has-taxonomy.html" (dict "taxonomy" "stage")  }}
+        {{- if $hasStage }}
+            {{- $style = $style | append (resources.Get "css/hugo-foxx/garden.css") }}
+        {{- end }}
+    {{- end }}
+
+    {{- $style = $style | append (resources.Get "css/hugo-foxx/media.css") (resources.Get "css/hugo-foxx/custom.css") }}
+    {{- $hugo_foxx := resources.Concat "css/hugo-foxx.css" $style }}
+    {{- with $hugo_foxx }}
+        {{- with resources.ExecuteAsTemplate "css/hugo-foxx.css" $ . | minify }}
+            {{- $css := . }}
+            {{- if eq hugo.Environment "development" }}
+                <link rel="stylesheet" href="{{ $css.Permalink }}">
+            {{- else }}
+                {{- with . | fingerprint "sha256" }}
+                    <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+                {{- end }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/head/meta.html" }}
+    {{- $author := or .Params.author .Params.authors | default  site.Params.Author.Name }}
+    {{- with or (.GetTerms "authors") (.GetTerms "author") }}
+        {{- if eq (len .) 1}}
+            {{- range . }}
+                {{- $author = .LinkTitle }}
+            {{- end }}
+        {{- else }}
+            {{- $author = delimit $author ", " " & " }}
+        {{- end }}
+    {{- end }}
+    {{- $siteTitle := or site.Title site.Params.title | plainify }}
+    {{- $permalink := .Permalink }}
+    {{- $title := cond .IsHome $siteTitle (printf "%s | %s" .Title $siteTitle) | plainify  }}
+        {{- $desc := or .Params.Description .Params.Subtitle .Summary | default .Description }}
+        {{- $siteDesc := or site.Params.description site.Params.subtitle }}
+        {{- if and .IsHome $siteDesc }}
+            {{- $desc = $siteDesc  }}
+        {{- else if and (not .IsPage) $siteDesc }}
+            {{- $desc =  printf "%s | %s" .Kind $siteTitle }}
+        {{- end }}
+    {{- $desc = $desc | plainify | htmlUnescape | truncate 150 }}
+    {{- $cover := partial "page/cover.html" (dict "page" .) }}
+        {{- if or (not $cover) .IsHome }}
+            {{- $cover = or site.Params.images site.Params.socialCard.images }}
+        {{- end }}
+    {{- $keywords := dict }}
+        {{- $tag := or .Params.keywords .Params.tags }}
+        {{- if .IsHome }}
+            {{- $keywords = slice (i18n "home") }}
+        {{- else if $tag }}
+            {{- $keywords = $tag }}
+        {{- end }}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $title }}</title>
+    <meta name="author" content="{{ $author }}">
+    {{ with $desc -}}
+        <meta name="description" content="{{ . }}" >
+    {{ end -}}
+    {{ with $keywords -}}
+        <meta name="keywords" content="{{ delimit . "," }}">
+    {{ end -}}
+    <link rel="canonical" href="{{ .Permalink }}">
+    {{ with .Translations -}}
+        {{- range . -}}
+            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+        {{- end }}
+    {{- end }}
+    {{ partialCached "head/meta/favicon.html" . }}
+    {{- $instance := or site.Params.fediverse.instance site.Params.fediverse.host }}
+    {{- $username := or site.Params.fediverse.username site.Params.fediverse.user }}
+    {{- if and $instance $username }}
+        <link rel="me" href="{{ print "https://" $instance "/@" $username }}">
+    {{ end }}
+
+    {{- $ISO8601 := "2006-01-02T15:04:05-07:00" }}
+    {{- $publishDate := .PublishDate.Format $ISO8601 }}
+    {{- $lastMod := .Lastmod.Format $ISO8601 }}
+
+    {{- $extMeta := or site.Params.extMeta site.Params.socialCard.enable }}
+    {{- if or $extMeta site.Params.socialCard.twitter }}
+        {{ template "twitterCard" (dict "page" . "title" $title "desc" $desc "cover" $cover) }}
+    {{- end }}
+
+    {{- if or $extMeta site.Params.socialCard.opengraph }}
+        {{ template "openGraph" (dict "page" . "siteTitle" $siteTitle "author" $author "title" $title "desc" $desc "cover" $cover "keywords" $keywords "publishDate" $publishDate "lastMod" $lastMod) }}
+    {{- end }}
+
+    {{- if site.Params.socialCard.schema }}
+        {{/*  no HTMl props at the moment  */}}
+        {{- template "schema" (dict "page" . "title" $title "desc" $desc "cover" $cover "keywords" $keywords) }}
+    {{- end }}
+
+    {{- if site.Params.socialCard.jsonLD }}
+        {{/*  permalink needs workaround  */}}
+        {{- template "jsonLD" (dict "page" . "siteTitle" $siteTitle "permalink" $permalink "author" $author "title" $title "desc" $desc "cover" $cover "keywords" $keywords  "publishDate" $publishDate "lastMod" $lastMod) }}
+    {{- end }}
+{{- end }}
+
+{{- define "partials/head/meta/favicon.html" }}
+    {{- with site.Params.favicon }}
+        {{ $appTitle := default .appTitle site.Title }}
+        {{ with .ico -}}<link rel="shortcut icon" href="{{ . }}" />{{ end }}
+        {{ with .apple -}}<link rel="apple-touch-icon" sizes="180x180" href="{{ . }}" /><meta name="apple-mobile-web-app-title" content="{{ $appTitle }}" />{{ end }}
+        {{ with .png -}}<link rel="icon" type="image/png" href="{{ . }}" sizes="96x96" />{{ end }}
+        {{ with .svg -}}<link rel="icon" type="image/svg+xml" href="{{ . }}" />{{ end }}
+        {{ with .webmanifest -}}<link rel="manifest" href="{{ . }}" />{{ end }}
+    {{- end }}
+{{- end }}
+
+{{- define "openGraph" }}
+    {{- $ISO8601 := "2006-01-02T15:04:05-07:00" }}
+    {{- $facebookAdmin := site.Params.socialCard.facebookAdmin }}
+    {{- $facebookAppID := site.Params.socialCard.facebookAppID }}
+    <meta property="og:title" content="{{ .title }}" />
+    <meta property="og:description" content="{{ .desc }}" />
+    <meta property="og:type" content="{{ if .page.IsPage }}article{{ else }}website{{ end }}" />
+    <meta property="og:url" content="{{ .page.Permalink }}" />
+    {{- with .cover }}
+        <meta property="og:image" content="{{ . }}" />
+    {{- end }}
+    <meta property="og:site_name" content="{{ .siteTitle }}" />
+    {{- if .IsPage -}}
+        <meta property="article:author" content="{{ .author }}" />
+        {{- with .publishDate }}
+            <meta property="article:published_time" content="{{ . }}" />
+        {{- end }}
+        {{ with .lastMod }}
+            <meta property="article:modified_time" content="{{ . }}" />
+        {{- end }}
+        {{- with .keywords }}
+            <meta property="article:tags" content="{{ delimit . ", " }}" />
+        {{- end }}
+        {{- with site.RegularPages.Related . | first 5  }}
+            {{- range . }}
+                {{- if ne $ . }}
+                <meta property="og:see_also" content="{{ .Permalink }}">
+                {{- end }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "twitterCard" }}
+    {{ $twitterCreator := site.Params.socialCard.twitterCreator }}
+    {{ $twitterSite := site.Params.socialCard.twitterSite }}
+    <meta name="twitter:card" content="{{ if .cover }}summary_large_image{{ else }}summary{{ end }}" />
+    <meta name="twitter:title" content="{{ .title }}" />
+    <meta name="twitter:description" content="{{ .desc }}" />
+    {{- with .cover }}
+        <meta name="twitter:image" content="{{ . }}" />
+    {{- end }}
+    {{- with $twitterSite }}
+        <meta name="twitter:site" content="@{{ . }}" />
+    {{- end }}
+    {{- with $twitterCreator }}
+        <meta name="twitter:creator" content="@{{ . }}" />
+    {{- end }}
+{{- end }}
+
+{{- define "schema" }}
+    {{- with .title }}
+        <meta itemprop="name" content="{{ . }}">
+    {{- end }}
+    {{- with .desc }}
+        <meta itemprop="description" content="{{ trim . "\n\r\t " }}">
+    {{- end }}
+    {{- with .PublishDate }}
+        <meta itemprop="datePublished" content="{{ . }}">
+    {{- end }}
+    {{- with .Lastmod }}
+        <meta itemprop="dateModified" content="{{ . }}">
+    {{- end }}
+    {{- with .page.WordCount }}
+        <meta itemprop="wordCount" content="{{ . }}">
+    {{- end }}
+    {{- with .cover }}
+        <meta itemprop="image" content="{{ . }}">
+    {{- end }}
+    {{- with .keywords }}
+        <meta itemprop="keywords" content="{{ delimit . `,` }}">
+    {{- end -}}
+{{- end }}
+
+{{- define "jsonLD" }}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ .Permalink | safeURL }}"
+            },
+            "headline": "{{ .title }}",
+            {{- with .desc }}
+            "description": "{{ . }}",
+            {{- end }}
+            {{- with .cover }}
+            "image": "{{ . }}",
+            {{- end }}
+            {{- with .PublishDate }}
+            "datePublished": "{{ . }}",
+            {{- end }}
+            {{- with .Lastmod }}
+            "dateModified": "{{ . }}",
+            {{- end }}
+            {{- with .author }}
+            "author": {
+                "@type": "Person",
+                "name": "{{ . }}"
+            },
+            {{- end }}
+            {{- $authors := or (.page.GetTerms "authors") (.page.GetTerms "author") }}
+            {{- with $authors }}
+                {{ range . }}
+                    "author": {
+                            "@type": "Person",
+                            "name": "{{ humanize .LinkTitle | title }}"
+                        },
+                {{- end }}
+            {{- end }}
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{ .siteTitle }}",
+                {{- with site.Params.logo.logomark }}
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ . | absURL }}"
+                }
+                {{- end }}
+            }
+        }
+    </script>
+{{- end }}
+
+{{- define "partials/head/js/katex.html" -}}
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"
+        integrity="sha384-J+9dG2KMoiR9hqcFao0IBLwxt6zpcyN68IgwzsCSkbreXUjmNVRhPFTssqdSGjwQ" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js"
+        integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"
+        defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.getElementById('main-article'), {
+                delimiters: [
+                    {left: '$', right: '$', display: false},
+                    {left: '$$', right: '$$', display: true},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: "\begin{equation}", right: "\end{equation}", display: true},
+                    {left: "\begin{align}", right: "\end{align}", display: true},
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+{{- end }}
+
+{{- define "partials/head/js/mathjax.html" -}}
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$','$$'], ['\\[', '\\]'], ['\begin{equation}','\end{equation}'], ['\begin{align}','\end{align}']],
+                equationNumbers: { autoNumber: "AMS" },
+                extensions: ["AMSmath.js", "AMSsymbols.js"],
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script>
+{{- end }}
+
+{{- define "partials/head/css/has-taxonomy.html" }}
+    {{- $taxonomy := .taxonomy }}
+    {{- if index site.Taxonomies $taxonomy }}
+        {{- return true }}
+    {{- end }}
+{{- end }}
