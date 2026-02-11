@@ -18,8 +18,10 @@ const toISOString = (dateString) => {
     return new Date(dateString).toISOString()
 }
 
+{{ if not site.Params.EnableAppearance }}
 const getElement = id => document.getElementById(id);
 const getElements = selector => document.querySelectorAll(selector);
+{{ end }}
 
 const cmt = getElement('comments');
 const { i18nReplies, i18nReblogs, i18nFavourites, i18nLoading, i18nErr, i18nNocomment } = cmt.dataset;
