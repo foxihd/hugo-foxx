@@ -144,6 +144,7 @@
 
     body > header,
     body > footer,
+    #has-a11y,
     #comments {
         display: none;
     }
