@@ -31,6 +31,7 @@
     position: fixed;
     right: 3.2rem;
     bottom: 3rem;
+    z-index: 3;
     border-radius: 9pt;
     background: var(--bg);
     padding: 1rem;
