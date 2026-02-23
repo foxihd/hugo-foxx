@@ -47,10 +47,14 @@
             transition: var(--flashGuard);
 }
 
+::selection {
+    color: var(--fg);
+    background: var(--ac);
+}
+
 body {
     display: grid;
     grid-template-columns: calc(29.3% - 5rem)  calc(70.7% - 2rem) 3rem;
-    gap: 2rem;
     margin: auto;
     background: var(--bg);
     max-width: 1440px;
@@ -59,8 +63,9 @@ body {
     color: var(--fg);
     font-family: 'Crimson', 'Amiri', 'Times New Roman', serif;
     font-size: var(--normalsize);
-    /* transition: background 2s; */
     font-variant-numeric: oldstyle-nums;
+    gap: 2rem;
+    scrollbar-gutter: stable;
 }
 
 body > header {
