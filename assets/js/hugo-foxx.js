@@ -117,7 +117,19 @@ const matchMediaColor = () => {
     } else {
         defaultContrast.checked = true;
     }
-};
+}
+
+function scheme() {
+    return lightSwitch.checked ? 'dark' : 'light';
+}
+
+function contrast() {
+    return lessContrast.checked 
+        ? 'less' 
+        : (moreContrast.checked 
+            ? 'more' 
+            : 'default');
+}
 
 {{ $lite := site.Params.style.light }}
 {{ $dark := site.Params.style.dark }}
@@ -135,8 +147,6 @@ function setColor() {
             more: '--off: #fff; --ac: {{ or $dark.more.ac $dark.ac "#b49123" }}; --bg: {{ or $dark.more.bg "#000" }}; --fg: {{ or $dark.more.fg "#fff" }}; --mid:{{ or $dark.more.mid "gray" }};'
         }
     };
-    const contrast = lessContrast.checked ? 'less' : (moreContrast.checked ? 'more' : 'default');
-    const scheme = lightSwitch.checked ? 'dark' : 'light';
     const logomark = getElement('logomark');
     const logomarkDark = getElement('logomark--dark');
     if (logomarkDark) {
@@ -144,7 +154,7 @@ function setColor() {
         logomarkDark.style.display = lightSwitch.checked ? 'inline-block' : 'none';
     }
     lightSwitchIndicator.setAttribute('aria-description', (lightSwitch.checked ? i18nDark : i18nLight));
-    bodySty.setAttribute('style', styles[scheme][contrast]);
+    bodySty.setAttribute('style', styles[scheme()][contrast()]);
 };
 
 // Flash guard
@@ -190,8 +200,8 @@ if (hasLocalStorage()) {
     // Save function
     function saveA11y() {
         setTimeout(() => closeA11y(), 618);
-        localStorage.scheme = lightSwitch.checked ? 'dark' : 'light';
-        localStorage.contrast = lessContrast.checked ? 'less' : (moreContrast.checked ? 'more' : 'default');
+        localStorage.scheme = scheme();
+        localStorage.contrast = contrast();
         localStorage.fontSize = fontSize.value;
     };
 
@@ -200,7 +210,8 @@ if (hasLocalStorage()) {
     if (!localStorage.getItem('scheme') && !localStorage.getItem('contrast')) {
         matchMediaColor();
     } else {
-        lightSwitch.checked = localStorage.scheme !== 'light';
+        lightSwitch.checked = localStorage.scheme == 'dark';
+        getElement(localStorage.contrast + 'Contrast').checked = true;
         setColor();
     }
 
