@@ -127,13 +127,13 @@ function setColor() {
     };
     lightSwitchIndicator.setAttribute('aria-description', (lightSwitch.checked ? i18nDark : i18nLight));
     bodySty.setAttribute('style', styles[scheme()][contrast()]);
-};
+}
 
 // Font size functions
 function setFontSize() {
     fontSizeState.value = fontSize.value;
     htmlSty.setProperty('--fontScale', fontSize.value / 10);
-};
+}
 
 // Initialize localStorage
 function hasLocalStorage() {
@@ -146,7 +146,7 @@ function hasLocalStorage() {
         getElement('noLocalStorage').className = '';
         return false;
     };
-};
+}
 
 if (hasLocalStorage()) {
     getElement('a11y-menu').className = '';
@@ -161,7 +161,7 @@ if (hasLocalStorage()) {
         matchMediaColor();
         fontSize.value = '';
         setTimeout(() => window.location.reload(), 100);
-    };
+    }
 
     // Save function
     function saveA11y() {
@@ -169,10 +169,9 @@ if (hasLocalStorage()) {
         localStorage.scheme = scheme();
         localStorage.contrast = contrast();
         localStorage.fontSize = fontSize.value;
-    };
+    }
 
     // Read settings from localStorage
-
     if (!localStorage.getItem('scheme') && !localStorage.getItem('contrast')) {
         matchMediaColor();
     } else {
