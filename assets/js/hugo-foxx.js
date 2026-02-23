@@ -1,34 +1,5 @@
 const getElement = id => document.getElementById(id);
 const getElements = selector => document.querySelectorAll(selector);
-function addEvent(element, event, handler) {
-    if (element) {
-        if (element.attachEvent) {
-            return element.attachEvent('on' + event, handler);
-        }
-        return element.addEventListener(event, handler, false);
-    }
-}
-
-addEvent(document, 'DOMContentLoaded', () => {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-        const id = entry.target.getAttribute('id');
-        if (entry.intersectionRatio > 0) {
-            document.querySelector(`#toc a[href="#${id}"]`).setAttribute('style', 'color:var(--fg)');
-        } else {
-            document.querySelector(`#toc a[href="#${id}"]`).removeAttribute('style');
-        }
-        });
-    });
-    if (getElement('toc')) {
-        getElements('h2[id], h3[id]').forEach((h) => {
-            observer.observe(h);
-        });
-    }
-});
-
-// 
-// constant block
 const bodySty = document.body;
 const htmlSty = document.documentElement.style;
 const a11ySty = document.createElement('style');
@@ -131,10 +102,17 @@ function contrast() {
             : 'default');
 }
 
-{{ $lite := site.Params.style.light }}
-{{ $dark := site.Params.style.dark }}
-
 function setColor() {
+    {{ $lite := site.Params.style.light }}
+    {{ $dark := site.Params.style.dark }}
+    {{ if site.Params.logo.logomark }}
+        const logomark = getElement('logomark');
+        const logomarkDark = getElement('logomark--dark');
+        if (logomarkDark) {
+            logomark.style.display = lightSwitch.checked ? 'none' : 'inline-block';
+            logomarkDark.style.display = lightSwitch.checked ? 'inline-block' : 'none';
+        }
+    {{ end }}
     const styles = {
         light: {
             default: '--off: #000; --ac: {{ or $lite.ac "#800000" }}; --bg: {{ or $lite.bg "#f9f9f9" }}; --fg: {{ or $lite.fg "#111" }}; --mid:{{ or $lite.mid "gray" }};',
@@ -147,21 +125,9 @@ function setColor() {
             more: '--off: #fff; --ac: {{ or $dark.more.ac $dark.ac "#b49123" }}; --bg: {{ or $dark.more.bg "#000" }}; --fg: {{ or $dark.more.fg "#fff" }}; --mid:{{ or $dark.more.mid "gray" }};'
         }
     };
-    const logomark = getElement('logomark');
-    const logomarkDark = getElement('logomark--dark');
-    if (logomarkDark) {
-        logomark.style.display = lightSwitch.checked ? 'none' : 'inline-block';
-        logomarkDark.style.display = lightSwitch.checked ? 'inline-block' : 'none';
-    }
     lightSwitchIndicator.setAttribute('aria-description', (lightSwitch.checked ? i18nDark : i18nLight));
     bodySty.setAttribute('style', styles[scheme()][contrast()]);
 };
-
-// Flash guard
-addEvent(document, 'DOMContentLoaded', () => {
-    setTimeout(() => htmlSty.setProperty('--flashGuard', 'background 1s ease-in'), 99);
-});
-
 
 // Font size functions
 function setFontSize() {
@@ -221,3 +187,36 @@ if (hasLocalStorage()) {
     }
 
 }
+
+function addEvent(element, event, handler) {
+    if (element) {
+        if (element.attachEvent) {
+            return element.attachEvent('on' + event, handler);
+        }
+        return element.addEventListener(event, handler, false);
+    }
+}
+
+// toc
+addEvent(document, 'DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        if (entry.intersectionRatio > 0) {
+            document.querySelector(`#toc a[href="#${id}"]`).setAttribute('style', 'color:var(--fg)');
+        } else {
+            document.querySelector(`#toc a[href="#${id}"]`).removeAttribute('style');
+        }
+        });
+    });
+    if (getElement('toc')) {
+        getElements('h2[id], h3[id]').forEach((h) => {
+            observer.observe(h);
+        });
+    }
+});
+
+// Flash guard
+addEvent(document, 'DOMContentLoaded', () => {
+    setTimeout(() => htmlSty.setProperty('--flashGuard', 'background 1s ease-in'), 99);
+});
