@@ -48,7 +48,7 @@
 }
 
 ::selection {
-    color: var(--fg);
+    color: var(--bg);
     background: var(--ac);
 }
 
