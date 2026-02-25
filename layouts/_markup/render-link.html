@@ -16,6 +16,6 @@
 {{- end -}}
 <a href="{{ .Destination | safeURL }}"
     {{- with .Title }} title="{{ . }}"{{ end -}}
-    {{- if $u.IsAbs }} target="_blank" rel="external noopener noreferrer nofollow"{{ end }}>
+    {{- if $u.IsAbs }} target="_blank" rel="external noopener noreferrer nofollow"{{ else }} target="_self"{{ end }}>
     {{- with .Text }}{{ . }}{{ end -}}
 </a>

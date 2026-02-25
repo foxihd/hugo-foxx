@@ -431,6 +431,10 @@ tbody tr:nth-child(2n) {
     content: '\e902';
 }
 
+.content a[target=_self]::after {
+    --tsf: rotate(-135deg);
+}
+
 #main-article .content p:not(:first-of-type) {
     text-indent: 1.618pc;
 }
