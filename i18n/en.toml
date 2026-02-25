@@ -10,7 +10,8 @@
 [allPosts]
     other = "All posts"
 [allTaxonomies]
-    other = "Explore Taxonomy"
+    one = "Explore Taxonomy"
+    other = "Explore Taxonomies"
 [articles]
     one = "Article"
     other = "Articles"
