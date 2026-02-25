@@ -36,6 +36,10 @@
     // Enable Appearance Panel
     enableAppearance = true
 
+    // disable article preview card on post listing hover
+    [params.posts]
+        disableCard = true
+
     // Adjust color
     [params.style]
         [params.style.light]

@@ -106,7 +106,7 @@
                             <a class="has-pre" href="{{ .RelPermalink }}" aria-label="{{ .Title }}" aria-description="{{ $date }}">
                                 <span>{{ .Title }}</span>
                             </a>
-                            {{- if not $active }}
+                            {{- if and (not $active) (not site.Params.posts.disableCard) }}
                                 {{- $author := default site.Params.Author.name .Params.author }}
                                 {{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
                                 {{- $categories := .GetTerms "categories" }}
