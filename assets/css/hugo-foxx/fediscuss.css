@@ -12,12 +12,12 @@
     padding-top: 3.14rem;
 }
 
-#comments>summary {
+#comments > summary {
     letter-spacing: 0.1ex;
     font-variant: all-small-caps;
 }
 
-#discussion-starter>nav {
+#discussion-starter > nav {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -54,7 +54,7 @@
     list-style: none;
 }
 
-#comments ul>li {
+#comments ul > li {
     border-radius: 1ex;
     overflow: clip;
 }
@@ -83,13 +83,15 @@
     overflow: auto;
 }
 
-.author {
+.fed-comments .author {
+    display: flex;
+    align-items: center;
     justify-content: unset;
-    gap: 1rem;
     line-height: 1;
+    gap: 1rem;
 }
 
-.author img {
+.author > img {
     border-radius: 2rem;
 }
 
@@ -130,8 +132,7 @@ a.date,
     display: inline-block;
 }
 
-#join-discussion:hover .blueksy,
-#join-discussion-bluesky:hover .bluesky {
+.bsky:hover > .icon {
     transform-origin: center center;
     animation: flutter 0.2s alternate infinite;
 }
