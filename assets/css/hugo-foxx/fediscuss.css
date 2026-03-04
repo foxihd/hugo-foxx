@@ -133,6 +133,7 @@ a.date,
 }
 
 .bsky:hover > .icon {
+    display: inline-block;
     transform-origin: center center;
     animation: flutter 0.2s alternate infinite;
 }
