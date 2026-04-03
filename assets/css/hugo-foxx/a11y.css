@@ -211,7 +211,7 @@ fieldset {
     border: var(--border) !important;
     background: inherit;
     color: var(--fg);
-    font-family: initial;
+    font: inherit;
 }
 
 #fontSize {
