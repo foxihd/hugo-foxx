@@ -5,7 +5,7 @@ const htmlSty = document.documentElement.style;
 const a11ySty = document.createElement('style');
 const a11y = getElement('has-a11y');
 const {
-    i18nAccessibility,
+    i18nAppearance,
     i18nColorsettings,
     i18nDarkmode,
     i18nLight,
@@ -33,10 +33,10 @@ a11y.classList.remove('hide');
 
 a11y.innerHTML = `
 <summary id="has-a11y-summary" accesskey="a" aria-keyshortcuts="a">
-  <span class="hide">${i18nAccessibility}</span>
+  <span class="hide">${i18nAppearance}</span>
 </summary>
 <!-- a11y console -->
-<fieldset id="a11y" role="region" aria-label="${i18nAccessibility}">
+<fieldset id="a11y" role="region" aria-label="${i18nAppearance}">
   <!-- setColorScheme -->
   <div id="setColorScheme" role="group" aria-label="${i18nColorsettings}">
     <!-- lightSwitch -->
