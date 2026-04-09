@@ -102,6 +102,8 @@
 #home-nav-alt ul a,
 nav.author ul {
     display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
     gap: 1ex;
 }
 
