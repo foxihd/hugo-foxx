@@ -105,6 +105,7 @@ nav.author ul {
     overflow-x: auto;
     white-space: nowrap;
     gap: 1ex;
+    scrollbar-width: none;
 }
 
 nav.author ul a {
