@@ -91,6 +91,11 @@
     gap: 1rem;
 }
 
+.fed-comments > div:last-child {
+    display: flex;
+    justify-content: space-between;
+}
+
 .author > img {
     border-radius: 2rem;
 }
@@ -149,7 +154,8 @@ a.date,
 }
 
 @media (min-width: 641px) {
-    .fed-comments .content {
+    .fed-comments .content,
+    .fed-comments > div:last-child {
         padding-left: 46pt;
     }
 } */
