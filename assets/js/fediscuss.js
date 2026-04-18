@@ -409,7 +409,7 @@ if (bskyRoot) {
             <div class='author'>
               <img src='${comment.post.author.avatar}' width=48 height=48 alt='${comment.post.author.handle}' loading='lazy' />
               <a class='has-desc' href='https://bsky.app/profile/${comment.post.author.handle}' rel='external noreferrer nofollow' aria-description='@${comment.post.author.handle}''>
-                <span>${comment.post.author.displayName}</span>
+                <span>${comment.post.author.displayName ? comment.post.author.displayName : comment.post.author.handle}</span>
               </a>
             </div>
             <section class='content'>${renderBskyContent(comment.post)}</section>
