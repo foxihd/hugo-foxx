@@ -17,7 +17,7 @@
     <ul role="presentation">
         {{- range . }}
             {{ $hide := eq (substr .Page.Title 0 1) "_" }}
-            {{ if not $hide }}
+            {{ if and (not $hide) (or .Content .RegularPages) }}
             <li>
                 <a href="{{ .Page.Permalink }}" aria-label="{{ i18n "section" 1 }}:{{ .Page.Title }}">
                     <span>{{ .Page.Title }}</span>
