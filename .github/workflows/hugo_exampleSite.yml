@@ -32,7 +32,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.155.2
+      HUGO_VERSION: 0.161.1
     steps:
       - name: Install Hugo CLI
         run: |
@@ -60,6 +60,8 @@ jobs:
             --themesDir ../.. \
             --source exampleSite \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Index pagefind
+        run: npx pagefind --site "./exampleSite/public"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:

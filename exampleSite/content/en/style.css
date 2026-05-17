@@ -1,0 +1,27 @@
+
+#get {
+    position: fixed;
+    bottom: 2rem;
+    z-index: 2;
+}
+
+#get a {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 8pt 12pt 7pt;
+    border: 1pt solid var(--fg);
+    border-radius: 1ex;
+    box-shadow: 2pt 2pt #80808080;
+}
+
+#get a:hover,
+#get a:focus {
+    background: var(--fg);
+    color: var(--bg);
+}
+
+@media print {
+    #get {
+        display: none;
+    }
+}
