@@ -507,6 +507,12 @@ tbody tr:nth-child(2n) {
     content: '' !important;
 }
 
+.footnote-ref {
+    border-radius: 0.8ex;
+    background: #80808016;
+    padding: 0 0.8ex;
+}
+
 .content a::after,
 .marginpar-ctrl:checked + label + .marginpar,
 #menu:checked + label ~ *,
