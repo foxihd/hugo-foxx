@@ -52,8 +52,6 @@
 {{- end }}
 
 {{- define "feed" -}}
-    {{- $active := eq (or .Params.Sitemap.ChangeFreq .Sitemap.ChangeFreq | lower) (or "always" "hourly" "daily" "weekly") }}
-    {{- $descending := or (not .IsHome) (eq $.Data.Plural "series") $.Params.descending }}
     {{- $pages := .RegularPages }}
     {{- if $.Params.Recursive }}
         {{- $pages = .RegularPagesRecursive }}
@@ -72,6 +70,43 @@
             <div style="max-width:320px">{{ i18n "noArticlePost" }}</div>
         </center>
     {{- end }}
+    {{- if and .IsHome .Sections }}
+        {{- template "bySection" . }}
+    {{- else }}
+        {{- template "byYear" (dict "pages" $pages) }}
+    {{- end }}
+{{- end }}
+
+{{- define "bySection" }}
+    {{- range .Sections }}
+        {{ $sectitle := .Page.Title }}
+        {{ $secLink :=  .Page.Permalink }}
+        {{- with .RegularPages }}
+        <section id="list-{{ $sectitle }}" aria-label="{{ $sectitle }}">
+            <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $sectitle }}</span></a></h2>
+            <ul class="list-day" role="presentation" style="padding-left: 5rem;">
+                {{- range .  | first 12 }}
+                <li>
+                    <a class="has-pre" href="{{ .RelPermalink }}" aria-label="{{ .Title }}" aria-description="{{ .Date.Format "2/01/06" }}">
+                        <span>{{ .Title }}</span>
+                    </a>
+                </li>
+                {{- end }}
+                {{- if gt (len . ) 12 }}
+                    <li>
+                        <a href="{{ $secLink }}"><span>{{ i18n "seeAll" }} {{ $sectitle }} ⟶</span></a>
+                    </li>
+                {{- end }}
+            </ul>
+        </section>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "byYear" }}
+    {{- $pages := .pages }}
+    {{- $active := eq (or .Params.Sitemap.ChangeFreq .Sitemap.ChangeFreq | lower) (or "always" "hourly" "daily" "weekly") }}
+    {{- $descending := or (not .IsHome) (eq $.Data.Plural "series") $.Params.descending }}
     {{- $yearGroup := $pages.GroupByDate "2006" }}
     {{- if $descending }}
         {{- $yearGroup = $yearGroup.Reverse }}
@@ -126,7 +161,7 @@
         </div>
     </div>
     {{- end }}
-{{- end -}}
+{{- end }}
 
 {{- define "taxonomy" }}
     {{- range $entry, $taxonomy := site.Taxonomies }}
