@@ -89,6 +89,18 @@
     color: var(--fg);
 }
 
+#list-tags li a {
+    display: flex;
+    border: 1pt solid #80808080;
+    border-radius: 2em;
+    padding: 2pt 8pt 0;
+    font-size: var(--small);
+}
+#list-tags li a:focus,
+#list-tags li a:hover {
+    border: 1pt solid var(--ac);
+}
+
 #list-tags li a::before {
     content: '#';
 }
