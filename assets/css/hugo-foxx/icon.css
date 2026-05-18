@@ -8,8 +8,7 @@
      format('woff2');
 }
 
-#mastodonInstance::before,
-#has-share i,
+#to-top::before,
 .stat a::before,
 .icon {
     text-transform: none;
