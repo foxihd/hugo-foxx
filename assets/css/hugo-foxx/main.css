@@ -64,7 +64,6 @@ body {
     font-family: 'Crimson', 'Amiri', 'Times New Roman', serif;
     font-size: var(--normalsize);
     font-variant-numeric: oldstyle-nums;
-    gap: 2rem;
     scrollbar-gutter: stable;
 }
 
@@ -85,7 +84,7 @@ body > header nav {
 }
 
 main {
-    margin: 1in 0;
+    margin: 1in 0 1in 6.18vw;
     padding-right: var(--void);
     padding-left: var(--void);
     max-width: var(--max-width);
