@@ -112,7 +112,7 @@
             {{- if and .icon (not .desc) }}
                 <i class="icon">{{ .icon }}</i>
             {{- end }}
-            <span {{ with .desc }} class="has-aria-label" aria-label="{{ . }}" {{ end }}>
+            <span {{ with .desc }} class="has-desc" aria-description="{{ . }}" {{ end }}>
                 {{- if and .icon .desc }}
                     <i class="icon" aria-hidden="true">{{ .icon }}</i>
                 {{- end }}
