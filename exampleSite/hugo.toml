@@ -21,7 +21,7 @@ enableRobotsTXT = true
             pagerSize = 12
             path = 'page'
         [languages.en.params]
-            license = 'hugo-foxx <i class="icon heart"></i> 2026'
+            license = 'hugo-foxx <i class="icon">copyleft</i> 2026'
 
     [languages.id]
         title = 'contoh'
@@ -36,7 +36,7 @@ enableRobotsTXT = true
             pagerSize = 12
             path = 'laman'
         [languages.id.params]
-            license = 'hugo-foxx <i class="icon heart"></i> 2026'
+            license = 'hugo-foxx <i class="icon">copyleft</i> 2026'
 
 
 [markup]
