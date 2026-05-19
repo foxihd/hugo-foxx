@@ -492,6 +492,10 @@ tbody tr:nth-child(2n) {
     width: var(--golden-ratio);
 }
 
+.hero__content .content p {
+    width: unset;
+}
+
 .content ol,
 .content ul {
     margin: 0;

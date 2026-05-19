@@ -1,7 +1,7 @@
 ---
 author : ['Author Name']
 title: "Configure Pagefind"
-description: "How to configure Pagefind in Hugo Brewm theme"
+description: "How to configure Pagefind in hugo foxx theme"
 date: 2025-01-26
 type: article
 draft: false
@@ -21,14 +21,18 @@ To enable search functionality, you'll need to modify your `config.toml` file. F
   pagefind = true
 ```
 
-## Setting up post frontmatter
+### Creating search page
 
-To make post indexed, you'll need to set `type` to `post` to the frontmatter of each post.
+Unlike hugo-brewm theme, this theme use single page for search by configuring new page with search layout.
+Create `search.en.md`:
 
 ```yaml
 ---
-title: "Post"
-type: post
+title: "Search"
+type: "search"
+menus:
+    main:
+        identifier : "Search"
 ---
 ```
 
