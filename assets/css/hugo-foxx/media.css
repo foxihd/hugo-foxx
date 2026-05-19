@@ -6,7 +6,6 @@
 
     main,
     body > header nav {
-        margin: 1in 0;
         width: unset;
         max-width: unset;
     }
@@ -50,10 +49,13 @@
         padding-bottom: 1pc !important;
     }
 
+    main {
+        margin: 1in 0;
+    }
+
     #menu + label {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        justify-items: center;
         cursor: pointer;
         padding: 1ex 0;
     }
