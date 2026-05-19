@@ -332,6 +332,10 @@ header.article > time {
     line-height: 1;
 }
 
+article > #title {
+    font-style: italic;
+}
+
 header.article i,
 .subtitle {
     opacity: 0.9;
