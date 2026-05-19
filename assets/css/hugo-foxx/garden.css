@@ -1,10 +1,8 @@
 .st {
     display: inline-block;
-    margin: 4pt 0 0 1ex;
     background: var(--svg) 50% / contain;
-    padding: 0.5em;
-    width: 1em;
-    height: 1em;
+    width: 3ex;
+    height: 3ex;
 }
 
 .budding {
