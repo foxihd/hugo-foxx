@@ -80,6 +80,9 @@ enableRobotsTXT = true
         # email = ''
         # coauthor = [{name = 'A.N. Other', bio = ''}]
 
+    [params.comments]
+        disabled = false
+
     [params.favicon]
         # png = '/favicon-96x96.png'
         # svg = '/favicon.svg'

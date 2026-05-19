@@ -84,7 +84,7 @@
         {{- $style = $style | append (resources.Get "css/hugo-foxx/crimson.css") (resources.Get "css/hugo-foxx/inconsolata.css") }}
     {{- end }}
 
-    {{- if or site.Params.fediverse.instance site.Params.fediverse.host site.Params.fediverse.username site.Params.fediverse.user }}
+    {{- if not site.Params.comments.disabled }}
         {{- $style = $style | append (resources.Get "css/hugo-foxx/fediscuss.css") }}
     {{- end }}
 
