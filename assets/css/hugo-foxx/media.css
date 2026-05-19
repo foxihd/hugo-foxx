@@ -6,6 +6,7 @@
 
     main,
     body > header nav {
+        margin: 1in 0;
         width: unset;
         max-width: unset;
     }
