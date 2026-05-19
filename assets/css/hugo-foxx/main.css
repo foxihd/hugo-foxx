@@ -253,6 +253,7 @@ ul.delimiter li:last-child:after {
     overflow-x: auto;
     white-space: nowrap;
     font-variant: all-small-caps;
+    scrollbar-width: none;
 }
 
 #breadcrumb li::after {
@@ -318,11 +319,6 @@ header.article {
     gap: 1em;
 }
 
-header.article > h1,
-header.article > hgroup {
-    margin: 0;
-}
-
 header.article > time {
     color: var(--mid);
     font-size: var(--small);
@@ -332,7 +328,10 @@ header.article > time {
     line-height: 1;
 }
 
-article > #title {
+article > #title,
+.content h2,
+.content h3,
+.content h4 {
     font-style: italic;
 }
 
@@ -354,17 +353,6 @@ article header {
     margin-bottom: 1rem;
     line-height: 1.272;
     font-weight: 400;
-}
-
-.content {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-style: italic;
-    }
 }
 
 h1 {
@@ -433,6 +421,8 @@ figure,
 blockquote > p,
 li > p,
 nav#breadcrumb ul li,
+header.article > h1,
+header.article > hgroup,
 .lntd > .chroma,
 #toc nav,
 #taxonomy li:last-child {
@@ -492,10 +482,6 @@ tbody tr:nth-child(2n) {
     width: var(--golden-ratio);
 }
 
-.hero__content .content p {
-    width: unset;
-}
-
 .content ol,
 .content ul {
     margin: 0;
@@ -524,6 +510,7 @@ tbody tr:nth-child(2n) {
     font-size: 0.95em;
 }
 
+.hero__content .content p,
 .content figure.fullwidth {
     clear: both;
     width: 100%;

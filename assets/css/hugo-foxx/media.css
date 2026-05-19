@@ -65,7 +65,8 @@
     }
 
     #i18n .icon,
-    #menu + label ~ * {
+    #menu + label ~ *,
+    #menu + label ~ #home-nav {
         display: none;
     }
 
@@ -77,10 +78,6 @@
         display: block;
         grid-column: 1 / span 2;
         padding: 0 1.618pc;
-    }
-
-    #home-nav {
-        display: none !important;
     }
 
     .has-cover {
