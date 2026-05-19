@@ -69,7 +69,7 @@ enableRobotsTXT = true
     # title = ''
     # description = ''
     extMeta = true
-    # images = 'https://foxx.ink/og.webp'
+    # images = ''
     enableAppearance = true
 
     [params.analytics]
@@ -88,6 +88,9 @@ enableRobotsTXT = true
         # appTitle = 'foxx.ink'
         # webmanifest = '/site.webmanifest'
 
+    [params.posts]
+        disableCard = true
+
     [params.search]
         pagefind = true
 
@@ -101,4 +104,4 @@ enableRobotsTXT = true
 
     [params.typeface]
         webSafe = false
-        minimalUI = false
+        minimalUI = true

@@ -111,7 +111,7 @@ pre > code table {
 .kc, /* KeywordConstant */
 .kt, /* KeywordType */
 .nt, /* NameTag */
-.x, /* Other */
+code .x, /* Other */
 .err, /* Error */
 .ln,/* LineNumbers */
 .o, /* Operator */

@@ -42,7 +42,7 @@ Add icons to your menu items with the `pre` parameter.
 
 Here are all the supported list icons and their corresponding names that can be used when configuring your menu items:
 
-<ul class="column pin" role="presentation">
+<ul id="icon-list" role="presentation">
   <li><i class="icon email"></i> email  </li>
   <li><i class="icon rss"></i> rss  </li>
   <li><i class="icon behance"></i> behance  </li>
