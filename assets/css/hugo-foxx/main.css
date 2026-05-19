@@ -332,6 +332,7 @@ header.article > time {
     line-height: 1;
 }
 
+header.article i,
 .subtitle {
     opacity: 0.9;
     letter-spacing: .05em;
