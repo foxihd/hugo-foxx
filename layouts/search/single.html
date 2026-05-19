@@ -1,3 +1,17 @@
+{{- define "head" }}
+<style>
+    .search,
+    .pagefind-ui__search-input {
+        border: 1pt solid var(--fg);
+        box-shadow: 2pt 3pt #80808080;
+    }
+    .search {
+        padding: 2pt;
+        border-radius: 2rem;
+    }
+</style>
+{{- end }}
+
 {{- define "main" }}
 <h1>{{ default (i18n "search") .Title }}</h1>
 {{- partialCached "search.html" . }}

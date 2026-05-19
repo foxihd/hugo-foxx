@@ -1,6 +1,6 @@
 {{ if site.Params.search.pagefind }}
     {{ partialCached "search/pagefind.html" . }}
-    <noscript id="has-search-fallback" class="textwidth">
+    <noscript id="has-search-fallback" class="pagewidth">
         {{- if eq (lower site.Params.search.fallback) "mojeek" }}
             {{ partialCached "search/mojeek.html" . }}
         {{- else }}
@@ -8,7 +8,7 @@
         {{- end }}
     </noscript>
 {{ else }}
-    <div id="has-search-fallback" class="textwidth">
+    <div id="has-search-fallback" class="pagewidth">
         {{- if eq (lower site.Params.search.fallback) "mojeek" }}
             {{ partialCached "search/mojeek.html" . }}
         {{- else }}
@@ -25,7 +25,7 @@
     <script>
         const pfSty = Object.assign(document.createElement('style'), {
             textContent: `
-                .pagefind-ui__search-input {width: 100%;border-radius: 2rem;border: none;padding: 0 1ex;height: 2pc;}
+                .pagefind-ui__search-input {width: 100%;border-radius: 2rem;border: none;padding: 0 1em;height: 2pc;}
                 .pagefind-ui__search-clear {float: right;position: relative;top: -1.7pc;right: 0.3pc;border-radius: 2pc;border: none;height: 1.4pc;padding: 0 1ex; background: none;}
             `
         });
@@ -57,7 +57,7 @@
 {{- define "partials/search/duckduckgo.html" }}
     {{ "<!-- duckduckgo.html -->" | safeHTML }}
     {{- $site := index (split site.BaseURL "/") 2 }}
-    <form id="duckduckgo" class="search"
+    <form id="duckduckgo" class="search textwidth"
         name="{{ i18n "search" }}" action="//duckduckgo.com/"
         role="search" aria-label="{{ i18n "search" }}" style="display:flex">
         <input type="hidden" value="{{ $site }}" name="sites"></input>
@@ -65,9 +65,9 @@
         <input type="hidden" value="1" name="kn"></input>
         <input type="hidden" value="1" name="kac"></input>
         <input class="searchbox" type="search" placeholder="{{ i18n "search" }}" name="q" role="searchbox"
-            style="flex: 1;border-radius: 2rem;border: none;padding: 0 1ex;"></input>
+            style="flex: 1;border-radius: 2rem;border: none;background:none;padding: 0 1ex;"></input>
         <button type="submit" aria-label="{{ i18n "search" }}"
-            style="display:flex;height:2pc;border:none;background:none;">
+            style="display:flex;height:2pc;border:none;background:none;padding:1pt">
             <img src="https://duckduckgo.com/assets/logo_header.v109.svg" alt="{{ i18n "search" }}" role="presentation" aria-hidden="true">
         </button>
     </form>
@@ -76,14 +76,14 @@
 {{- define "partials/search/mojeek.html" }}
     {{ "<!-- mojeek.html -->" | safeHTML }}
     {{- $site := index (split site.BaseURL "/") 2 }}
-    <form id="mojeek" class="search"
+    <form id="mojeek" class="search textwidth"
         name="{{ i18n "search" }}" action="//www.mojeek.com/search"
         role="search" aria-label="{{ i18n "search" }}" style="display:flex">
         <input type="hidden" value="{{ $site }}" name="site"></input>
         <input class="searchbox" type="search" placeholder="{{ i18n "search" }}" name="q" role="searchbox"
-            style="flex: 1;border-radius: 2rem;border: none;padding: 0 1ex;"></input>
+            style="flex: 1;border-radius: 2rem;border: none;background:none;padding: 0 1ex;"></input>
         <button type="submit" aria-label="{{ i18n "search" }}"
-            style="display:flex;height:2pc;border:none;background:none;">
+            style="display:flex;height:2pc;border:none;background:none;;padding:1pt">
             <img src="https://www.mojeek.com/logos/icon_cc_73x45.png" alt="{{ i18n "search" }}" role="presentation" aria-hidden="true">
         </button>
     </form>

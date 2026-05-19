@@ -5,6 +5,7 @@
     {{- if eq (lower site.Params.analytics.append) "head" -}}
         {{ partialCached "analytics.html" . }}
     {{- end }}
+    {{ block "head" . }}{{ end }}
 </head>
 {{- if not (or .Params.headless .Params.target .Params.alias) }}
 <body>
