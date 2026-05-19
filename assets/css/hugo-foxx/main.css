@@ -231,7 +231,7 @@ ul.delimiter li:last-child:after {
     content: '.';
 }
 
-a.has-desc {
+.has-desc {
     display: inline-grid;
     margin: 1ex 0;
 }
