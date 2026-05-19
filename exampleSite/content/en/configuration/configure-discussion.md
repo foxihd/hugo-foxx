@@ -4,7 +4,7 @@ title: "Configure Discussion"
 description: "How to configure post discussion in Hugo Brewm theme"
 date: 2025-01-26
 lastmod: 2025-02-10
-type: post
+type: article
 draft: false
 translationKey: discussion
 coffee: 1

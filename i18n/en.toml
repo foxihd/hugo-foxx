@@ -20,6 +20,8 @@
 [author]
     one = "Author"
     other = "Authors"
+[by]
+    other = "by"
 [bypass]
     other = "Bypass"
 [breadcrumb]

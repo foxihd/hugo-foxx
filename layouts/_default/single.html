@@ -1,11 +1,37 @@
 {{- define "main" }}
 
-{{- if eq .Params.type (or "post" "articles") }}
+{{- $author := cond .Params.author .Params.author site.Params.Author.name }}
+{{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
+{{- $notMultiAuthor := eq (len $authors) 1 }}
+{{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+{{- $dateHuman := .Date | time.Format ":date_long" }}
+
+{{- if eq .Params.type (or "post" "posts") }}
 <header>
-    {{- $author := cond .Params.author .Params.author site.Params.Author.name }}
-    {{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
-    {{- $notMultiAuthor := eq (len $authors) 1 }}
     {{- if $authors }}
+        {{- if $notMultiAuthor }}
+                {{- range $authors }}
+                    <a class="author" href="{{ .Permalink }}">{{- .LinkTitle -}}</a>
+                {{- end }}
+        {{- else }}
+                {{ partial "terms.html" (dict "taxonomy" "author" "class" "delimiter" "page" .) }}
+        {{- end }}
+    {{- else if $author -}}
+        <span>{{ $author }}</span>
+    {{- end }}
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+</header>
+{{- end }}
+
+<article id="main-article" role="document" data-pagefind-body>
+
+    {{- if eq .Params.type (or "article" "articles") }}
+    <header class="article">
+        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+        {{- partial "page/title.html" . }}
+        <span>
+        <i>{{i18n "by" }}</i>
+        {{- if $authors }}
             {{- if $notMultiAuthor }}
                     {{- range $authors }}
                         <a class="author" href="{{ .Permalink }}">{{- .LinkTitle -}}</a>
@@ -13,18 +39,14 @@
             {{- else }}
                     {{ partial "terms.html" (dict "taxonomy" "author" "class" "delimiter" "page" .) }}
             {{- end }}
-    {{- else if $author -}}
-            <span>{{ $author }}</span>
+        {{- else if $author -}}
+            {{ $author }}
+        {{- end }}
+        </span>
+    </header>
+    {{- else }}
+        {{- partial "page/title.html" . }}
     {{- end }}
-
-        {{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-        {{- $dateHuman := .Date | time.Format ":date_long" }}
-        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-</header>
-{{- end }}
-
-<article id="main-article" role="document" data-pagefind-body>
-    {{- partial "page/title.html" . }}
 
     {{- partial "page/audio.html" . }}
 

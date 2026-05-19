@@ -175,6 +175,7 @@ nav ul li {
 
 nav strong,
 main > header,
+header.article,
 .list-year > strong,
 .textssc {
     letter-spacing: .1em;
@@ -231,8 +232,7 @@ ul.delimiter li:last-child:after {
 }
 
 a.has-desc {
-    display: inline-flex;
-    flex-direction: column;
+    display: inline-grid;
     margin: 1ex 0;
 }
 
@@ -310,6 +310,33 @@ nav details > summary::marker,
 }
 
 /*  */
+
+header.article {
+    display: grid;
+    margin-bottom: 2pc;
+    text-align: center;
+    gap: 1em;
+}
+
+header.article > h1,
+header.article > hgroup {
+    margin: 0;
+}
+
+header.article > time {
+    color: var(--mid);
+    font-size: var(--small);
+}
+
+#title {
+    line-height: 1;
+}
+
+.subtitle {
+    opacity: 0.9;
+    letter-spacing: .05em;
+    font-variant-caps: initial;
+}
 
 h1,
 h2,

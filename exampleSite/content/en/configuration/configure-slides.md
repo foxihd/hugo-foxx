@@ -3,7 +3,7 @@ author : ['Author Name']
 title: "Configure Homepage Slides"
 description: "How to configure Homepage Slides section in Hugo Brewm theme"
 date: 2025-01-26
-type: post
+type: article
 draft: false
 translationKey: slide
 coffee: 1

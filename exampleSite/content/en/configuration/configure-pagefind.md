@@ -3,7 +3,7 @@ author : ['Author Name']
 title: "Configure Pagefind"
 description: "How to configure Pagefind in Hugo Brewm theme"
 date: 2025-01-26
-type: post
+type: article
 draft: false
 translationKey: pagefind
 coffee: 1
