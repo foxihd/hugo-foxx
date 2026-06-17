@@ -23,8 +23,8 @@
 
 {{- if .Translations }}
     {{- range .Translations | first 1 }}
-    {{- $flag := partial "i18n/flag.html" (dict "iso3166" (substr .Language.LanguageCode -2)) }}
-        <a href="{{ .RelPermalink }}" id="i18n" aria-label="{{ printf "%s %s" (i18n "switchLangTo") .Language.LanguageName }}" aria-description="{{ .LinkTitle }}">
+    {{- $flag := partial "i18n/flag.html" (dict "iso3166" (substr (or .Language.Locale .Language.LanguageCode) -2)) }}
+        <a href="{{ .RelPermalink }}" id="i18n" aria-label="{{ printf "%s %s" (i18n "switchLangTo") (or .Language.Label .Language.LanguageName) }}" aria-description="{{ .LinkTitle }}">
             <span class="icon localization"></span>
             <span class="emoji">{{ $flag }}</span>
         </a>
@@ -44,8 +44,8 @@
 
 {{- define "partials/i18n/switchlanghome.html" }}
     {{- range where $.Site.Home.AllTranslations "Lang" "ne" $.Lang }}
-        {{- $flag := partial "i18n/flag.html" (dict "iso3166" (substr .Language.LanguageCode -2)) }}
-        <a href="{{ .Permalink }}" id="i18n" aria-label="{{ printf "%s %s" (i18n "switchLangTo") .Language.LanguageName }}" aria-description="{{ .LinkTitle }}">
+        {{- $flag := partial "i18n/flag.html" (dict "iso3166" (substr (or .Language.Locale .Language.LanguageCode) -2)) }}
+        <a href="{{ .Permalink }}" id="i18n" aria-label="{{ printf "%s %s" (i18n "switchLangTo") (or .Language.Label .Language.LanguageName) }}" aria-description="{{ .LinkTitle }}">
             <span class="icon">localization</span>
             <span class="emoji">{{ $flag }}</span>
         </a>
