@@ -64,7 +64,7 @@ const checkResponseStatus = (response) => {
 const mstdRoot = getElement('mstd-comments');
 
 const cmtSty = document.createElement('style');
-cmtSty.textContent = `#comments ul{position:relative;padding-left:0;list-style:none;}#comments ul>li{border-radius:1ex;overflow:clip;}#comments ul ul{margin-left:2rem;}#comments ul::before{z-index:-1;position:absolute;top:0;right:0;bottom:0;left:0;border-left:3pt solid #80808008;border-radius:1ex;content:'';}.fed-comments{margin:1.6rem 0;border-left:3pt solid var(--ac);background:#faf0e633;padding:1pc;overflow:auto;}.fed-comments .author{display:flex;align-items:center;justify-content:unset;line-height:1;gap:1rem;}.fed-comments>div:last-child{display:flex;justify-content:space-between;}.author>img{border-radius:2rem;}.attachments{display:flex;margin:1ex 0;overflow:auto;}.attachments *{flex-shrink:0;width:100%;height:auto;}.attachments a::after{content:'';}a.date,.stat a{opacity:.5;margin:0 2pt;color:inherit;font-size:var(--small);}.stat a.active{opacity:1;color:var(--ac);}.stat .favourites.active{color:red;}.bluesky{display:inline-block;}.bsky:hover>.icon{display:inline-block;transform-origin:center center;animation:flutter .2s alternate infinite;}@keyframes flutter{from{transform:rotateY(0)}to{transform:rotateY(80deg)}}@media (min-width:641px){.fed-comments .content,.fed-comments>div:last-child{padding-left:46pt}}`;
+cmtSty.textContent = `#comments ul{position:relative;padding-left:0;list-style:none;}#comments ul>li{border-radius:1ex;overflow:clip;}#comments ul ul{margin-left:2rem;}#comments ul::before{z-index:-1;position:absolute;top:0;right:0;bottom:0;left:0;border-left:3pt solid #80808008;border-radius:1ex;content:'';}.fed-comments{margin:1.6rem 0;border-left:3pt solid var(--ac);background:#faf0e633;padding:1pc;overflow:auto;}.fed-comments .author{display:flex;align-items:center;justify-content:unset;line-height:1;gap:1rem;}.fed-comments>div:last-child{display:flex;justify-content:space-between;}.author>img{border-radius:2rem;}.attachments{display:flex;margin:1ex 0;overflow:auto;}.attachments *{flex-shrink:0;width:100%;height:auto;}.attachments a::after{content:'';}a.date,.stat a{opacity:.5;margin:0 2pt;color:inherit;font-size:var(--small);}.stat a.active{opacity:1;color:var(--ac);}.stat .favourites.active{color:red;}.bluesky{display:inline-block;}.bsky:hover>.icon{display:inline-block;transform-origin:center center;animation:flutter .2s alternate infinite;}.er{margin:0 0 2pc;border-left:3pt solid #8008;padding:1ex 1em;font: 1rem/1.6 monospace}@keyframes flutter{from{transform:rotateY(0)}to{transform:rotateY(80deg)}}@media (min-width:641px){.fed-comments .content,.fed-comments>div:last-child{padding-left:46pt}}`;
 document.head.appendChild(cmtSty);
 
 // i18n
@@ -130,7 +130,7 @@ if (mstdRoot) {
 
             } catch (error) {
                 console.error(`Mastodon ${i18nErr}`, error);
-                mstdRoot.innerHTML = `Mastodon ${i18nErr} : ${error}`;
+                mstdRoot.innerHTML = `<div role="alert" class="er">[Mastodon] <br> ${i18nErr} : ${error}</div>`;
             }
         }
 
@@ -313,7 +313,7 @@ if (bskyRoot) {
 
         } catch (error) {
             console.error(`Bluesky ${i18nErr}`, error);
-            bskyRoot.innerHTML = `Bluesky ${i18nErr} : ${error}`;
+            bskyRoot.innerHTML = `<div role="alert" class="er">[Bluesky] <br> ${i18nErr} : ${error}</div>`;
         }
     }
 

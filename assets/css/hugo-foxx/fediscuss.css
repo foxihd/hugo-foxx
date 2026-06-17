@@ -143,6 +143,13 @@ a.date,
     animation: flutter 0.2s alternate infinite;
 }
 
+.er {
+    margin: 0 0 2pc;
+    border-left: 3pt solid #8008;
+    padding: 1ex 1em;
+    font: 1rem/1.6 monospace;
+}
+
 @keyframes flutter {
     from {
         transform: rotateY(0);
