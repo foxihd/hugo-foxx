@@ -16,8 +16,14 @@
         {{- if ne .Kind "taxonomy" }}
             <section id="feed" class="{{ if $target }}target{{ else }}textwidth{{ end }}">
                 {{- $title := .LinkTitle }}
+                {{- $subtitle :=  .Page.Params.Subtitle }}
                 {{- if .IsHome }}
                     <h1>{{- i18n "allPosts" }} {{ if $target }}<a href="#" class="hash">#</a>{{ end }}</h1>
+                {{- else if $subtitle }}
+                <hgroup>
+                    <h1 id="title">{{- $title -}}</h1>
+                    <i class="subtitle">{{ $subtitle }}</i>
+                </hgroup>
                 {{- else if not .Content }}
                     <h1>
                         {{- if eq .Data.Singular "author" }}
@@ -82,11 +88,19 @@
 
 {{- define "bySection" }}
     {{- range .Sections }}
-        {{ $sectitle := .Page.Title }}
+        {{ $secTitle := .Page.Title }}
+        {{ $secSubTitle := .Page.Params.Subtitle }}
         {{ $secLink :=  .Page.Permalink }}
         {{- with .RegularPages }}
-        <section id="list-{{ $sectitle }}" aria-label="{{ $sectitle }}">
-            <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $sectitle }}</span></a></h2>
+        <section id="list-{{ $secTitle }}" aria-label="{{ $secTitle }}">
+            {{- if $secSubTitle }}
+                <hgroup>
+                    <h2 class="textssc" style="margin-bottom:0;"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
+                    <p class="subtitle" style="color: var(--mid);">{{ $secSubTitle }}</p>
+                </hgroup>
+            {{- else }}
+                <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
+            {{- end }}
             <ul class="list-day" role="presentation" style="padding-left: 5rem;">
                 {{- range .  | first 12 }}
                 <li>
@@ -97,7 +111,7 @@
                 {{- end }}
                 {{- if gt (len . ) 12 }}
                     <li>
-                        <a href="{{ $secLink }}"><span>{{ i18n "seeAll" }} {{ $sectitle }} ⟶</span></a>
+                        <a href="{{ $secLink }}"><span>{{ i18n "seeAll" }} {{ $secTitle }} ⟶</span></a>
                     </li>
                 {{- end }}
             </ul>

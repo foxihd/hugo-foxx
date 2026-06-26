@@ -63,7 +63,8 @@
     margin: 0 0 1rem;
 }
 
-#feed h1,
+#feed > h1,
+#feed > hgroup,
 #taxonomy h1,
 #taxonomy > section {
     margin-bottom: 3.14rem;
