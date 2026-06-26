@@ -40,7 +40,7 @@
 </nav>
 {{- end }}
 
-{{- if .IsHome }}
+{{- if and .IsHome (or (not site.Params.home.disableListing) (not site.Params.home.disableSlide)) }}
 <nav id="home-nav">
     {{ partialCached "slide/nav.html" . }}
 </nav>

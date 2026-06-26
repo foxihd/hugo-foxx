@@ -1,9 +1,10 @@
 {{- define "main" }}
     {{- $home := .IsHome }}
-    {{- if not $home }}
+    {{- $target := and .IsHome (or (not site.Params.home.disableListing) (not site.Params.home.disableSlide)) }}
+    {{- if not $target }}
         {{ partial "hero.html" . }}
     {{- end }}
-{{- if and .IsHome site.Taxonomies }}
+    {{- if and .IsHome site.Taxonomies (not site.Params.home.disableListing) }}
         <hr class="hide">
         <section id="taxonomy" {{ if $home }}class="target"{{ end }}>
             <h1>{{ i18n "allTaxonomies" }} <a href="#" class="hash">#</a></h1>
@@ -13,10 +14,10 @@
     {{- end }}
     {{- if or .Data.Pages (where site.RegularPages "Type" (or "post" "articles")) }}
         {{- if ne .Kind "taxonomy" }}
-            <section id="feed" {{ if $home }}class="target"{{ end }}>
+            <section id="feed" class="{{ if $target }}target{{ else }}textwidth{{ end }}">
                 {{- $title := .LinkTitle }}
                 {{- if .IsHome }}
-                    <h1>{{- i18n "allPosts" }} <a href="#" class="hash">#</a></h1>
+                    <h1>{{- i18n "allPosts" }} {{ if $target }}<a href="#" class="hash">#</a>{{ end }}</h1>
                 {{- else if not .Content }}
                     <h1>
                         {{- if eq .Data.Singular "author" }}
@@ -43,8 +44,10 @@
             {{- end }}
         {{- end }}
     {{- end }}
-    {{- if $home }}
+    {{- if $target}}
+        {{- if not site.Params.home.disableSlide }}
         {{ partial "slide.html" . }}
+        {{- end }}
         <section class="target">
             {{ partial "hero.html" . }}
         </section>
@@ -284,7 +287,7 @@
             <hr class="hide">
         {{- end }}
     </section>
-    {{- if .IsHome }}
+    {{- if and .IsHome (or (not site.Params.home.disableListing) (not site.Params.home.disableSlide)) }}
         <nav id="home-nav-alt">
             {{ partialCached "slide/nav.html" . }}
         </nav>

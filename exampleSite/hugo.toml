@@ -97,6 +97,10 @@ enableRobotsTXT = true
         # appTitle = 'foxx.ink'
         # webmanifest = '/site.webmanifest'
 
+    [params.home]
+        # disableSlide = true
+        # disableListing = true
+
     [params.posts]
         disableCard = true
 
