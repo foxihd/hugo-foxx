@@ -165,7 +165,7 @@
 
 {{- define "group_byYear" }}
     {{- $pages := .pages }}
-    {{- $active := eq (or .Params.Sitemap.ChangeFreq .Sitemap.ChangeFreq | lower) (or "always" "hourly" "daily" "weekly") }}
+    {{/*  {{- $active := eq (or .Params.Sitemap.ChangeFreq .Sitemap.ChangeFreq | lower) (or "always" "hourly" "daily" "weekly") }}  */}}
     {{- $descending := or (not .IsHome) (eq $.Data.Plural "series") $.Params.descending }}
     {{- $yearGroup := $pages.GroupByDate "2006" }}
     {{- if $descending }}
@@ -197,21 +197,7 @@
                     <ul class="list-day" role="presentation">
                         {{- range . }}
                         {{- $date := .Date.Format "2 Jan " }}
-                        <li>
-                            <a class="has-pre" href="{{ .RelPermalink }}" aria-label="{{ .Title }}" aria-description="{{ $date }}">
-                                <span>{{ .Title }}</span>
-                            </a>
-                            {{- if and (not $active) (not site.Params.posts.disableCard) }}
-                                {{- $author := default site.Params.Author.name .Params.author }}
-                                {{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
-                                {{- $categories := .GetTerms "categories" }}
-                                {{- $stage := .GetTerms "stage" }}
-                                {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
-                                {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
-                                {{- $alt := or .Params.Alt .Params.coverAlt .Params.imagesAlt }}
-                                {{ template "card" (dict "page" . "desc" $desc "hasCover" $hasCover "alt" $alt "author" $author "authors" $authors "stage" $stage "PublishDate" .PublishDate) }}
-                            {{- end }}
-                        </li>
+                            <li>{{ template "view_li" (dict "page" . "date" $date) }}</li>
                         {{- end }}
                     </ul>
                     {{- end }}
