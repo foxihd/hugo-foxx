@@ -8,7 +8,7 @@
         <hr class="hide">
         <section id="taxonomy" {{ if $home }}class="target"{{ end }}>
             <h1>{{ i18n "allTaxonomies" }} <a href="#" class="hash">#</a></h1>
-            {{ template "taxonomy" . }}
+            {{ template "block_taxonomy" . }}
         </section>
         <hr class="hide">
     {{- end }}
@@ -33,7 +33,7 @@
                         {{- end }}
                     </h1>
                 {{- end }}
-                {{ template "feed" . }}
+                {{ template "block_feed" . }}
                 <hr class="hide">
             </section>
         {{- else }}
@@ -52,7 +52,7 @@
     {{- end }}
     {{- if $target}}
         {{- if not site.Params.home.disableSlide }}
-        {{ partial "slide.html" . }}
+            {{ template "block_slide" . }}
         {{- end }}
         <section class="target">
             {{ partial "hero.html" . }}
@@ -60,7 +60,7 @@
     {{- end }}
 {{- end }}
 
-{{- define "feed" -}}
+{{- define "block_feed" -}}
     {{- $pages := .RegularPages }}
     {{- if $.Params.Recursive }}
         {{- $pages = .RegularPagesRecursive }}
@@ -80,13 +80,13 @@
         </center>
     {{- end }}
     {{- if and .IsHome .Sections }}
-        {{- template "bySection" . }}
+        {{- template "group_bySection" . }}
     {{- else }}
-        {{- template "byYear" (dict "pages" $pages) }}
+        {{- template "group_byYear" (dict "pages" $pages) }}
     {{- end }}
 {{- end }}
 
-{{- define "bySection" }}
+{{- define "group_bySection" }}
     {{- range .Sections }}
         {{ $secTitle := .Page.Title }}
         {{ $secSubTitle := .Page.Params.Subtitle }}
@@ -120,7 +120,7 @@
     {{- end }}
 {{- end }}
 
-{{- define "byYear" }}
+{{- define "group_byYear" }}
     {{- $pages := .pages }}
     {{- $active := eq (or .Params.Sitemap.ChangeFreq .Sitemap.ChangeFreq | lower) (or "always" "hourly" "daily" "weekly") }}
     {{- $descending := or (not .IsHome) (eq $.Data.Plural "series") $.Params.descending }}
@@ -180,7 +180,7 @@
     {{- end }}
 {{- end }}
 
-{{- define "taxonomy" }}
+{{- define "block_taxonomy" }}
     {{- range $entry, $taxonomy := site.Taxonomies }}
         {{- $hasEntry := index site.Taxonomies $entry }}
         {{- if and $hasEntry (ne $entry "stage") (not (and (eq $entry "author") (eq (len $hasEntry) 1))) }}
@@ -196,7 +196,7 @@
     {{- end }}
 {{- end }}
 
-{{- define "partials/slide.html" -}}
+{{- define "block_slide" -}}
     {{- $slides := where .Site.RegularPages "Type" "slide" }}
     {{- with $slides }}
         {{- range $index, $slide := . }}
@@ -223,7 +223,7 @@
     {{- end }}
 {{- end }}
 
-{{- define "card" -}}
+{{- define "view_card" -}}
     <article>
         <div>
             <span>
