@@ -1,3 +1,17 @@
+#feed {
+    column-width: 20rem;
+    column-gap: 2pc;
+}
+
+#list-Test,
+#feed > h1 {
+    column-span: all;
+}
+
+#feed > section {
+    break-inside: avoid;
+    padding-top: 1pt;
+}
 
 #get {
     position: fixed;
