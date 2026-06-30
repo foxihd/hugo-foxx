@@ -1,86 +1,122 @@
-.has-pre {
-    display: block;
-    max-width: fit-content;
-}
-
-.list-day li > article {
-    display: none;
-    position: absolute;
-    left: 0;
-    z-index: 2;
-    border: 1pt solid var(--ac);
-    background: var(--bg);
-    padding: 1rem 3ex;
-    width: 100%;
-    max-width: var(--golden-ratio);
-    font-size: 1.2rem;
-}
-
-li > a:hover + article,
-li > a:focus + article,
-li > article:hover,
-li > article:focus-within {
-    display: block;
-}
-
-li > article h1 {
-    margin: 8pt 0 0 0 !important;
-    color: var(--fg);
-    font-size: var(--Large);
+#feed li,
+#feed li > article {
+    break-inside: avoid;
 }
 
 li > article a {
     color: var(--fg);
-    font-style: italic;
 }
 
-li > article > div {
+li > article h1 {
+    margin: 0 !important;
+    color: var(--ac);
+}
+
+li > article > a {
+    position: absolute;
+    right: 0;
+    left: 0;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+li > article > a:focus,
+li > article > a:hover {
+    top: 0;
+    bottom: 0;
+    background-color: #80808011;
+}
+
+
+.f {
     display: flex;
     flex-flow: nowrap;
-    align-items: center;
     justify-content: space-between;
     white-space: nowrap;
 }
 
-li > article > div > span {
-    display: inline-block;
-    opacity: 62%;
+.f > ul,
+.f > span,
+.f > ul > li {
+    display: inline;
     overflow-x: auto;
     text-overflow: ellipsis;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    white-space: nowrap;
 }
 
-li > article > div > ul > li {
-    display: inline;
-    margin-left: 1ex;
+.f.textssc,
+.list ul a,
+.list time {
+    opacity: 62%;
+    font-size: 1rem;
 }
 
-li > article > div:nth-child(2) {
-    margin: 8pt 0;
+.has-card {
+    gap: 1.62pc;
+    padding: 0 !important;
+    column-width: 21rem;
+}
+
+.has-card > li::after {
+    transform: translateY(-1.62rem);
+    display: block;
+    width: 100%;
+    height: 2ex;
+    text-align: center;
+    color: #80808011;
+    font-size: 3rem;
+    content: '…';
+}
+
+.has-card > li:last-child::after {
+    content: '';
+}
+
+.card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 1rem 1rem 1ex;
+    font-size: 1.2rem;
+}
+
+.list h1,
+.card h1 {
+    font-size: var(--Large);
+}
+
+.card > a {
+    top: 3rem;
+    bottom: 3.5rem;
+}
+
+.card > section {
+    margin: 0 0 9pt;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     gap: 1rem;
     white-space: unset;
+    opacity: 0.7;
 }
 
-li > article > div.has-cover {
+.card > .has-cover {
     display: grid;
     grid-template-columns: 6fr 4fr;
-    aspect-ratio: 10/3;
 }
 
-li > article > div.has-cover > img {
+.card > .has-cover > img {
     order: 2;
     width: 100%;
     height: auto;
     max-height: 68.8vw;
-    aspect-ratio: 10/8;
+    aspect-ratio: 1.43;
     object-fit: cover;
 }
 
-li > article > div:nth-child(2) > p {
+.card > section > p {
     --grd: linear-gradient(#000 50%, transparent 100%);
     margin: 0 auto 0 0;
     max-height: 21ex;
@@ -91,16 +127,64 @@ li > article > div:nth-child(2) > p {
     clip-path: text;
 }
 
+.card > header,
+.card > header > .f {
+    margin-bottom: 2ex;
+}
+
+.card .f > ul > li,
+.card .st + * {
+    margin-left: 1ex;
+}
+
+.card time {
+    margin-left: auto;
+}
+
 @media (max-width: 412px) {
 
-    li > article > div:nth-child(2).has-cover {
+    .card > .has-cover {
         display: block;
         aspect-ratio: unset;
     }
 
-    li > article > div:nth-child(2) > img {
+    .card > section > img {
         max-height: unset;
         aspect-ratio: unset;
     }
 
+}
+
+.has-list {
+    padding: 0 !important;
+}
+
+.has-list > li {
+	margin: 1pc 0;
+	border-bottom: 1pt solid #80808011;
+}
+
+.list {
+	padding: 1ex 0;
+    line-height: 1.2;
+    position: relative;
+}
+
+.list h1 {
+    font-size: var(--normalsize);
+}
+
+.list > a {
+    top: 0;
+    bottom: 2rem;
+}
+
+.list time::after,
+.list ul > li + li::before {
+    content: '\a0•\a0';
+    color: #80808080;
+}
+
+.list ul.inline::before {
+    content: unset;
 }

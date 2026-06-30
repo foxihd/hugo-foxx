@@ -224,43 +224,42 @@
 {{- end }}
 
 {{- define "view_card" -}}
-    <article>
-        <div>
-            <span>
-                {{- if .authors }}
-                    {{ partial "terms.html" (dict "taxonomy" "author" "type" "delimiter" "tabindex" "-1" "page" .page) }}
-                {{- else }}
-                    {{- with .author }}<span>{{ . }}</span>{{ end }}
+    {{- $author := default site.Params.Author.name .page.Params.author }}
+    {{- $authors := or (.page.GetTerms "authors") (.page.GetTerms "author") }}
+    {{- $alt := or .page.Params.Alt .page.Params.coverAlt .page.Params.imagesAlt }}
+    <article class="card">
+        <header>
+            <div class="f textssc">
+                {{- with .stage }}
+                    {{- range . | first 1 }}
+                        <div class="st {{ lower .Name }}"></div>
+                    {{- end }}
                 {{- end }}
                 {{- if .page.Params.categories }}
-                    <span>{{ i18n "in" | lower }}</span>
                     {{ partial "terms.html" (dict "taxonomy" "categories" "type" "delimiter" "tabindex" "-1" "page" .page ) }}
                 {{- end }}
-            </span>
-            {{- with .stage }}
-                {{- range . | first 1 }}
-                    <div class="st {{ lower .Name }}"></div>
-                {{- end }}
-            {{- end }}
-        </div>
-        <div {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
+                <time>{{ .page.Date.Format "2 Jan 2006" }}</time>
+            </div>
+            <a href="{{ .page.RelPermalink }}" tabindex="-1"><h1>{{ .page.Title }}</h1></a>
+        </header>
+        <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
+        <section {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
             {{- if .hasCover }}
                 <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
             {{- end }}
             {{- with .desc }}
                 <p>{{- plainify . }}</p>
             {{- end }}
-        </div>
-        <div>
-            <div>
+        </section>
+        <footer class="f textssc">
+            <span>
                 {{- printf "%d %s" .page.ReadingTime (i18n "readingTime" .page.ReadingTime | lower ) }}
-            </div>
+            </span>
             {{- if .page.Params.tags }}
                 {{ partial "terms.html" (dict "taxonomy" "tags" "type" "hashbang" "tabindex" "-1" "page" .page) }}
             {{- end }}
-        </div>
+        </footer>
     </article>
-    <hr class="hide">
 {{- end -}}
 
 {{- define "view_list" -}}
