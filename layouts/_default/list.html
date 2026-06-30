@@ -126,7 +126,30 @@
         {{- template "group_bySection" . }}
     {{- else if eq (lower .Page.Params.view) "none"  }}
     {{- else }}
-        {{- template "group_byYear" (dict "pages" $pages) }}
+        {{ $card := eq (lower .Page.Params.view) "card" }}
+        {{ $list := eq (lower .Page.Params.view) "list" }}
+        {{- with $pages }}
+            {{- if $card }}
+                <ul class="has-card" role="presentation">
+                {{- range . }}
+                    {{- $stage := .GetTerms "stage" }}
+                    {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
+                    {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
+                    <li>{{ template "view_card" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
+                {{ end }}
+                </ul>
+            {{- else if $list }}
+                <ul class="has-list textwidth" role="presentation" >
+                {{- range . }}
+                    {{- $stage := .GetTerms "stage" }}
+                    {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
+                    <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage) }}</li>
+                {{ end }}
+                </ul>
+            {{- else }}
+                {{- template "group_byYear" (dict "pages" . ) }}
+            {{- end }}
+        {{- end }}
     {{- end }}
 {{- end }}
 
@@ -147,7 +170,7 @@
             {{- else }}
                 <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
             {{- end }}
-            <ul class="{{ if $card }}has-card{{ else if $list}}has-list{{ else }}list-day{{ end }}" role="presentation" style="padding-left: 6rem;">
+            <ul class="{{ if $card }}has-card{{ else if $list }}has-list{{ else }}list-day{{ end }}" role="presentation">
                 {{- range .  | first 12 }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
