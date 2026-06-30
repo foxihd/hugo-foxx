@@ -262,3 +262,25 @@
     </article>
     <hr class="hide">
 {{- end -}}
+
+{{- define "view_list" -}}
+    <article class="list">
+        <h1 role="heading">{{ .page.Title }}</h1>
+        <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
+        <div role="contentinfo">
+            {{- if .page.Params.categories }}
+                {{ partial "terms.html" (dict "taxonomy" "categories" "class" "inline" "tabindex" "-1" "page" .page ) }}
+            {{ else if .page.Params.tags }}
+                {{ partial "terms.html" (dict "taxonomy" "tags" "class" "inline" "tabindex" "-1" "page" .page ) }}
+            {{- end }}
+        </div>
+    </article>
+{{- end }}
+
+{{- define "view_li" -}}
+    <li>
+        <a class="has-pre" href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}" aria-description="{{ .date }}">
+            <span>{{ .page.Title }}</span>
+        </a>
+    </li>
+{{- end }}
