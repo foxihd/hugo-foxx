@@ -1,0 +1,99 @@
+{{- define "partials/taxonomies.html" -}}
+    {{- $taxonomy := .taxonomy }}
+    {{- $limit := .limit }}
+    {{- $withPages := .withPages }}
+    {{- with index site.Taxonomies $taxonomy }}
+        <ul role="presentation">
+            {{- $index := 0 }}
+            {{ range .ByCount -}}
+                {{- $index = add $index 1 }}
+                {{- $pages := .Pages }}
+                {{- if or (le $index $limit) (not $limit) -}}
+                    <li>
+                        {{- if $withPages }}
+                            <h2 class="ts">
+                                <a href="{{ .Page.Permalink }}"
+                                    aria-label="{{ i18n $taxonomy 1 }}: {{ .Page.Title }}"
+                                    aria-description="{{ printf "%d %s" .Count (i18n "posts" .Count) }}"
+                                    data-post-counter="{{ printf "%d" .Count }}"
+                                    >
+                                    <span>{{ .Page.Title }}</span>
+                                </a>
+                            </h2>
+                            <ul role="presentation">
+                                {{- range first 5 $pages }}
+                                    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                {{- end }}
+                            </ul>
+                        {{- else }}
+                            <a href="{{ .Page.Permalink }}"
+                                aria-label="{{ i18n $taxonomy 1 }}: {{ .Page.Title }}"
+                                aria-description="{{ printf "%d %s" .Count (i18n "posts" .Count) }}"
+                                data-post-counter="{{ printf "%d" .Count }}"
+                                >
+                                <span>{{ .Page.Title }}</span>
+                            </a>
+                        {{- end }}
+                    </li>
+                {{- end }}
+            {{- end }}
+        </ul>
+    {{- end }}
+{{- end }}
+
+{{- define "partials/hero.html" -}}
+    {{- $hasCover := partial "page/cover.html" (dict "page" .Page) }}
+    {{- $alt := or .Page.Params.Alt .Page.Params.coverAlt .Page.Params.imagesAlt }}
+    <section id="index" class="hero {{ if $hasCover }}has-cover{{ end }}">
+        {{- if .Content }}
+            {{- if $hasCover }}
+            <center class="hero__image">
+                <img src="{{ $hasCover }}"
+                    alt="{{ with $alt }}{{ . }}{{ end }}"
+                    loading="eager"
+                    fetchpriority="high">
+            </center>
+            {{- end }}
+            <section class="hero__content">
+                <section class="content">
+                    {{ replace .Content "disabled=" "" | safeHTML }}
+                </section>
+                {{- if and (eq .Kind "term") (eq .Data.Singular "author") }}
+                    {{- $authorName := .Title }}
+                    {{- $co := or site.Params.Author.coauthor site.Params.Author.collabolator }}
+                    {{- range $co }}
+                        {{- if eq $authorName .name }}
+                            <p>{{  or .bio .about }}</p>
+                        {{- end }}
+                    {{- end }}
+                    {{- $author := urlize .Title }}
+                    {{/*
+
+                        author's social links */}}
+                    {{ partial "menu.html" (dict "menuID" $author "type" "author" "open" "open" "page" .)}}
+                {{- end }}
+            </section>
+            <hr class="hide">
+        {{- end }}
+    </section>
+    {{- if and .IsHome (or (not site.Params.home.disableListing) (not site.Params.home.disableSlide)) }}
+        <nav id="home-nav-alt">
+            {{ partialCached "slide/nav.html" . }}
+        </nav>
+    {{- end }}
+{{- end }}
+
+{{- define "partials/slide/nav.html" -}}
+    {{- $slides := where .Site.RegularPages "Type" "slide" }}
+        <strong>{{ i18n "onThisPage" }} <a href="#" id="hash">#</a></strong>
+        <ul>
+            <li><a href="#feed">{{ i18n "allPosts" | title }}</a></li>
+            <li><a href="#taxonomy">{{ i18n "allTaxonomies" | title  }}</a></li>
+            {{- with $slides }}
+                {{- range $index, $slide := . }}
+                    {{- $slideNum := add $index 1 }}
+                    <li><a href="#slide-{{ $slideNum }}">{{ .Title }}</a></li>
+                {{ end }}
+            {{ end }}
+        </ul>
+{{- end }}
