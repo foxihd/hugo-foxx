@@ -122,8 +122,9 @@
             <div style="max-width:320px">{{ i18n "noArticlePost" }}</div>
         </center>
     {{- end }}
-    {{- if and .IsHome .Sections }}
+    {{- if .Sections }}
         {{- template "group_bySection" . }}
+    {{- else if eq (lower .Page.Params.view) "none"  }}
     {{- else }}
         {{- template "group_byYear" (dict "pages" $pages) }}
     {{- end }}
