@@ -1,42 +1,3 @@
-.list-year {
-    display: flex;
-    position: relative;
-    align-items: baseline;
-}
-
-.list-year > strong {
-    margin-right: 1rem;
-    background: var(--ac);
-    min-width: 5rem;
-    text-align: right;
-    color: var(--bg);
-}
-
-* + #i18n,
-.list-year.descending {
-    margin-left: auto;
-}
-
-.list-year > div {
-    flex: 1;
-    max-width: calc(100% - var(--void) - 5rem);
-    line-height: 2;
-}
-
-.list-month > summary {
-    padding: 1rem 0;
-    list-style: none;
-}
-
-.list-month > summary::after {
-    margin-left: 1ex;
-}
-
-.list-day a {
-    padding: 1ex 0 0;
-    width: 100%;
-}
-
 .has-pre::before,
 .has-post::after,
 .has-desc:after {
@@ -45,17 +6,6 @@
     font-size: 0.9em;
     font-weight: normal;
     content: attr(aria-description);
-}
-
-.list-day a.has-pre::before {
-    position: absolute;
-    left: -5rem;
-    padding-top: 0.42em;
-    width: 4rem;
-    text-align: right;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    font-size: 0.7em;
 }
 
 .list-day > li,
@@ -105,8 +55,6 @@
 #list-tags li a::before {
     content: '#';
 }
-
-/*  */
 
 .has-cover {
     grid-template-columns: auto auto;
