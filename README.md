@@ -2,6 +2,11 @@
 
 > Bear blog implementation, with foxx design.
 
+Demosite: [https://foxihd.github.io/hugo-foxx/en/](https://foxihd.github.io/hugo-foxx/en/)
+
+> At the moment, the CSS size for the demosite is 28.2KB (10.3KB Gzip) and the JS is 11.4KB (5Kb Gzip).
+> Even with non-green hosting, the demosite is cleaner than 98 % of all web pages globally.
+
 ![Minimum Hugo Version: v.0.141.0](https://img.shields.io/static/v1?label=Hugo&message=&ge;%20v0.141.0&color=ca187d&logo=hugo)
 ![CSS baseline 2019](https://img.shields.io/static/v1?label=Baseline&message=2019&color=e44d26&logo=css&logoColor=e44d26)
 ![Javascript baseline 2019](https://img.shields.io/static/v1?label=Baseline&message=2019&color=f7df1e&logo=javascript)
