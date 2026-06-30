@@ -134,23 +134,31 @@
         {{ $secTitle := .Page.Title }}
         {{ $secSubTitle := .Page.Params.Subtitle }}
         {{ $secLink :=  .Page.Permalink }}
+        {{ $card := eq (lower .Page.Params.view) "card" }}
+        {{ $list := eq (lower .Page.Params.view) "list" }}
         {{- with .RegularPages }}
         <section id="list-{{ $secTitle }}" aria-label="{{ $secTitle }}">
             {{- if $secSubTitle }}
-                <hgroup>
+                <hgroup style="margin: 0;">
                     <h2 class="textssc" style="margin-bottom:0;"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
                     <p class="subtitle" style="color: var(--mid);">{{ $secSubTitle }}</p>
                 </hgroup>
             {{- else }}
                 <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
             {{- end }}
-            <ul class="list-day" role="presentation" style="padding-left: 5rem;">
+            <ul class="{{ if $card }}has-card{{ else if $list}}has-list{{ else }}list-day{{ end }}" role="presentation" style="padding-left: 6rem;">
                 {{- range .  | first 12 }}
-                <li>
-                    <a class="has-pre" href="{{ .RelPermalink }}" aria-label="{{ .Title }}" aria-description="{{ .Date.Format "2/01/06" }}">
-                        <span>{{ .Title }}</span>
-                    </a>
-                </li>
+                    {{- $stage := .GetTerms "stage" }}
+                    {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
+                    {{- if $card }}
+                        {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
+                        <li>{{ template "view_card" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
+                    {{- else if $list }}
+                        <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage) }}</li>
+                    {{- else }}
+                        {{ $date := .Date.Format "2/01/06" }}
+                        <li>{{ template "view_li" (dict "page" . "date" $date) }}</li>
+                    {{- end }}
                 {{- end }}
                 {{- if gt (len . ) 12 }}
                     <li>
