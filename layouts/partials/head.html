@@ -74,6 +74,7 @@
         (resources.Get "css/hugo-foxx/keyframe.css")
         (resources.Get "css/hugo-foxx/main.css")
         (resources.Get "css/hugo-foxx/list.css")
+        (resources.Get "css/hugo-foxx/view.css")
         (resources.Get "css/hugo-foxx/marginpar.css")
         (resources.Get "css/hugo-foxx/codefences.css")
         }}
@@ -94,12 +95,9 @@
         {{- $style = $style | append (resources.Get "css/hugo-foxx/logomark.css") }}
     {{- end }}
 
-    {{- if not site.Params.posts.disableCard }}
-        {{- $style = $style | append (resources.Get "css/hugo-foxx/card.css") }}
-        {{- $hasStage := partial "head/css/has-taxonomy.html" (dict "taxonomy" "stage")  }}
-        {{- if $hasStage }}
-            {{- $style = $style | append (resources.Get "css/hugo-foxx/garden.css") }}
-        {{- end }}
+    {{- $hasStage := partial "head/css/has-taxonomy.html" (dict "taxonomy" "stage")  }}
+    {{- if $hasStage }}
+        {{- $style = $style | append (resources.Get "css/hugo-foxx/garden.css") }}
     {{- end }}
 
     {{- $style = $style | append (resources.Get "css/hugo-foxx/media.css") (resources.Get "css/hugo-foxx/custom.css") }}
