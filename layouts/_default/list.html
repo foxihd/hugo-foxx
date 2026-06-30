@@ -60,6 +60,49 @@
     {{- end }}
 {{- end }}
 
+{{- define "block_taxonomy" }}
+    {{- range $entry, $taxonomy := site.Taxonomies }}
+        {{- $hasEntry := index site.Taxonomies $entry }}
+        {{- if and $hasEntry (ne $entry "stage") (not (and (eq $entry "author") (eq (len $hasEntry) 1))) }}
+            <section id="list-{{ $entry }}" aria-label="{{ $entry }}">
+                <h2 class="ts">
+                    <a href="{{ absLangURL $entry }}">
+                        <span>{{ title $entry }}</span>
+                    </a>
+                </h2>
+                {{ partial "taxonomies.html" (dict "taxonomy" $entry "withPages" false ) }}
+            </section>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+{{- define "block_slide" -}}
+    {{- $slides := where .Site.RegularPages "Type" "slide" }}
+    {{- with $slides }}
+        {{- range $index, $slide := . }}
+            {{- $slideNum := add $index 1 }}
+            <section id="slide-{{ $slideNum }}" class="target"
+                aria-labelledby="slide-{{ $slideNum }}-heading">
+                {{- $hasCover := partial "page/cover.html" (dict "page" .Page) }}
+                {{- $alt := or .Page.Params.Alt .Page.Params.coverAlt .Page.Params.imagesAlt }}
+                {{- if or $hasCover }}
+                <div class="cover">
+                    <img src="{{ $hasCover }}"
+                        alt="{{ with $alt }}{{ . }}{{ end }}" {{ if ne $slideNum 1 }}loading="lazy"{{ end }}>
+                </div>
+                {{- end }}
+                <section class="content">
+                    {{- with .Title }}
+                        <h1 id="slide-{{ $slideNum }}-heading">{{ . }} <a href="#" class="hash">#</a></h1>
+                    {{- end }}
+                    {{ replace .Content "disabled=" "" | safeHTML }}
+                </section>
+                <hr class="hide">
+            </section>
+        {{- end }}
+    {{- end }}
+{{- end }}
+
 {{- define "block_feed" -}}
     {{- $pages := .RegularPages }}
     {{- if $.Params.Recursive }}
@@ -177,49 +220,6 @@
             {{- end }}
         </div>
     </div>
-    {{- end }}
-{{- end }}
-
-{{- define "block_taxonomy" }}
-    {{- range $entry, $taxonomy := site.Taxonomies }}
-        {{- $hasEntry := index site.Taxonomies $entry }}
-        {{- if and $hasEntry (ne $entry "stage") (not (and (eq $entry "author") (eq (len $hasEntry) 1))) }}
-            <section id="list-{{ $entry }}" aria-label="{{ $entry }}">
-                <h2 class="ts">
-                    <a href="{{ absLangURL $entry }}">
-                        <span>{{ title $entry }}</span>
-                    </a>
-                </h2>
-                {{ partial "taxonomies.html" (dict "taxonomy" $entry "withPages" false ) }}
-            </section>
-        {{- end }}
-    {{- end }}
-{{- end }}
-
-{{- define "block_slide" -}}
-    {{- $slides := where .Site.RegularPages "Type" "slide" }}
-    {{- with $slides }}
-        {{- range $index, $slide := . }}
-            {{- $slideNum := add $index 1 }}
-            <section id="slide-{{ $slideNum }}" class="target"
-                aria-labelledby="slide-{{ $slideNum }}-heading">
-                {{- $hasCover := partial "page/cover.html" (dict "page" .Page) }}
-                {{- $alt := or .Page.Params.Alt .Page.Params.coverAlt .Page.Params.imagesAlt }}
-                {{- if or $hasCover }}
-                <div class="cover">
-                    <img src="{{ $hasCover }}"
-                        alt="{{ with $alt }}{{ . }}{{ end }}" {{ if ne $slideNum 1 }}loading="lazy"{{ end }}>
-                </div>
-                {{- end }}
-                <section class="content">
-                    {{- with .Title }}
-                        <h1 id="slide-{{ $slideNum }}-heading">{{ . }} <a href="#" class="hash">#</a></h1>
-                    {{- end }}
-                    {{ replace .Content "disabled=" "" | safeHTML }}
-                </section>
-                <hr class="hide">
-            </section>
-        {{- end }}
     {{- end }}
 {{- end }}
 
