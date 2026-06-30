@@ -7,18 +7,18 @@
     {{- if and .IsHome site.Taxonomies (not site.Params.home.disableListing) }}
         <hr class="hide">
         <section id="taxonomy" {{ if $home }}class="target"{{ end }}>
-            <h1>{{ i18n "allTaxonomies" }} <a href="#" class="hash">#</a></h1>
+            <h1>{{ i18n "allTaxonomies" | title }} <a href="#" class="hash">#</a></h1>
             {{ template "block_taxonomy" . }}
         </section>
         <hr class="hide">
     {{- end }}
     {{- if or .Data.Pages (where site.RegularPages "Type" (or "post" "articles")) }}
         {{- if ne .Kind "taxonomy" }}
-            <section id="feed" class="{{ if $target }}target{{ else }}textwidth{{ end }}">
+            <section id="feed" class="{{ if $target }}target{{ end }}">
                 {{- $title := .LinkTitle }}
                 {{- $subtitle :=  .Page.Params.Subtitle }}
                 {{- if .IsHome }}
-                    <h1>{{- i18n "allPosts" }} {{ if $target }}<a href="#" class="hash">#</a>{{ end }}</h1>
+                    <h1>{{- i18n "allPosts" | title }} {{ if $target }}<a href="#" class="hash">#</a>{{ end }}</h1>
                 {{- else if $subtitle }}
                 <hgroup>
                     <h1 id="title">{{- $title -}}</h1>
@@ -50,9 +50,9 @@
             {{- end }}
         {{- end }}
     {{- end }}
-    {{- if $target}}
+    {{- if $target }}
         {{- if not site.Params.home.disableSlide }}
-            {{ template "block_slide" . }}
+        {{ template "block_slide" . }}
         {{- end }}
         <section class="target">
             {{ partial "hero.html" . }}
@@ -205,7 +205,7 @@
                     {{- with $pageGroup }}
                     <ul class="list-day" role="presentation">
                         {{- range . }}
-                        {{- $date := .Date.Format "2 Jan " }}
+                            {{- $date := .Date.Format "2 Jan " }}
                             <li>{{ template "view_li" (dict "page" . "date" $date) }}</li>
                         {{- end }}
                     </ul>
