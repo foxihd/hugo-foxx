@@ -5,6 +5,8 @@ description: "Various sample Markdown, HTML and MathML test"
 date: 2025-01-26
 type: post
 draft: false
+cover: https://raw.githubusercontent.com/foxihd/hugo-et-hd/master/static/svg/flowlines/1.svg
+alt: ''
 translationKey: markdown
 coffee: 1
 tags: ['markdown']
