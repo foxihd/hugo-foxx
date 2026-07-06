@@ -40,6 +40,10 @@
     color: var(--fg);
 }
 
+h2 > a {
+    display: inline-block;
+}
+
 #list-tags li a {
     display: flex;
     border: 1pt solid #80808080;
