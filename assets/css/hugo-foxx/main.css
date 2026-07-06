@@ -57,7 +57,7 @@ body {
     grid-template-columns: calc(29.3% - 5rem)  calc(70.7% - 2rem) 3rem;
     margin: auto;
     background: var(--bg);
-    max-width: 1440px;
+    max-width: 1680px;
     line-height: 1.618;
     letter-spacing: 0.02em;
     color: var(--fg);
