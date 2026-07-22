@@ -15,10 +15,10 @@ Demosite: [https://foxihd.github.io/hugo-foxx/en/](https://foxihd.github.io/hugo
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/foxihd/hugo-foxx)
 ![GitHub Sponsor](https://img.shields.io/github/sponsors/foxihd?label=Sponsor&logo=GitHub&color=6a00d1)
 
-![Term/Author page on 1200px viewport.](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.png)
+![Home page with posts listing on 1200px viewport.](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.png)
 ***Figure 1.*** Term/Author page on 1200px viewport.
 
-![Atricle with complex element/shortcode](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/screenshot.png)
+![Article with complex elements/shortcodes](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/screenshot.png)
 ***Figure 2.*** Article with complex elements/shortcodes on 1500px viewport.
 
 > [!NOTE]
