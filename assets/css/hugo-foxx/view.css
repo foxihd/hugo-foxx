@@ -58,7 +58,7 @@
 
 .has-list > li {
 	margin: 1pc 0;
-	border-bottom: 1pt solid #80808011;
+	border-bottom: var(--border);
 }
 
 .list {
@@ -169,6 +169,7 @@ li > article > a:hover {
     display: flex;
     position: relative;
     flex-direction: column;
+    border: var(--border);
     padding: 1rem 1rem 1ex;
     font-size: 1.2rem;
 }

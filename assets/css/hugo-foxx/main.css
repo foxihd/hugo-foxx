@@ -17,6 +17,7 @@
     --vhead: 4.2rem;
     --void: unset;
     --fontScale: 1;
+    --border: 1pt solid #8881;
     text-rendering: optimizeLegibility;
     font-kerning: auto;
     font-size: calc(10pt * var(--fontScale));
@@ -118,6 +119,7 @@ body > footer {
 
 @supports (writing-mode: sideways-lr) {
     body > header {
+        border-right: var(--border);
         padding: 2rem 1rem 2rem 2rem;
     }
 
@@ -126,12 +128,15 @@ body > footer {
         grid-column: unset;
         align-items: center;
         align-self: end;
+        border-left: var(--border);
         padding: 1rem 1ex 3rem;
         width: unset;
         height: 100vh;
         text-align: right;
         writing-mode: sideways-lr;
     }
+}
+
 }
 
 #has-a11y-summary,
