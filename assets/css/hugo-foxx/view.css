@@ -119,9 +119,10 @@ li > article > a:hover {
 
 
 .f {
-    display: flex;
+    display: inline-flex;
     flex-flow: nowrap;
     justify-content: space-between;
+    width: 100%;
     white-space: nowrap;
 }
 
