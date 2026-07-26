@@ -41,10 +41,6 @@
     height: 100%;
 }
 
-.list-day {
-    padding-left: 6rem !important;
-}
-
 @media only screen and (max-width: 1024px) {
     #home-nav-alt {
         display: block;
