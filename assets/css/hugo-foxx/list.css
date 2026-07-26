@@ -13,7 +13,7 @@
     margin: 0 0 1rem;
 }
 
-#home .list-day {
+section > .list-day {
     padding-left: 6rem !important;
 }
 
