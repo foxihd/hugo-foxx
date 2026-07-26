@@ -1,4 +1,8 @@
-name: Deploy Hugo exampleSite to Pages with peaceiris/actions-hugo
+# This action offer marginally faster deployment than the official method on `hugo.yml` 
+# You might need to setup extra steps to configure action permission on `Settings -> Action -> General -> Workflow permissions and choose read and write permissions`
+# Read more at https://github.com/marketplace/actions/hugo-setup
+
+name: Deploy Hugo to Pages with peaceiris/actions-hugo
 
 on:
   push:
@@ -32,17 +36,15 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --themesDir ../.. \
-            --source exampleSite \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      - name: setup Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: '26'
-
-      - name: Index pagefind
-        run: npx pagefind --site "./exampleSite/public"
+      # uncomment to use PageFind
+      # - name: setup Node
+      #   uses: actions/setup-node@v7
+      #   with:
+      #     node-version: '26'
+      # - name: Index pagefind
+      #   run: npx pagefind --site "./public"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
