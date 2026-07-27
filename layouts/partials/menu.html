@@ -13,35 +13,18 @@
     <nav id="{{ printf "%s-menu" $menuID }}" {{ with $type}}class="{{ . }}"{{ end }} {{ with  (i18n $menuID) }}aria-label="{{ i18n "nav" }}{{ i18n $menuID }}" {{ end }}>
         {{- if $main }}<strong>{{ i18n "onThisSite" }}</strong>{{ end }}
         {{- if eq $type "author" }}<strong>{{ i18n "keepInTouch" }}</strong>{{ end }}
-        {{- $n := 1 }}
-        {{- $no := printf "l%d" $n }}
-        {{- $hasChildFree := partial "menu/hasChildFree.html" (dict "menuEntries" .) }}
-        <ul class="{{ $no }} {{ if $hasChildFree }} has-childfree {{ end }}" role="presentation" tabindex="-1" >
-            {{ partial "inline/menu/walk.html" (dict "page" $page "menuID" $menuID "n" $n "menuEntries" .) }}
+        <ul role="presentation">
+            {{ partial "inline/menu/walk.html" (dict "page" $page "menuID" $menuID "menuEntries" .) }}
         </ul>
     </nav>
 {{- end }}
 
 {{- /*---------------------- end of menu.html ----------------------*/}}
 
-{{- define "partials/menu/hasChildFree.html"}}
-    {{- $hasChildFree := true }}
-    {{- range .menuEntries }}
-        {{- if .Children }}
-            {{- $hasChildFree = false }}
-        {{- end }}
-    {{- end }}
-    {{ return $hasChildFree }}
-{{- end }}
-
 {{- define "partials/inline/menu/walk.html" -}}
     {{- $page := .page }}
     {{- $menuID := .menuID }}
     {{- $main := eq $menuID "main" }}
-    {{- $n := .n }}
-    {{- $n = add $n 1 }}
-    {{- $l := printf "l%d" $n }}
-    {{- $deck := and $main (eq $n 2) }}
     {{ range .menuEntries -}}
         {{- $name := .Name }}
         {{- $class := .Params.class }}
@@ -69,7 +52,7 @@
         {{- end }}
         <li role="presentation" {{ with $class }}class="{{ . }}"{{ end }}>
             {{- if .Children }}
-                {{- template "menuItemWithChildren" dict "item" . "attrs" $attrs "link" $hasDestination "icon" $icon "name" $name "desc" $desc "menuID" $menuID "l" $l "n" $n "page" $page }}
+                {{- template "menuItemWithChildren" dict "item" . "attrs" $attrs "link" $hasDestination "icon" $icon "name" $name "desc" $desc "menuID" $menuID "page" $page }}
             {{- else }}
                 {{- template "menuItem" dict "attrs" $attrs "name" $name "desc" $desc "icon" $icon "identifier" $identifier "u" $u }}
             {{- end }}
@@ -119,8 +102,8 @@
                 {{- .name -}}
             </span>
         </summary>
-        <ul class="{{ .l }}" role="presentation">
-            {{ partial "inline/menu/walk.html" (dict "page" .page "n" .n "menuEntries" .item.Children) }}
+        <ul role="presentation">
+            {{ partial "inline/menu/walk.html" (dict "page" .page "menuEntries" .item.Children) }}
             {{- if .hasDestination }}
                 <li class="parent-anchor">
                     <a  {{- range $key, $val := .attrs }}
