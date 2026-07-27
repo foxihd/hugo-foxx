@@ -53,31 +53,28 @@
     background: var(--ac);
 }
 
-::view-transition-old(slide) {
-    animation-name: slide-out;
-}
+/* ::view-transition-old(slide) {
+    animation: 0.62s ease-out slide-out;
+} */
 
 ::view-transition-new(slide) {
-    animation-name: slide-in;
-}
-
-::view-transition-group(*) {
-    animation-duration: 0.62s;
+    animation: 0.62s ease-in slide-in;
 }
 
 @view-transition {
   navigation: auto;
 }
 
-@keyframes slide-out {
+/* @keyframes slide-out {
   to {
     opacity: 0;
     translate: 0 -100vh;
   }
-}
+} */
 
 @keyframes slide-in {
   from {
+    opacity: 0;
     translate: 0 100vh;
   }
 }
