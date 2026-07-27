@@ -17,6 +17,7 @@
     --vhead: 4.2rem;
     --void: unset;
     --fontScale: 1;
+    --border: 1pt solid #8881;
     text-rendering: optimizeLegibility;
     font-kerning: auto;
     font-size: calc(10pt * var(--fontScale));
@@ -61,7 +62,7 @@
 }
 
 @view-transition {
-  navigation: auto;
+    navigation: auto;
 }
 
 /* @keyframes slide-out {
