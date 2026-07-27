@@ -53,6 +53,35 @@
     background: var(--ac);
 }
 
+::view-transition-old(slide) {
+    animation-name: slide-out;
+}
+
+::view-transition-new(slide) {
+    animation-name: slide-in;
+}
+
+::view-transition-group(*) {
+    animation-duration: 0.62s;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes slide-out {
+  to {
+    opacity: 0;
+    translate: 0 -100vh;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    translate: 0 100vh;
+  }
+}
+
 body {
     display: grid;
     grid-template-columns: calc(29.3% - 5rem)  calc(70.7% - 2rem) 3rem;
@@ -90,6 +119,7 @@ main {
     padding-left: var(--void);
     max-width: var(--max-width);
     min-height: calc(100vh - 2in - var(--vhead));
+    view-transition-name: slide;
 }
 
 main > header,
