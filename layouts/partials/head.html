@@ -80,7 +80,7 @@
         }}
 
     {{- if not site.Params.typeface.webSafe }}
-        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link rel="preconnect" href="https://fonts.bunny.net" crossorigin="anonymous" />
         <link rel="preload" href="https://fonts.bunny.net/amiri/files/amiri-latin-400-normal.woff2" as="font" type="font/woff" crossorigin="anonymous" />
         {{- $style = $style | append (resources.Get "css/hugo-foxx/crimson.css") (resources.Get "css/hugo-foxx/inconsolata.css") }}
     {{- end }}
