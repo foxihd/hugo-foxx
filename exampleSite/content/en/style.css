@@ -3,6 +3,10 @@
     column-gap: 2pc;
 }
 
+*[role=listitem] {
+    break-inside: avoid;
+}
+
 #list-Test,
 #feed > h1 {
     column-span: all;
