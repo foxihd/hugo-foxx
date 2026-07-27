@@ -54,11 +54,11 @@
 }
 
 /* ::view-transition-old(slide) {
-    animation: 0.62s ease-out slide-out;
+    animation: 0.3s ease-out slide-out;
 } */
 
 ::view-transition-new(slide) {
-    animation: 0.62s ease-in slide-in;
+    animation: 0.3s ease-in slide-in;
 }
 
 @view-transition {
