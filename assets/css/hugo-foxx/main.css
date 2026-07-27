@@ -17,7 +17,6 @@
     --vhead: 4.2rem;
     --void: unset;
     --fontScale: 1;
-    --border: 1pt solid #8881;
     text-rendering: optimizeLegibility;
     font-kerning: auto;
     font-size: calc(10pt * var(--fontScale));
@@ -145,8 +144,14 @@ body > footer {
 }
 
 @supports (writing-mode: sideways-lr) {
+
+    body > header,
+    body > footer {
+        border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAADwCAMAAAAdMkUEAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAABhQTFRFf39/R3BMf39/f39/f39/f39/f39/f39/7LcSVgAAAAh0Uk5TVAAfKDI+SmRRJIFoAAAA1klEQVR42lWSAQqEQAwDZ9sm+/8fH8SinBSZjmlFXM5him6mmKKaaaroii8qEPMnq+mOmdyftgMxaVGjYRpVIKVZOf+mnm2fYdYEGqXeWQ+K79nWO5iYyEge9XprgWYEAwa4BnFJQAAI/IEDJixsMNdccheXve5Na9IkEBzBXjtFjMwdDFdkZzgQg4lfuQxYu+SKfdvKmA2n+Hi8MZxK0gtIWMjv8m+/dxUeECKdIFMj7JQ2Y+F4GhnSovDzyc2I6u+XTUpD9x5LFWpq5XsCF+rhwDmc8wNw0QbdMAZVUwAAAABJRU5ErkJggg==") 1;
+    }
+
     body > header {
-        border-right: var(--border);
+        border-right: 1pt solid;
         padding: 2rem 1rem 2rem 2rem;
     }
 
@@ -155,7 +160,7 @@ body > footer {
         grid-column: unset;
         align-items: center;
         align-self: end;
-        border-left: var(--border);
+        border-left: 1pt solid;
         padding: 1rem 1ex 3rem;
         width: unset;
         height: 100vh;
