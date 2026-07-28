@@ -10,8 +10,8 @@
         <div>
         <a href="{{ $url }}" class="has-img has-aria-label has-quote"
             {{ with $label }} aria-label="{{ . }}"{{ end }}>
-            {{ with .Get "quote" }}<div>{{ safeHTML . }}</div>{{ end }}
             {{ with $img }} <img src="{{ . }}" alt="{{ default $alt $label }}" loading="lazy">{{ end }}
+            {{ with .Get "quote" }}<div>{{ safeHTML . }}</div>{{ end }}
         </a>
         </div>
     {{- else }}
@@ -24,7 +24,7 @@
                     {{ if $url }}<a href="{{ $url }}"> {{ . }}</a>{{ else }}{{ . }}{{ end }}
                 </figcaption>
             {{- end }}
-            </div>
+        </div>
     {{- end }}
 {{- else if or (eq $var "") (eq $var "begin") }}<div class="column pin">
 {{- else if eq $var "end" }}</div>
@@ -63,7 +63,7 @@
 
 .has-quote {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     color: var(--fg);
 }
 
