@@ -101,6 +101,7 @@ body > header {
     top: 0;
     flex-direction: column;
     align-self: start;
+    z-index: 1;
     padding: 2rem 1rem 4rem 2rem;
     height: 100vh;
     overflow-y: auto;
@@ -139,7 +140,6 @@ body > footer {
     position: fixed;
     bottom: 0;
     grid-column: 1;
-    background: var(--bg);
     padding: 1rem 2rem;
     width: calc(29.3% - 3rem);
     gap: 5pt;
