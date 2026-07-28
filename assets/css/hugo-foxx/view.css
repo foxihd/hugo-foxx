@@ -57,12 +57,12 @@
 }
 
 .has-list > li {
-	margin: 1pc 0;
-	border-bottom: var(--border);
+    margin: 1pc 0;
+    border-bottom: var(--border);
 }
 
 .list {
-	padding: 1ex 0;
+    padding: 1ex 0;
     line-height: 1.2;
     position: relative;
 }
