@@ -145,7 +145,7 @@ li > article > a:hover {
 }
 
 .has-card {
-    gap: 1.62pc;
+    gap: 2pc;
     padding: 0 !important;
     column-width: 21rem;
 }
