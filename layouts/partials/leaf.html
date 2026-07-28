@@ -3,17 +3,18 @@
 {{- $taxonomy := .taxonomy }}
 {{- $class := .class }}
 {{- $type := .type }}
+{{- $tabindex := .tabindex }}
 {{- with $page.GetTerms $taxonomy }}
     {{- if eq $type "delimiter" }}
         {{ $len := len . }}
         {{- range $i, $e := . }}
             {{- if and (ne $len 1) (eq $i (sub $len 1)) }} & {{ else if $i }}, {{ end }}
-            <a href="{{ .RelPermalink }}">{{ .Page.Title }}</a>
+            <a href="{{ .RelPermalink }}" {{ with $tabindex }}tabindex="{{ . }}"{{ end }}>{{ .Page.Title }}</a>
         {{- end }}
     {{- else }}
         <ul class="{{ $class }}" role="presentation">
             {{- range . }}
-                <li><a href="{{ .RelPermalink }}">{{ if eq $type "hashbang" }}#{{ end }}{{ .Page.Title }}</a></li>
+                <li><a href="{{ .RelPermalink }}" {{ with $tabindex }}tabindex="{{ . }}"{{ end }}>{{ if eq $type "hashbang" }}#{{ end }}{{ .Page.Title }}</a></li>
             {{- end }}
         </ul>
     {{- end }}
