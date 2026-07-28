@@ -22,8 +22,8 @@ Demosite: [https://foxihd.github.io/hugo-foxx/en/](https://foxihd.github.io/hugo
 >
 > Please feel free to contribute as well!
 
-![Home page with posts listing on 1200px viewport.](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.png)
-***Figure 1.*** Home page with posts listing on 1200px viewport.
+![Home page with posts listing on 1080px viewport](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.png)
+***Figure 1.*** Home page with posts listing on 1080px viewport .
 
 > [!TIP]
 > Always keep hugo-foxx up-to-date for better user experience, maximum performance and resource efficiency, by run the following command:  
