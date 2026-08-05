@@ -50,20 +50,6 @@
     }
 }
 
-@-moz-keyframes dash {
-    0% {
-        fill: var(--off);
-        stroke-dasharray: 0 50%;
-        stroke-dashoffset: 20%;
-    }
-
-    100% {
-        fill: #0000;
-        stroke-dasharray: 50% 0;
-        stroke-dashoffset: -20%;
-    }
-}
-
 @keyframes dash {
     0% {
         fill: var(--off);

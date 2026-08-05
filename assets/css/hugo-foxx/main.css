@@ -23,7 +23,6 @@
     font-kerning: auto;
     font-size: calc(10pt * var(--fontScale));
     -webkit-font-feature-settings: 'kern' 1;
-       -moz-font-feature-settings: 'kern' 1;
             font-feature-settings: 'kern' 1;
     -webkit-hyphenate-after: 3;
             hyphenate-after: 3;
@@ -32,7 +31,6 @@
     -webkit-hyphenate-lines: 2;
             hyphenate-lines: 2;
     -webkit-hyphens: auto;
-       -moz-hyphens: auto;
             hyphens: auto;
     kerning: auto;
     orphans: 2;
@@ -44,7 +42,6 @@
 * {
     box-sizing: border-box;
     -webkit-transition: var(--flashGuard);
-       -moz-transition: var(--flashGuard);
             transition: var(--flashGuard);
 }
 
@@ -410,7 +407,6 @@ h6 {
     letter-spacing: 0.16em;
     font-size: var(--normalsize);
     -webkit-font-feature-settings: 'c2sc' 1;
-       -moz-font-feature-settings: 'c2sc' 1;
             font-feature-settings: 'c2sc' 1;
     font-variant-caps: all-small-caps;
 }
@@ -584,6 +580,5 @@ tbody tr:nth-child(2n) {
 #menu:checked + label ~ *,
 #to-top {
     -webkit-transform: var(--tsf);
-       -moz-transform: var(--tsf);
             transform: var(--tsf);
 }

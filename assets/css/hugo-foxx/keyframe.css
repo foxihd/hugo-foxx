@@ -12,20 +12,6 @@
     }
 }
 
-@-moz-keyframes underline {
-    from {
-        border-image: linear-gradient(to right, transparent, transparent) 1;
-    }
-
-    50% {
-        border-image: linear-gradient(to right, var(--ac), transparent) 1;
-    }
-
-    to {
-        border-image: linear-gradient(to right, var(--ac), var(--ac)) 1;
-    }
-}
-
 @keyframes underline {
     from {
         border-image: linear-gradient(to right, transparent, transparent) 1;
@@ -41,16 +27,6 @@
 }
 
 @-webkit-keyframes blinking {
-    from, to {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
-}
-
-@-moz-keyframes blinking {
     from, to {
         opacity: 1;
     }
@@ -80,15 +56,6 @@
     }
 }
 
-@-moz-keyframes expand {
-    from {
-        -moz-transform: scale(1 , 0);
-    }
-
-    to {
-        -moz-transform: scale(1 , 1);
-    }
-}
 
 @keyframes expand {
     from {
