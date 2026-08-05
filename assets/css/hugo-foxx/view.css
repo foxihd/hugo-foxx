@@ -132,7 +132,6 @@ li > article > a:hover {
     display: inline;
     overflow-x: auto;
     text-overflow: ellipsis;
-    -ms-overflow-style: none;
     scrollbar-width: none;
     white-space: nowrap;
 }

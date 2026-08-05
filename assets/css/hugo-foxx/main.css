@@ -45,7 +45,6 @@
     box-sizing: border-box;
     -webkit-transition: var(--flashGuard);
        -moz-transition: var(--flashGuard);
-         -o-transition: var(--flashGuard);
             transition: var(--flashGuard);
 }
 
@@ -586,7 +585,5 @@ tbody tr:nth-child(2n) {
 #to-top {
     -webkit-transform: var(--tsf);
        -moz-transform: var(--tsf);
-        -ms-transform: var(--tsf);
-         -o-transform: var(--tsf);
             transform: var(--tsf);
 }

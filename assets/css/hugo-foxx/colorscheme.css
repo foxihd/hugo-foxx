@@ -9,8 +9,7 @@ body {
     --mid:{{ or $light.mid "gray" }};
 }
 
-@media (prefers-contrast: more),
-(-ms-high-contrast: active) {
+@media (prefers-contrast: more) {
     body {
     --ac: {{ or $light.more.ac $light.ac "#800000" }};
     --bg: {{ or $light.more.bg "#fff" }};

@@ -27,7 +27,6 @@ nav details > summary::after,
     align-self: center;
     -webkit-transition: var(--tst);
        -moz-transition: var(--tst);
-         -o-transition: var(--tst);
             transition: var(--tst);
     margin-left: auto;
     background: linear-gradient(to top, transparent 49%, var(--g18) 51%);
@@ -84,8 +83,6 @@ nav details[open] > ul,
     --tso: top;
     -webkit-transform-origin: var(--tso);
        -moz-transform-origin: var(--tso);
-        -ms-transform-origin: var(--tso);
-         -o-transform-origin: var(--tso);
             transform-origin: var(--tso);
 }
 
@@ -107,7 +104,6 @@ nav details > summary:focus,
 #menu:checked ~ * {
     -webkit-animation: var(--anm);
        -moz-animation: var(--anm);
-         -o-animation: var(--anm);
             animation: var(--anm);
 }
 
