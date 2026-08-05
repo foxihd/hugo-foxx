@@ -20,11 +20,6 @@
     right: 1ex;
 }
 
-#has-a11y[open] summary {
-    color: var(--ac);
-    animation: blinking 3s step-end infinite;
-}
-
 #a11y {
     --border: 1pt solid var(--fg); 
     display: grid;

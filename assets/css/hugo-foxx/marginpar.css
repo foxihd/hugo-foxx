@@ -39,11 +39,15 @@ nav details > summary::after,
 
 nav details[open] > summary::after,
 .marginpar-ctrl:checked + label::before,
-#menu:checked + label {
+#menu:checked + label,
+#has-a11y[open] summary {
     /* change indicator state [x] */
     --anm: blinking 3s step-end infinite;
     top: 0;
     background: unset;
+    -webkit-animation: var(--anm);
+       -moz-animation: var(--anm);
+            animation: var(--anm);
     color: var(--ac);
 }
 
@@ -96,12 +100,8 @@ nav details[open] > ul,
 
 li > article,
 nav details[open] > ul,
-nav details > summary:hover,
-nav details > summary:focus,
-.marginpar-ctrl:checked + label::before,
 .marginpar-ctrl:checked + label + .marginpar,
-#logo #logotype__text ,
-#menu:checked ~ * {
+#logo #logotype__text {
     -webkit-animation: var(--anm);
        -moz-animation: var(--anm);
             animation: var(--anm);
