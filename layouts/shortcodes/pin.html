@@ -8,7 +8,7 @@
 {{- if .IsNamedParams }}
     {{- if .Get "quote" }}
         <div>
-        <a href="{{ $url }}" class="has-img has-aria-label has-quote"
+        <a href="{{ $url }}" class="has-img has-aria-label-top has-quote"
             {{ with $label }} aria-label="{{ . }}"{{ end }}>
             {{ with $img }} <img src="{{ . }}" alt="{{ default $alt $label }}" loading="lazy">{{ end }}
             {{ with .Get "quote" }}<div>{{ safeHTML . }}</div>{{ end }}
@@ -27,76 +27,78 @@
         </div>
     {{- end }}
 {{- else if or (eq $var "") (eq $var "begin") }}<div class="column pin">
-{{- else if eq $var "end" }}</div>
-{{- end }}
-
-{{- if le (.Page.Scratch.Get "pin") 1 }}
-<style>
-.column {
-    /* auto column count */
-    --col: 16rem;
-    display: block;
-    -webkit-column-gap: 1.618rem;
-            column-gap: 1.618rem;
-    column-fill: balance;
-    -webkit-column-width: var(--col);
-            column-width: var(--col);
-}
-
-.column > * {
-    break-after: auto;
-    break-before: auto;
-    break-inside: avoid;
-    margin-bottom: 1.618rem;
-}
-
-.column.pin > * {
-    margin-bottom: 1em;
-    font-size: var(--small);
-}
-
-.column.pin a::after {
-    content: '' !important;
-}
-
-.has-quote {
-    display: flex;
-    flex-direction: column;
-    color: var(--fg);
-}
-
-.has-quote > div {
-    margin-left: auto;
-}
-
-@media screen and (min-width: 2560px) {
-
+    <style>
     .column {
-        --col: 20rem;
-    }
-
-}
-
-@media screen and (min-width: 1920px) {
-
-    .column.pin {
+        /* auto column count */
         --col: 16rem;
+        display: block;
+        -webkit-column-gap: 1.618rem;
+                column-gap: 1.618rem;
+        column-fill: balance;
+        -webkit-column-width: var(--col);
+                column-width: var(--col);
     }
 
-}
-
-@media screen and (max-width: 640px) {
-
-    .column.pin {
-        --col: 10rem;
-        column-gap: 1.618ex;
+    .column > * {
+        break-after: auto;
+        break-before: auto;
+        break-inside: avoid;
+        margin-bottom: 1.618rem;
     }
 
     .column.pin > * {
-        margin-bottom: 0.618ex;
+        margin-bottom: 1em;
+        font-size: var(--small);
     }
 
-}
-</style>
-{{- .Page.Scratch.Add "pin" 1 }}
+    .column.pin a::after {
+        content: '' !important;
+    }
+
+    .has-aria-label-top::before {
+        display: block;
+        margin-right: auto;
+        content: attr(aria-label);
+    }
+
+    .has-quote {
+        display: flex;
+        flex-direction: column;
+        color: var(--fg);
+    }
+
+    .has-quote > div {
+        margin-left: auto;
+    }
+
+    @media screen and (min-width: 2560px) {
+
+        .column {
+            --col: 20rem;
+        }
+
+    }
+
+    @media screen and (min-width: 1920px) {
+
+        .column.pin {
+            --col: 16rem;
+        }
+
+    }
+
+    @media screen and (max-width: 640px) {
+
+        .column.pin {
+            --col: 10rem;
+            column-gap: 1.618ex;
+        }
+
+        .column.pin > * {
+            margin-bottom: 0.618ex;
+        }
+
+    }
+    </style>
+{{- else if eq $var "end" }}</div>
 {{- end }}

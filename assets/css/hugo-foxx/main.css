@@ -207,6 +207,7 @@ nav strong,
 main > header,
 header.article,
 .list-year > strong,
+.has-aria-label-top::before,
 .textssc {
     letter-spacing: .1em;
     font-weight: 400;
