@@ -14,7 +14,7 @@ body {
     --ac: {{ or $light.more.ac $light.ac "#800000" }};
     --bg: {{ or $light.more.bg "#fff" }};
     --fg: {{ or $light.more.fg "#000" }};
-    --mid: {{ or $light.more.mid "#969696"}}
+    --mid: {{ or $light.more.mid "#595959"}}
     }
 
     pre > code,
@@ -27,7 +27,7 @@ body {
 @media (prefers-color-scheme: dark) {
     body {
         --off: #fff;
-        --ac: {{ or $dark.ac "#C09C26" }};
+        --ac: {{ or $dark.ac "#d5ad2a" }};
         --bg: {{ or $dark.bg "#111" }};
         --fg: {{ or $dark.fg "#f9f9f9" }};
         --mid: {{ or $dark.mid "#9e9e9e"}}
