@@ -6,7 +6,7 @@ body {
     --ac: {{ or $light.ac "#800000" }};
     --bg: {{ or $light.bg "#f9f9f9" }};
     --fg: {{ or $light.fg "#111" }};
-    --mid:{{ or $light.mid "gray" }};
+    --mid:{{ or $light.mid "#545454" }};
 }
 
 @media (prefers-contrast: more) {
@@ -14,9 +14,7 @@ body {
     --ac: {{ or $light.more.ac $light.ac "#800000" }};
     --bg: {{ or $light.more.bg "#fff" }};
     --fg: {{ or $light.more.fg "#000" }};
-    {{ with $light.more.mid }}
-        --mid: {{ . }};
-    {{ end }}
+    --mid: {{ or $light.more.mid "#969696"}}
     }
 
     pre > code,
@@ -29,12 +27,9 @@ body {
 @media (prefers-color-scheme: dark) {
     body {
         --off: #fff;
-        --ac: {{ or $dark.ac "#b49123" }};
+        --ac: {{ or $dark.ac "#C09C26" }};
         --bg: {{ or $dark.bg "#111" }};
         --fg: {{ or $dark.fg "#f9f9f9" }};
-        {{ with $dark.mid }}
-            --mid: {{ . }};
-        {{ end }}
+        --mid: {{ or $dark.mid "#9e9e9e"}}
     }
-
 }

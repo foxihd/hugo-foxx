@@ -114,14 +114,14 @@ function setColor() {
     {{ end }}
     const styles = {
         light: {
-            default: '--off: #000; --ac: {{ or $lite.ac "#800000" }}; --bg: {{ or $lite.bg "#f9f9f9" }}; --fg: {{ or $lite.fg "#111" }}; --mid:{{ or $lite.mid "gray" }};',
-            less: '--off: #000; --ac: {{ or $lite.less.ac $lite.ac "#800000" }}; --bg: {{ or $lite.less.bg "#e7e2e2" }}; --fg: {{ or $lite.less.fg "#13253d" }}; --mid:{{ or $lite.less.mid "#7d8490" }};',
-            more: '--off: #000; --ac: {{ or $lite.more.ac $lite.ac "#800000" }}; --bg: {{ or $lite.more.bg "#fff" }}; --fg: {{ or $lite.more.fg "#000" }}; --mid:{{ or $lite.more.mid "gray" }};'
+            default: '--off: #000; --ac: {{ or $lite.ac "#800000" }}; --bg: {{ or $lite.bg "#f9f9f9" }}; --fg: {{ or $lite.fg "#111" }}; --mid:{{ or $lite.mid "#545454" }};',
+            less: '--off: #000; --ac: {{ or $lite.less.ac $lite.ac "#800000" }}; --bg: {{ or $lite.less.bg "#e7e2e2" }}; --fg: {{ or $lite.less.fg "#13253d" }}; --mid:{{ or $lite.less.mid "#444850" }};',
+            more: '--off: #000; --ac: {{ or $lite.more.ac $lite.ac "#800000" }}; --bg: {{ or $lite.more.bg "#fff" }}; --fg: {{ or $lite.more.fg "#000" }}; --mid:{{ or $lite.more.mid "#595959" }};'
         },
         dark: {
-            default: '--off: #fff; --ac: {{ or $dark.ac "#b49123" }}; --bg: {{ or $dark.bg "#111" }}; --fg: {{ or $dark.fg "#f9f9f9" }}; --mid:{{ or $dark.mid "gray" }};',
-            less: '--off: #fff; --ac: {{ or $dark.less.ac $dark.ac "#b49123" }}; --bg: {{ or $dark.less.bg "#13253d" }}; --fg: {{ or $dark.less.fg "#e7e2e2" }}; --mid:{{ or $dark.less.mid "#7d8490" }};',
-            more: '--off: #fff; --ac: {{ or $dark.more.ac $dark.ac "#b49123" }}; --bg: {{ or $dark.more.bg "#000" }}; --fg: {{ or $dark.more.fg "#fff" }}; --mid:{{ or $dark.more.mid "gray" }};'
+            default: '--off: #fff; --ac: {{ or $dark.ac "#D5AD2A" }}; --bg: {{ or $dark.bg "#111" }}; --fg: {{ or $dark.fg "#f9f9f9" }}; --mid:{{ or $dark.mid "#969696" }};',
+            less: '--off: #fff; --ac: {{ or $dark.less.ac $dark.ac "#D5AD2A" }}; --bg: {{ or $dark.less.bg "#13253d" }}; --fg: {{ or $dark.less.fg "#e7e2e2" }}; --mid:{{ or $dark.less.mid "#ACAFB9" }};',
+            more: '--off: #fff; --ac: {{ or $dark.more.ac $dark.ac "#D5AD2A" }}; --bg: {{ or $dark.more.bg "#000" }}; --fg: {{ or $dark.more.fg "#fff" }}; --mid:{{ or $dark.more.mid "#969696" }};'
         }
     };
     lightSwitchIndicator.setAttribute('aria-description', (lightSwitch.checked ? i18nDark : i18nLight));
