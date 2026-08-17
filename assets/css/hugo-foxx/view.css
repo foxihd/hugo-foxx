@@ -140,7 +140,7 @@ li > article > a:hover {
 .list ul a,
 .list time {
     opacity: 62%;
-    font-size: 1rem;
+    font-size: var(--small);
 }
 
 .has-card {
@@ -174,8 +174,9 @@ li > article > a:hover {
 }
 
 .list h1,
-.card h1 {
-    font-size: var(--Large);
+.card h1,
+.list-day a {
+    font-size: var(--large);
 }
 
 .card > a {
