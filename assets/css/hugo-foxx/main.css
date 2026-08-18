@@ -186,7 +186,8 @@ img {
 /*  */
 
 nav ul,
-ul[role=presentation] {
+ul[role=presentation],
+ul.presentation {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -194,7 +195,8 @@ ul[role=presentation] {
 }
 
 nav ul ul,
-nav ul ul[role=presentation]  {
+nav ul ul[role=presentation],
+nav ul ul.presentation {
     padding-left: 1rem;
 }
 

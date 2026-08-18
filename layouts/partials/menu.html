@@ -13,7 +13,7 @@
                 {{- i18n "keepInTouch" }}
             {{- end -}}
         </strong>
-        <ul role="presentation">
+        <ul class="presentation">
             {{ partial "inline/menu/walk.html" (dict "page" $page "menuID" $menuID "menuEntries" .) }}
         </ul>
     </nav>
@@ -50,7 +50,7 @@
                 {{- $attrs = merge $attrs (dict "title" . "aria-label" .) }}
             {{- end }}
         {{- end }}
-        <li role="presentation" {{ with $class }}class="{{ . }}"{{ end }}>
+        <li class="presentation" {{ with $class }}class="{{ . }}"{{ end }}>
             {{- if .Children }}
                 {{- template "menuItemWithChildren" dict "item" . "attrs" $attrs "link" $hasDestination "icon" $icon "name" $name "desc" $desc "menuID" $menuID "page" $page }}
             {{- else }}
@@ -102,7 +102,7 @@
                 {{- .name -}}
             </span>
         </summary>
-        <ul role="presentation">
+        <ul class="presentation">
             {{ partial "inline/menu/walk.html" (dict "page" .page "menuEntries" .item.Children) }}
             {{- if .hasDestination }}
                 <li class="parent-anchor">

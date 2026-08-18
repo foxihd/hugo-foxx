@@ -17,7 +17,7 @@
 {{- with .Sections }}
 <nav>
     <strong>{{ i18n "onThisSection" }}</strong>
-    <ul role="presentation">
+    <ul class="presentation">
         {{- range . }}
             {{ $hide := eq (substr .Page.Title 0 1) "_" }}
             {{ if and (not $hide) (or .Content .RegularPages) }}

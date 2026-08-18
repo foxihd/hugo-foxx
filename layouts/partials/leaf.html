@@ -12,7 +12,7 @@
             <a href="{{ .RelPermalink }}" {{ with $tabindex }}tabindex="{{ . }}"{{ end }}>{{ .Page.Title }}</a>
         {{- end }}
     {{- else }}
-        <ul class="{{ $class }}" role="presentation">
+        <ul class="{{ $class }} presentation">
             {{- range . }}
                 <li><a href="{{ .RelPermalink }}" {{ with $tabindex }}tabindex="{{ . }}"{{ end }}>{{ if eq $type "hashbang" }}#{{ end }}{{ .Page.Title }}</a></li>
             {{- end }}
@@ -100,7 +100,7 @@
         {{- "<!-- article audio download -->" | safeHTML }}
         <center>
             <p role="contentinfo">{{ i18n "ifNoAudioSupport" }}</p>
-            <ul role="presentation">
+            <ul class="presentation">
             {{- $fileName := print site.Title " - " .Title }}
             {{- with $audio }}
                 <li>

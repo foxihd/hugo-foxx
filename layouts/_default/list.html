@@ -130,7 +130,7 @@
         {{ $list := eq (lower .Page.Params.view) "list" }}
         {{- with $pages }}
             {{- if $card }}
-                <ul class="has-card" role="presentation">
+                <ul class="has-card presentation">
                 {{- range . }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
@@ -139,7 +139,7 @@
                 {{ end }}
                 </ul>
             {{- else if $list }}
-                <ul class="has-list textwidth" role="presentation" >
+                <ul class="has-list textwidth presentation">
                 {{- range . }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
@@ -170,7 +170,7 @@
             {{- else }}
                 <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
             {{- end }}
-            <ul class="{{ if $card }}has-card{{ else if $list }}has-list{{ else }}list-day{{ end }}" role="presentation">
+            <ul class="{{ if $card }}has-card{{ else if $list }}has-list{{ else }}list-day{{ end }} presentation">
                 {{- range .  | first 12 }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
@@ -226,7 +226,7 @@
                         {{- $pageGroup = $pageGroup.Reverse }}
                     {{- end }}
                     {{- with $pageGroup }}
-                    <ul class="list-day" role="presentation">
+                    <ul class="list-day presentation">
                         {{- range . }}
                             {{- $date := .Date.Format "2 Jan " }}
                             <li>{{ template "view_li" (dict "page" . "date" $date) }}</li>

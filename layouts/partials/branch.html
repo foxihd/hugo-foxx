@@ -3,7 +3,7 @@
     {{- $limit := .limit }}
     {{- $withPages := .withPages }}
     {{- with index site.Taxonomies $taxonomy }}
-        <ul role="presentation">
+        <ul class="presentation">
             {{- $index := 0 }}
             {{ range .ByCount -}}
                 {{- $index = add $index 1 }}
@@ -20,7 +20,7 @@
                                     <span>{{ .Page.Title }}</span>
                                 </a>
                             </h2>
-                            <ul role="presentation">
+                            <ul class="presentation">
                                 {{- range first 5 $pages }}
                                     <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
                                 {{- end }}
