@@ -4,15 +4,15 @@
 {{- $main := eq $menuID "main" }}
 {{- $type := .type }}
 
-{{- if $main }}
-<input id="menu" type="checkbox" aria-controls="{{ printf "%s-menu" $menuID }}" style="display:none;" hidden>
-<label for="menu" class="icon menu" aria-controls="{{ printf "%s-menu" $menuID }}"><span class="hide">{{ i18n "main" }}</span>{{ if $page.Params.toc }}<span class="textssc">toc</span>{{ end }}</label>
-{{- end }}
-
 {{- with index site.Menus $menuID }}
-    <nav id="{{ printf "%s-menu" $menuID }}" {{ with $type}}class="{{ . }}"{{ end }} {{ with  (i18n $menuID) }}aria-label="{{ i18n "nav" }}{{ i18n $menuID }}" {{ end }}>
-        {{- if $main }}<strong>{{ i18n "onThisSite" }}</strong>{{ end }}
-        {{- if eq $type "author" }}<strong>{{ i18n "keepInTouch" }}</strong>{{ end }}
+    <nav id="{{ printf "%s-menu" $menuID }}" {{ with $type}}class="{{ . }}"{{ end }} {{ with  (i18n $menuID) }}aria-label="{{ i18n "nav" }}: {{ i18n $menuID }}" {{ end }}>
+        <strong>
+            {{- if $main -}}
+                {{- i18n "onThisSite" }}
+            {{- else if eq $type "author" }}
+                {{- i18n "keepInTouch" }}
+            {{- end -}}
+        </strong>
         <ul role="presentation">
             {{ partial "inline/menu/walk.html" (dict "page" $page "menuID" $menuID "menuEntries" .) }}
         </ul>

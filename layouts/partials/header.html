@@ -9,6 +9,9 @@
 {{- else }}
     {{ partial "header/logo.html" . }}
 {{- end }}
+
+<input id="menu" type="checkbox" aria-controls="main-menu" style="display:none;" hidden>
+<label for="menu" class="icon menu" aria-controls="main-menu"><span class="hide">{{ i18n "main" }}</span>{{ if .Params.toc }}<span class="textssc">toc</span>{{ end }}</label>
 {{- partial "menu.html" (dict "menuID" "main" "page" .) }}
 
 {{- with .Sections }}
