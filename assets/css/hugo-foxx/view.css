@@ -195,7 +195,7 @@ li > article > a:hover {
     width: 100%;
     height: auto;
     max-height: 68.8vw;
-    aspect-ratio: 1.43;
+    aspect-ratio: 120/63;
     object-fit: cover;
 }
 
