@@ -68,7 +68,7 @@ a11y.innerHTML = `
   <!-- noLocalStorage -->
   <center id="noLocalStorage" class="hide" role="alert">${i18nNolocalstorage}</center>
 </fieldset>
-<div class="screening" role="presentation" aria-hidden="true" onclick="closeA11y()"></div>
+<div role="presentation" aria-hidden="true" style="position:fixed;top:0;right:0;bottom:0;left:0;backdrop-filter:brightness(96%);" onclick="closeA11y()"></div>
 `;
 
 // Close console
