@@ -85,7 +85,7 @@
 
 {{- define "partials/slide/nav.html" -}}
     {{- $slides := where .Site.RegularPages "Type" "slide" }}
-        <strong>{{ i18n "onThisPage" }} <a href="#" id="hash">#</a></strong>
+        <strong>{{ i18n "onThisPage" }} <a href="#top" id="hash">#</a></strong>
         <ul>
             <li><a href="#feed">{{ i18n "allPosts" | title }}</a></li>
             <li><a href="#taxonomy">{{ i18n "allTaxonomies" | title  }}</a></li>
