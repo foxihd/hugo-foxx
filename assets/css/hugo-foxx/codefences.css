@@ -1,9 +1,28 @@
-:root {
+/* :root {
     --y6a: #af7c9d; --w8u: #628618; --s8i: #ed7495; --n8e: #6c80b3;
     --m4i: #355240; --y4i: #921823; --f8a: #7972b6; --s4n: #018ace;
     --d3u: #654b3c; --r6a: #534b1a; --y4a: #13355b; --k8i: #ee850f;
     --y6i: #00728c; --o5a: #8d2f4a; --c3u: #5b516a; --s5o: #365b75;
     --s5e: #493280; --y7i: #00b1dd; --i3i: #e9142a; --t9u: #014d1f;   
+} */
+
+:root,
+body[data-scheme=light] {
+    --y6a: #68405a; --w8u: #3c530e; --s8i: #991438; --n8e: #3d4b76;
+    --m4i: #355240; --y4i: #921823; --f8a: #4b4587; --s4n: #005085;
+    --d3u: #604839; --r6a: #534b1a; --y4a: #13355b; --k8i: #7a3d00;
+    --y6i: #00556e; --o5a: #862d46; --c3u: #52495f; --s5o: #2f4f65;
+    --s5e: #493280; --y7i: #00546e; --i3i: #9e000d; --t9u: #014d1f;   
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --y6a: #bf97b4; --w8u: #81b31e; --s8i: #ee819e; --n8e: #93a1c8;
+        --m4i: #7fad90; --y4i: #ec838c; --f8a: #a19dcd; --s4n: #06abfe;
+        --d3u: #ba9d8c; --r6a: #b6a63a; --y4a: #75a7e1; --k8i: #f0870f;
+        --y6i: #00b3db; --o5a: #d98ca2; --c3u: #a9a0b6; --s5o: #81a7c5;
+        --s5e: #ab98d7; --y7i: #00b1dd; --i3i: #f57f8b; --t9u: #01bc4c;   
+    }
 }
 
 kbd,
@@ -94,7 +113,7 @@ pre > code table {
 }
 
 .cl {
-    color: #1349fb;
+    color: var(--f8a);
 }
 
 .m, /* LiteralNumber */
@@ -108,12 +127,11 @@ pre > code table {
 .kt, /* KeywordType */
 .nt, /* NameTag */
 code .x, /* Other */
-.err, /* Error */
 .ln,/* LineNumbers */
 .o, /* Operator */
 .p, /* Punctuation */
 .w { /* TextWhitespace */
-    color: var(--i3i);
+    color: var(--s8i);
 }
 
 .kn {/* KeywordNamespace */
@@ -186,7 +204,7 @@ code .x, /* Other */
 .sr, /* LiteralStringRegex */
 .s1, /* LiteralStringSingle */
 .ss {
-    color: var(--s8i);
+    color: var(--s5e);
 }
 
 .no, /* NameConstant */
@@ -205,6 +223,12 @@ code .x, /* Other */
 .gt, /* GenericTraceback */
 .gl {
     color: var(--w8u);
+}
+
+.err, /* Error */
+.gr /* GenericError */
+{
+    color: var(--o5a);
 }
 
 .k, /* Keyword */
