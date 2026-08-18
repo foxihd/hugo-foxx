@@ -50,7 +50,7 @@
                 {{- $attrs = merge $attrs (dict "title" . "aria-label" .) }}
             {{- end }}
         {{- end }}
-        <li class="presentation" {{ with $class }}class="{{ . }}"{{ end }}>
+        <li {{ with $class }}class="{{ . }}"{{ end }}>
             {{- if .Children }}
                 {{- template "menuItemWithChildren" dict "item" . "attrs" $attrs "link" $hasDestination "icon" $icon "name" $name "desc" $desc "menuID" $menuID "page" $page }}
             {{- else }}
