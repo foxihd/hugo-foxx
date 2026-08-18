@@ -258,7 +258,7 @@
                 {{- end }}
                 <time>{{ .page.Date.Format "2 Jan 2006" }}</time>
             </div>
-            <a href="{{ .page.RelPermalink }}" tabindex="-1"><h1>{{ .page.Title }}</h1></a>
+            <a href="{{ .page.RelPermalink }}" tabindex="-1"><h3>{{ .page.Title }}</h3></a>
         </header>
         <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
         <section {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
@@ -282,7 +282,7 @@
 
 {{- define "view_list" -}}
     <article class="list">
-        <h1 role="heading">{{ .page.Title }}</h1>
+        <h3 role="heading">{{ .page.Title }}</h3>
         <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
         <div role="contentinfo">
             {{- if .page.Params.categories }}
@@ -297,7 +297,7 @@
 {{- define "view_li" -}}
     <li>
         <a class="has-pre" href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}" aria-description="{{ .date }}">
-            <span>{{ .page.Title }}</span>
+            <h3>{{ .page.Title }}</h3>
         </a>
     </li>
 {{- end }}

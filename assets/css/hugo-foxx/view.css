@@ -1,3 +1,9 @@
+#feed h3 {
+    margin: 0 !important;
+    color: var(--ac);
+    font-size: var(--large);
+}
+
 /* view_li */
 
 .list-year {
@@ -67,10 +73,6 @@
     position: relative;
 }
 
-.list h1 {
-    font-size: var(--normalsize);
-}
-
 .list > a {
     top: 0;
     bottom: 2rem;
@@ -95,11 +97,6 @@
 
 li > article a {
     color: var(--fg);
-}
-
-li > article h1 {
-    margin: 0 !important;
-    color: var(--ac);
 }
 
 li > article > a {
@@ -171,12 +168,6 @@ li > article > a:hover {
     border: var(--border);
     padding: 1rem 1rem 1ex;
     font-size: 1.2rem;
-}
-
-.list h1,
-.card h1,
-.list-day a {
-    font-size: var(--large);
 }
 
 .card > a {
