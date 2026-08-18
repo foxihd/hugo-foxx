@@ -31,7 +31,7 @@ const {
     i18nNolocalstorage
 } = a11y.dataset;
 a11y.innerHTML = `
-<summary id="has-a11y-summary" accesskey="a" aria-keyshortcuts="a" style="top: unset">
+<summary id="has-a11y-summary" accesskey="a" style="top: unset">
   <span class="hide">${i18nAppearance}</span>
 </summary>
 <!-- a11y console -->

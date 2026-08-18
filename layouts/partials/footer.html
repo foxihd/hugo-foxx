@@ -40,7 +40,7 @@
     {{- end }}
 {{- end }}
 
-<a href="#top" id="to-top" accesskey="c" aria-keyshortcuts="c" aria-label="{{ i18n "toTop" }}" style="margin-top: auto;"></a>
+<a href="#top" id="to-top" accesskey="c" aria-label="{{ i18n "toTop" }}" style="margin-top: auto;"></a>
 
 {{- define "partials/i18n/switchlanghome.html" }}
     {{- range where $.Site.Home.AllTranslations "Lang" "ne" $.Lang }}
