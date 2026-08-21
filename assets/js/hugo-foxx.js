@@ -33,8 +33,8 @@ const {
     i18nNolocalstorage
 } = a11y.dataset;
 a11y.innerHTML = `
-<summary id="has-a11y-summary" style="top: unset">
-  <span class="hide">${i18nAppearance}</span>
+<summary id="has-a11y-summary" style="top:unset" aria-labelledby="a11y-label">
+  <span id="a11y-label" class="hide">${i18nAppearance}</span>
 </summary>
 <!-- a11y console -->
 <fieldset id="a11y" role="region" aria-label="${i18nAppearance}">
