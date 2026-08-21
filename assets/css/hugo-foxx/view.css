@@ -42,13 +42,13 @@
 
 .list-day a {
     padding: 1ex 0 0;
-    width: 100%;
+    display: inline-block;
 }
 
 .list-day a.has-pre::before {
     position: absolute;
     left: -5rem;
-    padding-top: 0.42em;
+    padding-top: 0.1em;
     width: 4rem;
     text-align: right;
     text-transform: uppercase;
