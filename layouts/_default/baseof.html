@@ -15,6 +15,7 @@
         {{ partial "header.html" . }}
     </header>
     <main id="{{ .Kind }}">
+        <div id="top" role="presentation"></div>
         {{ block "main" . }}{{ end }}
     </main>
     <footer>
