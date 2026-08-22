@@ -1,4 +1,4 @@
-<a id="to-content" href="{{ if .IsPage }}#content{{ else }}#index{{ end }}">{{ i18n "toContent" }}</a>
+<a id="to-content" href="#{{ if .IsPage }}content{{ else }}{{ .Kind }}{{ end }}">{{ i18n "toContent" }}</a>
 
 {{- if not .IsHome }}
     {{ partialCached "header/logo.html" . }}
@@ -68,7 +68,7 @@
     {{- $siteTitle := or site.Title site.Params.Title }}
     {{- if or $logoType $logoMark $logoInlineCSS }}
     <div id="logo">
-        <a href="{{ if .IsHome }}#top{{ else }}{{ absLangURL "" }}{{ end }}" aria-label="{{ $siteTitle }}" aria-description="{{ i18n "home" }}">
+        <a href="{{ if .IsHome }}#home{{ else }}{{ absLangURL "" }}{{ end }}" aria-label="{{ $siteTitle }}" aria-description="{{ i18n "home" }}">
             {{- with site.Params.logo.logoMarkDark }}
                 <img id="logomark--dark" src="{{ . }}" alt="{{ $siteTitle }}" />
             {{- end }}

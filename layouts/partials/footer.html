@@ -40,7 +40,7 @@
     {{- end }}
 {{- end }}
 
-<a href="{{ if .IsPage }}#content{{ else }}#index{{ end }}" id="to-top" aria-label="{{ i18n "toTop" }}" style="margin-top:auto;"></a>
+<a href="#{{ if .IsPage }}content{{ else }}{{ .Kind }}{{ end }}" id="to-top" aria-label="{{ i18n "toTop" }}" style="margin-top:auto;"></a>
 
 {{- define "partials/i18n/switchlanghome.html" }}
     {{- range where $.Site.Home.AllTranslations "Lang" "ne" $.Lang }}

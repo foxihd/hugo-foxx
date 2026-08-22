@@ -7,7 +7,7 @@
     {{- if and .IsHome site.Taxonomies (not site.Params.home.disableListing) }}
         <hr class="hide">
         <section id="taxonomy" {{ if $home }}class="target"{{ end }}>
-            <h1>{{ i18n "allTaxonomies" | title }} <a href="#top" class="hash">#</a></h1>
+            <h1>{{ i18n "allTaxonomies" | title }} <a href="#{{ .Kind }}" class="hash">#</a></h1>
             {{ template "block_taxonomy" . }}
         </section>
         <hr class="hide">
@@ -18,7 +18,7 @@
                 {{- $title := .LinkTitle }}
                 {{- $subtitle :=  .Page.Params.Subtitle }}
                 {{- if .IsHome }}
-                    <h1>{{- i18n "allPosts" | title }} {{ if $target }}<a href="#top" class="hash">#</a>{{ end }}</h1>
+                    <h1>{{- i18n "allPosts" | title }} {{ if $target }}<a href="#{{ .Kind }}" class="hash">#</a>{{ end }}</h1>
                 {{- else if $subtitle }}
                 <hgroup>
                     <h1 id="title">{{- $title -}}</h1>
@@ -93,7 +93,7 @@
                 {{- end }}
                 <section class="content">
                     {{- with .Title }}
-                        <h1 id="slide-{{ $slideNum }}-heading">{{ . }} <a href="#top" class="hash">#</a></h1>
+                        <h1 id="slide-{{ $slideNum }}-heading">{{ . }} <a href="#{{ $.Kind }}" class="hash">#</a></h1>
                     {{- end }}
                     {{ replace .Content "disabled=" "" | safeHTML }}
                 </section>
