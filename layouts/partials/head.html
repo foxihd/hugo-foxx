@@ -69,6 +69,7 @@
     {{- end }}
 
     {{- $style := slice 
+        (resources.Get "css/hugo-foxx/root.css")
         $icon
         (resources.Get "css/hugo-foxx/colorscheme.css")
         (resources.Get "css/hugo-foxx/keyframe.css")
