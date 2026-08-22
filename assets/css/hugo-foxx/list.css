@@ -50,11 +50,14 @@ h2 > a {
 
 #list-tags li a {
     display: flex;
+    align-items: center;
     border: 1pt solid #80808080;
     border-radius: 2em;
-    padding: 2pt 8pt 0;
+    padding: 0 1em;
+    height: 2em;
     font-size: var(--small);
 }
+
 #list-tags li a:focus,
 #list-tags li a:hover {
     border: 1pt solid var(--ac);

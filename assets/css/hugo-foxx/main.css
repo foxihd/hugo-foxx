@@ -291,7 +291,6 @@ ul.delimiter li:last-child:after {
 
 #breadcrumb li::after {
     margin: 0 1ex;
-    font-size: 0.8em;
     content: ' > ';
 }
 
