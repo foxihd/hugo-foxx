@@ -4,7 +4,7 @@
 
 ![Minimum Hugo Version: v.0.141.0](https://img.shields.io/static/v1?label=Hugo&message=&ge;%20v0.141.0&color=ca187d&logo=hugo)
 ![CSS baseline 2019](https://img.shields.io/static/v1?label=Baseline&message=2019&color=e44d26&logo=css&logoColor=e44d26)
-![Javascript baseline 2019](https://img.shields.io/static/v1?label=Baseline&message=2019&color=f7df1e&logo=javascript)
+![Javascript ECMAScript 2019](https://img.shields.io/static/v1?label=ES&message=10&color=f7df1e&logo=javascript)
 ![GitHub License: MIT](https://img.shields.io/github/license/foxihd/hugo-brewm)
 ![GitHub Code Size](https://img.shields.io/github/languages/code-size/foxihd/hugo-foxx?color=00bce2)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/foxihd/hugo-foxx)
@@ -33,6 +33,11 @@ Demosite: [https://foxihd.github.io/hugo-foxx/en/](https://foxihd.github.io/hugo
 ***Figure 2.*** Article with complex elements/shortcodes on 1500px viewport.
 
 ## Feature Highlights
+
+> [!IMPORTANT]
+> There is no guarantee regarding accessibility.
+> Meanwhile this theme is capable of achieving WAVE's AIM Score of 10, the outcome ultimately depends on content authoring.
+> Always use alt text, pay attention to content structure, and use accent colors with sufficient contrast.
 
 - **Reader-first**: Prioritizes speed[^1], privacy[^2], readability and accessibility with personalized settings for colors and fonts (It's Tracker Free!).
 - **Inclusive**: Graceful degradation design[^3] oriented with improved semantic HTML structure & WAI-ARIA attribute, RSS/reader-mode optimized, printer-friendly full static website that remains fully functional even when JavaScript is disabled! The theme is even compatible with terminal browsers such as Lynx or W3M.
