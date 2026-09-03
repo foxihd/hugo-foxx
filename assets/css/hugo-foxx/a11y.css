@@ -37,13 +37,13 @@
 }
 
 #doc-panel {
+    display: flex;
+    margin-top: 3.14rem;
     border-top: 1pt solid #80808022;
     border-bottom: 1pt solid #80808022;
-    width: var(--golden-ratio);
     padding: 0;
-    display: flex;
+    width: var(--golden-ratio);
     gap: 1ex;
-    margin-top: 3.14rem;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -173,10 +173,10 @@ menu > .has-aria-label::after {
 /*  button  */
 
 .button {
+    transition: 0.1s;
     border: 1pt solid #0000;
     border-radius: 5pt;
     background: inherit;
-    transition: 0.1s;
 }
 
 #a11y-menu .button {
@@ -244,17 +244,21 @@ menu > .has-aria-label::after {
 }
 
 #bionReadButton {
-    padding: 0 1ex;
     display: flex;
     align-items: center;
     -webkit-transform-origin: left;
             transform-origin: left;
+    padding: 0 1ex;
 }
 
 #doc-panel .button:hover,
 #doc-panel .button:focus,
 input:checked + #bionReadButton {
-    background: #80808022;
     -webkit-transform: scale(0.8);
             transform: scale(0.8);
+    background: #80808022;
+}
+
+#doc-panel button {
+    padding: 2.5pt 1ex 1pt;
 }
