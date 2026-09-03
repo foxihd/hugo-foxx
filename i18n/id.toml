@@ -140,3 +140,9 @@
     other = "Tutup"
 [noLocalStorage]
     other = "LocalStorage tidak tersedia di browser Anda. Pengaturan tidak akan disimpan."
+[bionRead]
+    other = "Mode BionRead"
+[print]
+    other = "Cetak"
+[share]
+    other = "Bagikan"

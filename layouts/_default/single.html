@@ -26,7 +26,7 @@
 <article id="main-article" role="document" data-pagefind-body>
 
     {{- if eq .Params.type (or "article" "articles") }}
-    <header class="article">
+    <header class="article" data-bionRead-safe>
         <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
         {{- partial "page/title.html" . }}
         <span>
@@ -48,9 +48,12 @@
         {{- partial "page/title.html" . }}
     {{- end }}
 
+    <menu id="doc-panel" style="display:none;">
+    </menu>
+
     {{- partial "page/audio.html" . }}
 
-    <div id="content" class="content">
+    <div id="content" class="content" data-bionRead-safe>
     {{ .Content }}
     </div>
 

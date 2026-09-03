@@ -150,3 +150,9 @@
     other = "Close"
 [noLocalStorage]
     other = "LocalStorage is not available in your browser. Settings won't be saved."
+[bionRead]
+    other = "BionRead Mode"
+[print]
+    other = "Print"
+[share]
+    other = "Share"
