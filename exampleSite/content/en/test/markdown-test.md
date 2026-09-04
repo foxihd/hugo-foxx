@@ -15,6 +15,41 @@ comments: false
 secnum: true
 ---
 
+<!-- these current letterine class rules are stored in custom.css
+
+<style>
+.letterine {
+    --offset: 4.3rem;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+    font-variant: small-caps;
+    -webkit-font-feature-settings: 'smcp' 1;
+            font-feature-settings: 'smcp' 1;
+}
+
+
+.letterine::before {
+    --mask: linear-gradient(to right, transparent var(--offset), black var(--offset), black 100%);
+    display: block;
+    border-bottom: 3pt solid var(--ac);
+    content: '';
+    -webkit-mask-image: var(--mask);
+            mask-image: var(--mask);
+}
+
+.letterine > i {
+    position: relative;
+    top: -3pt;
+    float: left;
+    padding-right: .1em;
+    line-height: 0.5;
+    color: var(--ac);
+    font-size: 6em;
+    font-style: normal;
+
+</style>
+ -->
+
 <span class="letterine"><i>T</i>his is example of span with letterine class.</span>
 You need set the `markup.goldmark.unsafe` and `markup.goldmark.renderer.unsafe` parameter in `config.toml` to write html directly, but this is not recommended.
 {{< marginpar >}}

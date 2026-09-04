@@ -14,7 +14,7 @@ bsky = "https://bsky.app/profile/808.foxx.ink/post/3lknem6ci2s2h"
 
 +++
 
-<span class="letterine" style="--offset: 4.4rem;"><i>T</i>his is a quick demonstration post.</span>
+<span class="letterine" style="--offset: 4.3rem;"><i>T</i>his is a quick demonstration post.</span>
 It serves as an example of the features
 of this theme.  One of them is $ \LaTeX $ via [Katex](https://katex.org/).
 
