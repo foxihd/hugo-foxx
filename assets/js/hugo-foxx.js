@@ -64,6 +64,16 @@ a11y.innerHTML = `
 // Close console
 const closeA11y = () => a11y.removeAttribute('open');
 
+// event handler
+const addEvent  = (element, event, handler) => {
+    if (element) {
+        if (element.attachEvent) {
+            return element.attachEvent('on' + event, handler);
+        }
+        return element.addEventListener(event, handler, false);
+    }
+}
+
 // Color scheme and contrast functions
 const matchMediaColor = () => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -79,11 +89,11 @@ const matchMediaColor = () => {
     }
 }
 
-function scheme() {
+const scheme = () => {
     return lightSwitch.checked ? 'dark' : 'light';
 }
 
-function contrast() {
+const contrast = () => {
     return lessContrast.checked 
         ? 'less' 
         : (moreContrast.checked 
@@ -91,7 +101,7 @@ function contrast() {
             : 'default');
 }
 
-function setColor() {
+const setColor = () => {
     {{ $lite := site.Params.style.light }}
     {{ $dark := site.Params.style.dark }}
     {{ if site.Params.logo.logomark }}
@@ -120,13 +130,13 @@ function setColor() {
 }
 
 // Font size functions
-function setFontSize() {
+const setFontSize = () => {
     fontSizeState.value = fontSize.value;
     rootSty.setProperty('--fontScale', fontSize.value / 10);
 }
 
 // Initialize localStorage
-function hasLocalStorage() {
+const hasLocalStorage = () => {
     try {
         localStorage.is = 'enable';
         localStorage.removeItem('is');
@@ -146,7 +156,7 @@ if (hasLocalStorage()) {
 <button id="closeButton" class="button has-aria-label" onclick="closeA11y()" aria-label="${ i18nClose}"></button>
     `;
     // Reset function
-    function resetA11y() {
+    const resetA11y = () => {
         localStorage.clear();
         matchMediaColor();
         fontSize.value = '';
@@ -154,7 +164,7 @@ if (hasLocalStorage()) {
     }
 
     // Save function
-    function saveA11y() {
+    const saveA11y = () => {
         setTimeout(() => closeA11y(), 618);
         localStorage.scheme = scheme();
         localStorage.contrast = contrast();
@@ -175,15 +185,6 @@ if (hasLocalStorage()) {
         setFontSize();
     }
 
-}
-
-function addEvent(element, event, handler) {
-    if (element) {
-        if (element.attachEvent) {
-            return element.attachEvent('on' + event, handler);
-        }
-        return element.addEventListener(event, handler, false);
-    }
 }
 
 // toc
@@ -213,23 +214,7 @@ addEvent(document, 'DOMContentLoaded', () => {
 {{ if site.Params.enableBionRead -}}
 // DocPanel
 const docPanel = getElement('doc-panel');
-docPanel.innerHTML = `
-<input id="bionReadSwitch" type="checkbox" onclick="bionRead()" aria-label="${i18nBionread}"><label id="bionReadButton" class="button textssc" for="bionReadSwitch"><b>bion</b>read</label>
-<button id="printButton" class="button has-aria-label" onclick="window.print()" aria-label="${i18nPrint}" style="margin-left:auto; display:none;"></button>
-<button id="shareButton" class="button has-aria-label" style="display:none;" onclick="navigator.share({title: document.title, url: window.location.href})" aria-label="${i18nShare}"></button>
-`
-docPanel.removeAttribute('style');
-// show when API supported
-if (window.print) {
-    getElement('printButton').style.removeProperty('display');
-}
-
-if (navigator.share && location.protocol === 'https:') {
-    getElement('shareButton').removeAttribute('style');
-}
-// BionRead
-bionReadSwitch.checked = false;
-function bionRead() {
+const bionRead = () => {
     const safeElements = getElements('[data-bionRead-safe]');
     const mainContent = getElement('content');
     if (mainContent) {
@@ -257,9 +242,9 @@ function bionRead() {
                         if (!word.trim())
                             return;
                         const len = word.length;
+                        const mid = Math.ceil(len / 2);
                         if (len === 2)
                             return `<b>${word}</b>`;
-                        const mid = Math.ceil(len / 2);
                         return `<span><b>${word.slice(0, mid)}</b>${word.slice(mid)}</span>`;
                     }).join(' ');
                     while (scratch.firstChild) {
@@ -274,4 +259,24 @@ function bionRead() {
         snapshot.innerHTML = '';
     }
 }
+
+// render docPanel
+
+docPanel.innerHTML = `
+<input id="bionReadSwitch" type="checkbox" onclick="bionRead()" aria-label="${i18nBionread}"><label id="bionReadButton" class="button textssc" for="bionReadSwitch"><b>bion</b>read</label>
+<button id="printButton" class="button has-aria-label" onclick="window.print()" aria-label="${i18nPrint}" style="margin-left:auto; display:none;"></button>
+<button id="shareButton" class="button has-aria-label" style="display:none;" onclick="navigator.share({title: document.title, url: window.location.href})" aria-label="${i18nShare}"></button>
+`
+docPanel.removeAttribute('style');
+bionReadSwitch.checked = false;
+
+// show when API supported
+if (window.print) {
+    getElement('printButton').style.removeProperty('display');
+}
+
+if (navigator.share && location.protocol === 'https:') {
+    getElement('shareButton').removeAttribute('style');
+}
+
 {{ end }}
