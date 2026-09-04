@@ -9,30 +9,45 @@
     background: var(--ac);
 }
 
-/* ::view-transition-old(slide) {
-    animation: 0.3s ease-out slide-out;
-} */
+@supports (view-transition-name: initial) {
+    /* ::view-transition-old(slide) {
+        animation: 0.3s ease-out slide-out;
+    } */
 
-::view-transition-new(slide) {
-    animation: 0.3s ease-in slide-in;
-}
+    ::view-transition-new(slide) {
+        -webkit-animation: 0.3s ease-in slide-in;
+                animation: 0.3s ease-in slide-in;
+    }
 
-@view-transition {
-    navigation: auto;
-}
+    @view-transition {
+        navigation: auto;
+    }
 
-/* @keyframes slide-out {
-  to {
-    opacity: 0;
-    translate: 0 -100vh;
-  }
-} */
+    /* @keyframes slide-out {
+    to {
+        opacity: 0;
+        translate: 0 -100vh;
+    }
+    } */
 
-@keyframes slide-in {
-  from {
-    opacity: 0;
-    translate: 0 38vh;
-  }
+    main {
+        view-transition-name: slide;
+    }
+
+    @keyframes slide-in {
+        from {
+            opacity: 0;
+            translate: 0 38vh;
+        }
+    }
+
+    @-webkit-keyframes slide-in {
+        from {
+            opacity: 0;
+            -webkit-transform: translateY(38vh);
+        }
+    }
+
 }
 
 body {
@@ -73,7 +88,6 @@ main {
     padding-left: var(--void);
     max-width: var(--max-width);
     min-height: calc(100vh - 2in - var(--vhead));
-    view-transition-name: slide;
 }
 
 main > header,
