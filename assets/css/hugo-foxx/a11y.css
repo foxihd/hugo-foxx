@@ -82,7 +82,7 @@ menu input,
 #a11y-menu,
 #setColorScheme,
 #setContrast > div,
-#setFontSize > label {
+#setFontSize > form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
