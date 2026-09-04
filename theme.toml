@@ -1,9 +1,9 @@
 name = "hugo-foxx"
 license = "MIT"
 licenselink = "https://github.com/foxihd/hugo-foxx/LICENSE"
-description = "Bear blog implementation, except it's a foxx design."
+description = "Accessible bear blog implementation, with foxx design."
 homepage = "https://github.com/foxihd/hugo-foxx/"
-demosite = ""
+demosite = "https://foxihd.github.io/hugo-foxx/en/"
 tags = [
     "archive",
     "blog",
