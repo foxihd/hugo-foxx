@@ -48,8 +48,9 @@
         {{- partial "page/title.html" . }}
     {{- end }}
 
-    <menu id="doc-panel" style="display:none;">
-    </menu>
+    {{ if site.Params.enableBionRead -}}
+        <menu id="doc-panel" style="display:none;"></menu>
+    {{- end }}
 
     {{- partial "page/audio.html" . }}
 

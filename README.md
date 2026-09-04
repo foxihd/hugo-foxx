@@ -40,7 +40,7 @@ Demosite: [https://foxihd.github.io/hugo-foxx/en/](https://foxihd.github.io/hugo
 > Always use alt text, pay attention to content structure, and use accent colors with sufficient contrast.
 
 - **Reader-first**: Prioritizes speed[^1], privacy[^2], readability and accessibility with personalized settings for colors and fonts (It's Tracker Free!).
-- **Inclusive**: Graceful degradation design[^3] oriented with improved semantic HTML structure & WAI-ARIA attribute, RSS/reader-mode optimized, printer-friendly full static website that remains fully functional even when JavaScript is disabled! The theme is even compatible with terminal browsers such as Lynx or W3M.
+- **Inclusive**: Graceful degradation design[^3] oriented with improved semantic HTML structure & WAI-ARIA attribute, BionRead mode, RSS/reader-mode optimized, printer-friendly full static website that remains fully functional even when JavaScript is disabled! The theme is even compatible with terminal browsers such as Lynx or W3M.
 - **Scalable**: Start small and grow into a thriving digital garden; Despite being optimized for single authors, hugo-foxx still capable of making bilingual site with multiple taxonomies, optional Pagefind search integration, subscribable section and terms-specific or site-wide over RSS, external feed embed over RSS, and comments over Fediverse (Mastodon & Bluesky).
 - **Frameworkless**: Lower maintenance & carbon footprint by lesser resource usage. Hugo-foxx's combined JavaScript and stylesheet assets (excluding optional external libraries like MathJax, Katex or PageFind) totaling under ~52KiB and compressed to less than ~20KiB when Gzipped!
 
@@ -235,6 +235,7 @@ ignoreFiles = [ '\.redacted', '\.old','\.bak', '\.tmp', '\.swp', '\.DS_Store']
 [params]
     // Enable Appearance Panel
     enableAppearance = true
+    enableBionRead = true
 ```
 
 ## Quick Command

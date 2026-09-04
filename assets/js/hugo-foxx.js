@@ -225,6 +225,7 @@ addEvent(document, 'DOMContentLoaded', () => {
     setTimeout(() => rootSty.setProperty('--flashGuard', 'background 1s ease-in'), 99);
 });
 
+{{ if site.Params.enableBionRead -}}
 // DocPanel
 const docPanel = getElement('doc-panel');
 docPanel.innerHTML = `
@@ -286,3 +287,4 @@ function bionRead() {
         snapshot.innerHTML = '';
     }
 }
+{{ end }}
