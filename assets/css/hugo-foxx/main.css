@@ -9,7 +9,7 @@
     background: var(--ac);
 }
 
-@supports (view-transition-name: initial) {
+@supports (scrollbar-width: auto) {
     /* ::view-transition-old(slide) {
         animation: 0.3s ease-out slide-out;
     } */
