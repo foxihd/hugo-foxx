@@ -139,16 +139,17 @@
 @media print {
 
     body {
-        --bg: #fff;
-        --fg: #000;
+        --bg: #fff !important;
+        --fg: #000 !important;
         display: unset;
     }
 
     body > header,
     body > footer,
     #has-a11y,
-    #comments {
-        display: none;
+    #comments,
+    #doc-panel {
+        display: none !important;
     }
 
     main {
