@@ -49,7 +49,6 @@ the markdown processor does not override Katex.  Currently, display
 environments should be enclosed in `<p>` tags and blank lines.
 For instance:
 
-<p>
 $$
 \begin{aligned}
   \mu(A) &= \iint_{I^2} \chi_A (x,y) \ d(x,y)
@@ -60,7 +59,7 @@ $$
   =\int_I dx = 1,
 \end{aligned}
 $$
-</p>
+
 <!-- See https://github.com/jgm/pandoc/issues/3953#issuecomment-334670625 -->
 
 is produced from
@@ -161,7 +160,7 @@ Below we have an example of a regular width figure.
  >}}
  But tight integration of graphics with text is central to Tufte’s work even when those graphics are ancillary to the main body of a text. In many of those cases, a margin figure may be most appropriate.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mi tellus, tristique et ex vel, ornare vestibulum nibh. Nullam et dapibus metus. Praesent tempor tempus rhoncus. Ut fermentum erat enim, id dapibus lectus rhoncus ut. In hac habitasse platea dictumst. Integer at urna rhoncus, interdum enim et, ultrices elit. Suspendisse pharetra sem arcu, nec bibendum velit pretium non. Etiam quis feugiat ligula. Maecenas posuere eleifend turpis vel viverra. Aenean ac diam in risus laoreet dictum eu at massa. Fusce vel placerat enim. Mauris quis vulputate arcu. Pellentesque pellentesque sodales enim et fringilla.
 
 Below is a full-width figure.
 {{< figure
