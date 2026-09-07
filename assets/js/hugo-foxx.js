@@ -50,8 +50,8 @@ a11y.innerHTML = `
     </fieldset>
   </div>
   <div id="setFontSize" class="has-aria-label" aria-label="${i18nFontsize}">
-    <form style="flex-direction:row-reverse" aria-label="${i18nFontsize}" oninput="setFontSize()">
-      <input id="fontSize" type="range" min="8" value="10" max="12" step="0.5" style="flex:1">
+    <form style="flex-direction:row-reverse" oninput="setFontSize()">
+      <input id="fontSize" type="range" min="8" value="10" max="12" step="0.5" aria-label="${i18nFontsize}" style="flex:1">
       <output id="fontSizeState" for="fontSize" role="status" aria-live="polite" style="width:5rem;text-align:center;color:var(--ac);font-size:2em">10</output>
     </form>
   </div>
