@@ -1,5 +1,7 @@
 {{- define "main" }}
 
+<hr class="hide">
+
 {{- $author := cond .Params.author .Params.author site.Params.Author.name }}
 {{- $authors := or (.GetTerms "authors") (.GetTerms "author") }}
 {{- $notMultiAuthor := eq (len $authors) 1 }}

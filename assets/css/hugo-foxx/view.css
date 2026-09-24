@@ -73,9 +73,10 @@
     position: relative;
 }
 
-.list > a {
-    top: 0;
-    bottom: 2rem;
+.list > h3 > a {
+    display: block;
+    position: unset;
+    border-bottom: none;
 }
 
 .list time::after,
@@ -95,10 +96,11 @@
     break-inside: avoid;
 }
 
-li > article a {
+article ul a {
     color: var(--fg);
 }
 
+.list > h3 > a::before,
 li > article > a {
     position: absolute;
     right: 0;
@@ -107,8 +109,16 @@ li > article > a {
     z-index: 1;
 }
 
+.list > h3 > a::before {
+    content: '';
+    border-bottom: var(--l);
+}
+
+.list > h3 > a:hover::before,
+.list > h3 > a:focus::before,
 li > article > a:focus,
 li > article > a:hover {
+    --l: 2pt solid var(--ac);
     top: 0;
     bottom: 0;
     background-color: #80808011;

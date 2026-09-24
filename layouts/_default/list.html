@@ -282,15 +282,14 @@
 
 {{- define "view_list" -}}
     <article class="list">
-        <h3 role="heading">{{ .page.Title }}</h3>
-        <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
-        <div role="contentinfo">
+        <h3 role="heading"><a href="{{ .page.RelPermalink }}">{{ .page.Title }}</a></h3>
+        <span role="contentinfo">
             {{- if .page.Params.categories }}
                 {{ partial "terms.html" (dict "taxonomy" "categories" "class" "inline" "tabindex" "-1" "page" .page ) }}
             {{ else if .page.Params.tags }}
                 {{ partial "terms.html" (dict "taxonomy" "tags" "class" "inline" "tabindex" "-1" "page" .page ) }}
             {{- end }}
-        </div>
+        </span>
     </article>
 {{- end }}
 
