@@ -136,6 +136,21 @@ const setFontSize = () => {
     rootSty.setProperty('--fontScale', fontSize.value / 10);
 }
 
+// Read settings from localStorage
+if (!localStorage.getItem('scheme') && !localStorage.getItem('contrast')) {
+    matchMediaColor();
+} else {
+    bodySty.setAttribute('style', styles[localStorage.scheme][localStorage.contrast]);
+    lightSwitch.checked = localStorage.scheme == 'dark';
+    getElement(localStorage.contrast + 'Contrast').checked = true;
+    setColor();
+}
+
+if (localStorage.getItem('fontSize')) {
+    fontSize.value = localStorage.fontSize;
+    setFontSize();
+}
+
 // Initialize localStorage
 const hasLocalStorage = () => {
     try {
@@ -170,21 +185,6 @@ if (hasLocalStorage()) {
         localStorage.scheme = scheme();
         localStorage.contrast = contrast();
         localStorage.fontSize = fontSize.value;
-    }
-
-    // Read settings from localStorage
-    if (!localStorage.getItem('scheme') && !localStorage.getItem('contrast')) {
-        matchMediaColor();
-    } else {
-        bodySty.setAttribute('style', styles[localStorage.scheme][localStorage.contrast]);
-        lightSwitch.checked = localStorage.scheme == 'dark';
-        getElement(localStorage.contrast + 'Contrast').checked = true;
-        setColor();
-    }
-
-    if (localStorage.getItem('fontSize')) {
-        fontSize.value = localStorage.fontSize;
-        setFontSize();
     }
 
 }
