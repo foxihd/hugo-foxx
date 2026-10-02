@@ -156,7 +156,7 @@ if (hasLocalStorage()) {
 <button id="closeButton" class="button has-aria-label" onclick="closeA11y()" aria-label="${ i18nClose}"></button>
     `;
     // Reset function
-    const resetA11y = () => {
+    function resetA11y() {
         localStorage.clear();
         matchMediaColor();
         fontSize.value = '';
@@ -164,7 +164,7 @@ if (hasLocalStorage()) {
     }
 
     // Save function
-    const saveA11y = () => {
+    function saveA11y() {
         setTimeout(() => closeA11y(), 618);
         localStorage.scheme = scheme();
         localStorage.contrast = contrast();
