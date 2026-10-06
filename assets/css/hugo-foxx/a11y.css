@@ -116,9 +116,10 @@ menu > .has-aria-label,
 }
 
 menu > .has-aria-label {
-    padding: 1pt 1ex;
+    padding: 3pt 1ex 1pt;
     color: var(--fg);
-    font-size: 0.9rem;
+    font-size: .9rem;
+    gap: 2pt;
 }
 
 #lightSwitchIndicator::after {
@@ -220,9 +221,11 @@ menu > .has-aria-label::after {
 }
 
 #setContrast label {
+    display: inline-flex;
+    align-items: baseline;
     transition: 99ms;
     border-radius: 1pc;
-    padding: 2pt 7pt 2pt 3pt;
+    padding: 2pt 5pt 2pt 3pt;
     font-size: 1rem;
 }
 
@@ -235,6 +238,7 @@ menu > .has-aria-label::after {
     flex:1;
     border: var(--border) !important;
     background: inherit;
+    padding-top: 0.7ex;
     color: var(--fg);
     font: inherit;
 }
