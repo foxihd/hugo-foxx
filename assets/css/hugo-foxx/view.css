@@ -51,8 +51,8 @@
 /* view_list */
 
 .has-list {
-	display: grid;
-	gap: 1pc;
+    display: grid;
+    gap: 1pc;
 }
 
 .has-list > li {

@@ -41,6 +41,11 @@
     height: 100%;
 }
 
+.hash-alt, .hash {
+    color: var(--ac);
+    padding: 1pt 5pt;
+}
+
 @media only screen and (max-width: 1024px) {
     #home-nav-alt {
         display: block;
