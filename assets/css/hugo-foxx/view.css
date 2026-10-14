@@ -1,5 +1,5 @@
 #feed h3 {
-    margin: 0 !important;
+    margin: 3pt 0 !important;
     font-size: var(--large);
     grid-row-start: 1;
 }
@@ -87,10 +87,18 @@
     border-bottom: none;
 }
 
-.list time::after,
-.list ul > li + li::before {
+/* .list ul > li + li::before, */
+.list time::after {
     content: '\a0•\a0';
     color: #80808080;
+}
+
+.list ul.inline > li {
+    display: none;
+}
+
+.list ul.inline > li:first-child {
+    display: inline;
 }
 
 .list ul.inline::before {
@@ -244,7 +252,7 @@ li > article > a:hover {
 
 .card > header,
 .card > header > .f {
-    margin-bottom: 2ex;
+    margin-bottom: 1ex;
 }
 
 .list-month > summary::after,
