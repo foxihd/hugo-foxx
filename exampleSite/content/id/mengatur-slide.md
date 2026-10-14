@@ -1,6 +1,6 @@
 ---
 title: "Mengatur Slide Beranda"
-description: "Cara mengatur Bagian Slide Beranda di tema Hugo Brewm"
+description: "Cara mengatur Bagian Slide Beranda di tema hugo-foxx"
 date: 2025-01-26
 type: 'post'
 draft: false
@@ -10,7 +10,7 @@ coffee: 1
 
 ## Menyiapkan konten slide
 
-Tema Hugo Brewm memiliki bagian slide beranda yang menampilkan konten penting melalui carousel interaktif.
+Tema hugo-foxx memiliki bagian slide beranda yang menampilkan konten penting melalui carousel interaktif.
 {{<marginpar>}}Anda dapat menambahkan parameter `cover` untuk menambahkan sampul slide; parameter ini juga mengubah tata letak slide.{{</marginpar>}}
 Untuk membuat beberapa slide, Anda perlu membuat file terpisah yang berisi struktur front matter seperti ini:
 

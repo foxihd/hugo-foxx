@@ -1,7 +1,7 @@
 ---
 author : ['Author Name']
 title: "Configure Homepage Slides"
-description: "How to configure Homepage Slides section in Hugo Brewm theme"
+description: "How to configure Homepage Slides section in hugo-foxx theme"
 date: 2025-01-26
 type: article
 draft: false
@@ -13,7 +13,7 @@ categories: ['homepage']
 
 ## Setting up slide content
 
-The Hugo Brewm theme features a homepage slides section that showcases important content through an interactive carousel.
+The hugo-foxx theme features a homepage slides section that showcases important content through an interactive carousel.
 {{< marginpar >}}You can add a `cover` parameter to add a slide cover; this parameter also changes the slide layout.{{< /marginpar >}}
 To create multiple slides, you'll need to make separate files containing this front matter structure:
 

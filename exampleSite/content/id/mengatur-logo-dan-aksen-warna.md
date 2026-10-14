@@ -1,6 +1,6 @@
 ---
 title: "Mengatur Logo dan Aksen Warna"
-description: "Cara mengatur Logo di tema Hugo Brewm"
+description: "Cara mengatur Logo di tema hugo-foxx"
 date: 2025-01-26
 lastmod: 2025-02-21
 type: 'post'
@@ -9,7 +9,7 @@ translationKey: logo
 coffee: 1
 ---
 
-Tema Hugo Brewm memungkinkan Anda untuk dengan mudah mengatur logo dan aksen warna situs Anda. Ikuti langkah-langkah berikut untuk mengatur logo Anda:
+Tema hugo-foxx memungkinkan Anda untuk dengan mudah mengatur logo dan aksen warna situs Anda. Ikuti langkah-langkah berikut untuk mengatur logo Anda:
 
 ## Mengubah Aksen Warna
 

@@ -1,6 +1,6 @@
 ---
 title: "Menambahkan Diskusi"
-description: "Cara menambahkan diskusi postingan di tema Hugo Brewm"
+description: "Cara menambahkan diskusi postingan di tema hugo-foxx"
 date: 2025-01-26
 lastmod: 2025-02-03
 type: 'post'

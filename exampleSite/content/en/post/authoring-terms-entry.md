@@ -1,7 +1,7 @@
 ---
 author : ['Author Name', 'A.N. Other']
 title: "Authoring Terms Entry"
-description: "How to set the cover and linking of terms entry in Hugo Brewm theme"
+description: "How to set the cover and linking of terms entry in hugo-foxx theme"
 date: 2025-02-03
 type: post
 draft: false

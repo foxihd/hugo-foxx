@@ -1,6 +1,6 @@
 ---
 title: "Mengatur Menu"
-description: "Cara mengatur menu di tema Hugo Brewm"
+description: "Cara mengatur menu di tema hugo-foxx"
 date: 2025-01-26
 lastmod: 2025-02-04
 type: 'post'
@@ -9,7 +9,7 @@ translationKey: menus
 coffee: 1
 ---
 
-Pelajari cara mengatur menu di tema Hugo Brewm menggunakan file `config.toml` atau `menus[.lang].toml`.
+Pelajari cara mengatur menu di tema hugo-foxx menggunakan file `config.toml` atau `menus[.lang].toml`.
 
 ## Parameter Menu
 

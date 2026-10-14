@@ -1,7 +1,7 @@
 ---
 author : ['Author Name']
 title: "Configure Menu"
-description: "How to configure the menu in Hugo Brewm theme"
+description: "How to configure the menu in hugo-foxx theme"
 date: 2025-01-26
 lastmod: 2025-02-04
 type: article
@@ -12,7 +12,7 @@ tags: ['configuration', 'menu']
 categories: ['configuration']
 ---
 
-Learn how to configure menus in the Hugo Brewm theme using either `config.toml` or `menus[.lang].toml` files.
+Learn how to configure menus in the hugo-foxx theme using either `config.toml` or `menus[.lang].toml` files.
 
 ## Menu Parameters
 

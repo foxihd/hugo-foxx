@@ -1,13 +1,13 @@
 ---
 title: "Mengatur Footer Utama"
-description: "Cara mengatur footer utama di tema Hugo Brewm"
+description: "Cara mengatur footer utama di tema hugo-foxx"
 date: 2025-01-26
 draft: false
 translationKey: mainfooter
 coffee: 1
 ---
 
-Footer utama di tema Hugo Brewm dapat disesuaikan melalui beberapa opsi konfigurasi. Berikut cara mengatur berbagai komponen footer.
+Footer utama di tema hugo-foxx dapat disesuaikan melalui beberapa opsi konfigurasi. Berikut cara mengatur berbagai komponen footer.
 
 ## Mengatur Judul dan Konten Footer
 

@@ -1,6 +1,6 @@
 +++
 title = "Mengatur Riwayat Redaksi"
-description = "Cara mengatur riwayat redaksi di tema Hugo Brewm"
+description = "Cara mengatur riwayat redaksi di tema hugo-foxx"
 date = "2025-02-03"
 type = "post"
 draft = false

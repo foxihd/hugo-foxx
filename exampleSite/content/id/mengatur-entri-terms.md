@@ -1,6 +1,6 @@
 ---
 title: "Mengatur Entri `Terms`"
-description: "Cara mengatur cover dan menghubungkan entri `terms` di tema Hugo Brewm"
+description: "Cara mengatur cover dan menghubungkan entri `terms` di tema hugo-foxx"
 date: 2025-02-03
 type: post
 draft: false

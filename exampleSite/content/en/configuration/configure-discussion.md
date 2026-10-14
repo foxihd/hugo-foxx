@@ -1,7 +1,7 @@
 ---
 author : ['Author Name']
 title: "Configure Discussion"
-description: "How to configure post discussion in Hugo Brewm theme"
+description: "How to configure post discussion in hugo-foxx theme"
 date: 2025-01-26
 lastmod: 2025-02-10
 type: article
