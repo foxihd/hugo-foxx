@@ -62,7 +62,7 @@
 .list {
     display: grid;
     position: relative;
-    grid-template-columns: 10rem auto;
+    grid-template-columns: 8rem auto;
     padding: 1rem;
     border-radius: 1ex;
     overflow: hidden;

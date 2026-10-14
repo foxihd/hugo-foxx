@@ -139,10 +139,13 @@
     }
 
     .list,
-    .list > section,
+    .list > section {
+        display: block;
+    }
+
     .list li:first-child,
     .list li:last-child {
-        display: block;
+        display: inline;
     }
 
 }
