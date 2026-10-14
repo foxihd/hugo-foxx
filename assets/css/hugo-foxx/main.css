@@ -200,6 +200,11 @@ a {
     font-style: initial;
 }
 
+nav ul a {
+    display: inline-block;
+    width: 100%;
+}
+
 nav details > summary:hover,
 nav details > summary:focus,
 a:hover,
