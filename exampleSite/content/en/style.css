@@ -1,4 +1,4 @@
-#feed {
+/* #feed {
     column-width: 20rem;
     column-gap: 2pc;
 }
@@ -15,7 +15,23 @@
 #feed > section {
     break-inside: avoid;
     padding-top: 1pt;
+} */
+/* 
+
+#feed hgroup {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem !important;
+    border-top: var(--border);
+    border-bottom: var(--border);
 }
+
+hgroup a {
+	color: var(--fg);
+    border-bottom: unset !important;
+} */
+
 
 #get {
     position: fixed;

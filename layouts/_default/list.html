@@ -139,11 +139,12 @@
                 {{ end }}
                 </ul>
             {{- else if $list }}
-                <ul class="has-list textwidth presentation">
+                <ul class="has-list presentation">
                 {{- range . }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
-                    <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage) }}</li>
+                    {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
+                    <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
                 {{ end }}
                 </ul>
             {{- else }}
@@ -163,22 +164,23 @@
         {{- with .RegularPages }}
         <section id="list-{{ $secTitle }}" aria-label="{{ $secTitle }}">
             {{- if $secSubTitle }}
-                <hgroup style="margin: 0;">
+                <hgroup>
                     <h2 class="textssc" style="margin-bottom:0;"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
-                    <p class="subtitle" style="color: var(--mid);">{{ $secSubTitle }}</p>
+                    <i class="subtitle" style="color: var(--mid);">{{ $secSubTitle }}</i>
                 </hgroup>
             {{- else }}
                 <h2 class="textssc"><a href="{{ $secLink }}"><span>{{ $secTitle }}</span></a></h2>
             {{- end }}
+            <br>
             <ul class="{{ if $card }}has-card{{ else if $list }}has-list{{ else }}list-day{{ end }} presentation">
                 {{- range .  | first 12 }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
+                    {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
                     {{- if $card }}
-                        {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
                         <li>{{ template "view_card" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
                     {{- else if $list }}
-                        <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage) }}</li>
+                        <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
                     {{- else }}
                         {{ $date := .Date.Format "2/01/06" }}
                         <li>{{ template "view_li" (dict "page" . "date" $date) }}</li>
@@ -246,6 +248,7 @@
     {{- $authors := or (.page.GetTerms "authors") (.page.GetTerms "author") }}
     {{- $alt := or .page.Params.Alt .page.Params.coverAlt .page.Params.imagesAlt }}
     <article class="card">
+        <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
         <header>
             <div class="f textssc">
                 {{- with .stage }}
@@ -260,7 +263,6 @@
             </div>
             <a href="{{ .page.RelPermalink }}" tabindex="-1"><h3>{{ .page.Title }}</h3></a>
         </header>
-        <a href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}"></a>
         <section {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
             {{- if .hasCover }}
                 <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
@@ -282,14 +284,26 @@
 
 {{- define "view_list" -}}
     <article class="list">
-        <h3 role="heading"><a href="{{ .page.RelPermalink }}">{{ .page.Title }}</a></h3>
-        <span role="contentinfo">
-            {{- if .page.Params.categories }}
-                {{ partial "terms.html" (dict "taxonomy" "categories" "class" "inline" "tabindex" "-1" "page" .page ) }}
-            {{ else if .page.Params.tags }}
-                {{ partial "terms.html" (dict "taxonomy" "tags" "class" "inline" "tabindex" "-1" "page" .page ) }}
+        <span>
+        <time>{{ .page.Date.Format "2 Jan 2006" }}</time>
+        {{- with .stage }}
+            {{- range . | first 1 }}
+                <span class="st {{ lower .Name }}"></span>
             {{- end }}
+        {{- end }}
         </span>
+        {{- if .page.Params.categories }}
+            {{ partial "terms.html" (dict "taxonomy" "categories" "class" "inline" "tabindex" "-1" "page" .page ) }}
+        {{ else if .page.Params.tags }}
+            {{ partial "terms.html" (dict "taxonomy" "tags" "class" "inline" "tabindex" "-1" "page" .page ) }}
+        {{- end }}
+        {{- if .hasCover }}
+            <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
+        {{- end }}
+        <h3 role="heading"><a href="{{ .page.RelPermalink }}">{{ .page.Title }}</a></h3>
+        {{- with .desc }}
+            <p>{{- plainify . }}</p>
+        {{- end }}
     </article>
 {{- end }}
 

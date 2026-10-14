@@ -1,7 +1,7 @@
 #feed h3 {
     margin: 0 !important;
-    color: var(--ac);
     font-size: var(--large);
+    grid-row-start: 1;
 }
 
 /* view_li */
@@ -20,11 +20,6 @@
     color: var(--bg);
 }
 
-* + #i18n,
-.list-year.descending {
-    margin-left: auto;
-}
-
 .list-year > div {
     flex: 1;
     max-width: calc(100% - var(--void) - 5rem);
@@ -36,13 +31,10 @@
     list-style: none;
 }
 
-.list-month > summary::after {
-    margin-left: 1ex;
-}
-
 .list-day a {
-    padding: 1ex 0 0;
     display: inline-block;
+    padding: 1ex 0 0;
+    font-style: italic;
 }
 
 .list-day a.has-pre::before {
@@ -59,18 +51,37 @@
 /* view_list */
 
 .has-list {
-    padding: 0 !important;
+	display: grid;
+	gap: 1pc;
 }
 
 .has-list > li {
-    margin: 1pc 0;
     border-bottom: var(--border);
 }
 
 .list {
-    padding: 1ex 0;
-    line-height: 1.2;
+    display: grid;
     position: relative;
+    grid-template-columns: 9rem auto 27%;
+    padding: 1rem;
+    line-height: 1.2;
+    border-radius: 1ex;
+    overflow: hidden;
+}
+
+.list > span,
+.list > ul {
+    grid-column: 1;
+}
+
+.list > h3,
+.list > p {
+    grid-column: 2;
+    margin: 0;
+}
+
+.list > img {
+    grid-column: 3;
 }
 
 .list > h3 > a {
@@ -185,6 +196,11 @@ li > article > a:hover {
     bottom: 3.5rem;
 }
 
+.card > a:focus + header > a,
+.card > a:hover + header > a {
+    color: var(--ac);
+}
+
 .card > section {
     margin: 0 0 9pt;
     width: 100%;
@@ -192,7 +208,12 @@ li > article > a:hover {
     text-overflow: ellipsis;
     gap: 1rem;
     white-space: unset;
-    opacity: 0.7;
+}
+
+.list p,
+.card p {
+    opacity: 62%;
+    font-style: italic;
 }
 
 .card > .has-cover {
@@ -200,7 +221,8 @@ li > article > a:hover {
     grid-template-columns: 6fr 4fr;
 }
 
-.card > .has-cover > img {
+.list > img,
+.has-cover > img {
     order: 2;
     width: 100%;
     height: auto;
@@ -225,23 +247,27 @@ li > article > a:hover {
     margin-bottom: 2ex;
 }
 
+.list-month > summary::after,
 .card .f > ul > li,
 .card .st + * {
     margin-left: 1ex;
 }
 
+* + #i18n,
+.list-year.descending,
 .card time {
     margin-left: auto;
 }
 
 @media (max-width: 412px) {
 
+    .list,
     .card > .has-cover {
         display: block;
-        aspect-ratio: unset;
     }
 
-    .card > section > img {
+
+    .has-cover > img {
         max-height: unset;
         aspect-ratio: unset;
     }
