@@ -196,7 +196,7 @@ a {
     position: relative;
     border-bottom: 2pt solid transparent;
     text-decoration: none;
-    color: var(--ac);
+    color: var(--fg);
     font-style: initial;
 }
 
