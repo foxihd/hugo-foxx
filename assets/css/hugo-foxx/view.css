@@ -62,25 +62,23 @@
 .list {
     display: grid;
     position: relative;
-    grid-template-columns: 9rem auto 27%;
+    grid-template-columns: 10rem auto;
     padding: 1rem;
     border-radius: 1ex;
     overflow: hidden;
+    gap: 0 1rem;
 }
 
 .list > span,
 .list > ul {
     grid-column: 1;
+    word-wrap: break-word;
 }
 
 .list > h3,
-.list > p {
+.list > section {
     grid-column: 2;
     margin: 0;
-}
-
-.list > img {
-    grid-column: 3;
 }
 
 .list > h3 > a {
@@ -200,6 +198,7 @@ li > article > a:hover {
     color: var(--ac);
 }
 
+.list > section,
 .card > section {
     margin: 0 0 9pt;
     width: 100%;
@@ -215,6 +214,7 @@ li > article > a:hover {
     font-style: italic;
 }
 
+.list > section,
 .card > .has-cover {
     display: grid;
     grid-template-columns: 6fr 4fr;
@@ -230,10 +230,11 @@ li > article > a:hover {
     object-fit: cover;
 }
 
+.list > section > p,
 .card > section > p {
     --grd: linear-gradient(#000 50%, transparent 100%);
     margin: 0 auto 0 0;
-    max-height: 21ex;
+    max-height: 16ex;
     overflow-y: hidden;
     line-height: 1.618;
     -webkit-mask-image: var(--grd);
@@ -264,7 +265,6 @@ li > article > a:hover {
     .card > .has-cover {
         display: block;
     }
-
 
     .has-cover > img {
         max-height: unset;

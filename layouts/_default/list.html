@@ -297,13 +297,15 @@
         {{ else if .page.Params.tags }}
             {{ partial "terms.html" (dict "taxonomy" "tags" "class" "inline" "tabindex" "-1" "page" .page ) }}
         {{- end }}
-        {{- if .hasCover }}
-            <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
-        {{- end }}
         <h3 role="heading"><a href="{{ .page.RelPermalink }}">{{ .page.Title }}</a></h3>
-        {{- with .desc }}
-            <p>{{- plainify . }}</p>
-        {{- end }}
+        <section>
+            {{- if .hasCover }}
+                <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
+            {{- end }}
+            {{- with .desc }}
+                <p>{{- plainify . }}</p>
+            {{- end }}
+        </section>
     </article>
 {{- end }}
 

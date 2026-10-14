@@ -134,7 +134,14 @@
         padding: 0 1rem;
     }
 
-    .list {
+    .list > ul > li {
+        display: none;
+    }
+
+    .list,
+    .list > section,
+    .list li:first-child,
+    .list li:last-child {
         display: block;
     }
 
