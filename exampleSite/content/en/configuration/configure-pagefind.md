@@ -1,7 +1,7 @@
 ---
 author : ['Author Name']
 title: "Configure Pagefind"
-description: "How to configure Pagefind in hugo foxx theme"
+description: "How to configure Pagefind in hugo-foxx theme"
 date: 2025-01-26
 type: article
 draft: false

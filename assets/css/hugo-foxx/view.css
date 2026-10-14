@@ -258,9 +258,9 @@ li > article > a:hover {
     margin-left: auto;
 }
 
+
 @media (max-width: 412px) {
 
-    .list,
     .card > .has-cover {
         display: block;
     }

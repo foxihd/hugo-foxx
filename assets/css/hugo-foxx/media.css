@@ -134,6 +134,10 @@
         padding: 0 1rem;
     }
 
+    .list {
+        display: block;
+    }
+
 }
 
 @media print {
