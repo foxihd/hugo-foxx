@@ -64,7 +64,6 @@
     position: relative;
     grid-template-columns: 9rem auto 27%;
     padding: 1rem;
-    line-height: 1.2;
     border-radius: 1ex;
     overflow: hidden;
 }
