@@ -95,6 +95,7 @@ main > header,
     max-width: var(--golden-ratio);
 }
 
+h2 > a,
 main > header,
 details.presentation > summary,
 nav details > summary {

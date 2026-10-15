@@ -1,7 +1,8 @@
 #feed h3 {
-    margin: 3pt 0 !important;
+    margin: 1pt 0 !important;
     font-size: var(--large);
     grid-row-start: 1;
+    font-style: italic;
 }
 
 /* view_li */
@@ -40,7 +41,7 @@
 .list-day a.has-pre::before {
     position: absolute;
     left: -5rem;
-    padding-top: 0.1em;
+    padding-top: 0.5em;
     width: 4rem;
     text-align: right;
     text-transform: uppercase;
@@ -63,9 +64,6 @@
     display: grid;
     position: relative;
     grid-template-columns: 8rem auto;
-    padding: 1rem;
-    border-radius: 1ex;
-    overflow: hidden;
     gap: 0 1rem;
 }
 
@@ -75,48 +73,21 @@
     word-wrap: break-word;
 }
 
-.list > h3,
+.list > a,
 .list > section {
     grid-column: 2;
     margin: 0;
 }
 
-.list > h3 > a {
+.list > a {
     display: block;
     position: unset;
+    grid-row-start: 1;
     border-bottom: none;
+    background: none !important;
 }
 
-/* .list ul > li + li::before, */
-.list time::after {
-    content: '\a0•\a0';
-    color: #80808080;
-}
-
-.list ul.inline > li {
-    display: none;
-}
-
-.list ul.inline > li:first-child {
-    display: inline;
-}
-
-.list ul.inline::before {
-    content: unset;
-}
-
-/* view_card */
-
-#feed li,
-#feed li > article {
-    break-inside: avoid;
-}
-
-article ul a {
-    color: var(--fg);
-}
-
-.list > h3 > a::before,
+.list > a::before,
 li > article > a {
     position: absolute;
     right: 0;
@@ -125,13 +96,13 @@ li > article > a {
     z-index: 1;
 }
 
-.list > h3 > a::before {
+.list > a::before {
     content: '';
     border-bottom: var(--l);
 }
 
-.list > h3 > a:hover::before,
-.list > h3 > a:focus::before,
+.list > a:hover::before,
+.list > a:focus::before,
 li > article > a:focus,
 li > article > a:hover {
     --l: 2pt solid var(--ac);
@@ -140,6 +111,27 @@ li > article > a:hover {
     background-color: #80808011;
 }
 
+/* .list ul > li + li::before, */
+.list time::after {
+    content: '\a0•\a0';
+    color: #80808080;
+}
+
+.list ul.inline > li,
+.list ul.inline::before {
+    display: none;
+}
+
+.list ul.inline > li:first-child {
+    display: inline;
+}
+
+/* view_card */
+
+#feed li,
+#feed li > article {
+    break-inside: avoid;
+}
 
 .f {
     display: inline-flex;
@@ -192,9 +184,15 @@ li > article > a:hover {
     position: relative;
     flex-direction: column;
     border: var(--border);
-    padding: 1rem 1rem 1ex;
-    font-size: 1.2rem;
 }
+
+.card,
+.list {
+    padding: 1rem 1rem 1ex;
+    border-radius: 3pt;
+    overflow: hidden;
+}
+
 
 .card > a {
     top: 3rem;
@@ -217,12 +215,6 @@ li > article > a:hover {
     white-space: unset;
 }
 
-.list p,
-.card p {
-    opacity: 62%;
-    font-style: italic;
-}
-
 .list > section,
 .card > .has-cover {
     display: grid;
@@ -242,13 +234,14 @@ li > article > a:hover {
 .list > section > p,
 .card > section > p {
     --grd: linear-gradient(#000 50%, transparent 100%);
+    opacity: 62%;
     margin: 0 auto 0 0;
     max-height: 16ex;
     overflow-y: hidden;
     line-height: 1.618;
+    clip-path: text;
     -webkit-mask-image: var(--grd);
             mask-image: var(--grd);
-    clip-path: text;
 }
 
 .card > header,

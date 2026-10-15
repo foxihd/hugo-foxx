@@ -41,12 +41,9 @@ section > .list-day {
     font-variant: all-small-caps;
 }
 
-.ts a {
+.ts a,
+article ul a {
     color: var(--fg);
-}
-
-h2 > a {
-    display: inline-block;
 }
 
 #list-tags li a {
