@@ -28,7 +28,7 @@ nav details > summary::after,
     -webkit-transition: var(--tst);
             transition: var(--tst);
     margin-left: auto;
-    background: linear-gradient(to top, transparent 49%, var(--g18) 51%);
+    background: linear-gradient(to top, transparent 49%, var(--mid) 51%);
     -webkit-background-clip: text;
             background-clip: text;
     color: transparent;
@@ -74,7 +74,6 @@ nav details[open] > summary::after,
 
 .marginpar-ctrl + label.has-counter {
     display: unset;
-    padding: 0;
 }
 
 li > article,
@@ -103,14 +102,20 @@ nav details[open] > ul,
             animation: var(--anm);
 }
 
+.marginpar-ctrl:focus + label {
+    outline: 1pt solid var(--ac);
+}
+
 @media screen and (max-width: 640px) {
 
     .marginpar-ctrl + label {
         display: inline-flex;
-        padding: 2pt;
+        padding: 2pt 1pt 0;
+        color: var(--ac);
     }
 
     .marginpar-ctrl + label::before {
+        --mid: var(--ac);
         display: block !important;
         position: unset;
         left: 0;
