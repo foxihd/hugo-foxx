@@ -41,7 +41,7 @@
             <img src="{{ $src }}" {{ with $alt }} alt=" {{ . }}" title="{{ . }}" {{ end }} aria-describedby="{{ $figID }}" loading="lazy">
         {{- if .Get "link" }}</a>{{ end }}
     {{ else }}
-        <span id="the-{{ $figID }}" class="marginpar abs">
+        <span id="the-{{ $figID }}" class="marginpar">
     {{- end }}
 {{- end }}
     {{ with .Get "title" }}<strong>{{ . }} </strong>{{ end }}

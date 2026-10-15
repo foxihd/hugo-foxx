@@ -41,7 +41,7 @@
 .list-day a.has-pre::before {
     position: absolute;
     left: -5rem;
-    padding-top: 0.5em;
+    padding-top: 2pt;
     width: 4rem;
     text-align: right;
     text-transform: uppercase;
@@ -115,11 +115,6 @@ li > article > a:hover {
 .list time::after {
     content: '\a0•\a0';
     color: #80808080;
-}
-
-.list ul.inline > li,
-.list ul.inline::before {
-    display: none;
 }
 
 .list ul.inline > li:first-child {
