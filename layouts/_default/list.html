@@ -298,7 +298,7 @@
             {{ partial "terms.html" (dict "taxonomy" "tags" "class" "inline" "tabindex" "-1" "page" .page ) }}
         {{- end }}
         <a href="{{ .page.RelPermalink }}"><h3>{{ .page.Title }}</h3></a>
-        <section>
+        <section {{ if and .hasCover .desc }}class="has-cover"{{ end }}>
             {{- if .hasCover }}
                 <img src={{ .hasCover }} alt="{{ if .alt }}{{ .alt }}{{ else }}{{ i18n "featuredImg"}}: {{ .page.Title }}{{ end }}" loading="lazy">
             {{- end }}

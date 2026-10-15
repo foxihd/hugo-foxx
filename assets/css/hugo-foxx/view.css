@@ -215,13 +215,11 @@ li > article > a:hover {
     white-space: unset;
 }
 
-.list > section,
-.card > .has-cover {
+.has-cover {
     display: grid;
     grid-template-columns: 6fr 4fr;
 }
 
-.list > img,
 .has-cover > img {
     order: 2;
     width: 100%;
@@ -264,7 +262,7 @@ li > article > a:hover {
 
 @media (max-width: 412px) {
 
-    .card > .has-cover {
+    .has-cover {
         display: block;
     }
 
