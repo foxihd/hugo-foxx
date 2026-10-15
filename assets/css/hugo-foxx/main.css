@@ -472,6 +472,7 @@ tbody tr:nth-child(2n) {
     content: '\e902';
 }
 
+#home-nav-alt a::after,
 .content a[target=_self]::after {
     --tsf: rotate(-135deg);
 }
@@ -557,6 +558,7 @@ tbody tr:nth-child(2n) {
 
 .content a::after,
 .marginpar-ctrl:checked + label + .marginpar,
+#home-nav-alt a::after,
 #menu:checked + label ~ *,
 #to-top {
     -webkit-transform: var(--tsf);
