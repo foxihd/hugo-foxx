@@ -462,6 +462,7 @@ tbody tr:nth-child(2n) {
     background-color: #80808008;
 }
 
+h2.textssc > a::after,
 #home-nav-alt a::after,
 .content a::after {
     --tsf: rotate(45deg);
@@ -472,10 +473,15 @@ tbody tr:nth-child(2n) {
     content: '\e902';
 }
 
-#home-nav-alt a::after,
 .content a[target=_self]::after {
     --tsf: rotate(-135deg);
 }
+
+h2.textssc > a::after,
+#home-nav-alt a::after {
+    --tsf: rotate(90deg);
+}
+
 
 #main-article .content p:not(:first-of-type) {
     text-indent: 1.618pc;
@@ -559,6 +565,7 @@ tbody tr:nth-child(2n) {
 .content a::after,
 .marginpar-ctrl:checked + label + .marginpar,
 #home-nav-alt a::after,
+h2.textssc > a::after,
 #menu:checked + label ~ *,
 #to-top {
     -webkit-transform: var(--tsf);
