@@ -3,7 +3,7 @@ cover: 'https://raw.githubusercontent.com/foxihd/hugo-et-hd/master/static/svg/fl
 # keepAspectRatio: true
 ---
 
-# _Hugo-foxx creates fast and eco-friendly blogs, yet beautiful and inclusive by design._
+# _Hugo-foxx creates fast and eco-friendly websites, yet beautiful and inclusive by design._
 
 At first,
 I wanted something minimalist like [Bear Blog](https://bearblog.dev/)
@@ -23,6 +23,8 @@ However, this exampleSite is deployed on Github Pages within it's theme reposito
 You can explore how the structure, configuration, and frontmatter affect the output.
 
 <!-- styled by style.css from the same folder of this file -->
+
+<br>
 
 <span class=cta></span>
 [Get on GitHub](https://github.com/foxihd/hugo-foxx)

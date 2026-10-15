@@ -21,3 +21,10 @@
     background: var(--fg);
     color: var(--bg);
 }
+
+@media (max-width: 410px) {
+    .cta + a {
+        display: block;
+        width: 100%;
+    }
+}
