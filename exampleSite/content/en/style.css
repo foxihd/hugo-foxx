@@ -1,3 +1,7 @@
+.hero__content br + p {
+    line-height: 2.88;
+}
+
 .cta + a {
     --flashGuard: none;
     margin: 1ex;
@@ -7,6 +11,7 @@
     padding: 6pt 16pt;
     text-align: center;
     color: var(--bg);
+    line-height: 1;
 }
 
 .cta.s + a {
