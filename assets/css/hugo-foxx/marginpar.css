@@ -72,6 +72,12 @@ nav details[open] > summary::after,
     text-align: center;
 }
 
+.list ul.inline > li,
+.list ul.inline::before,
+.marginpar-ctrl + label {
+    display: none;
+}
+
 .marginpar-ctrl + label.has-counter {
     display: unset;
 }
@@ -100,9 +106,11 @@ nav details[open] > ul,
             animation: var(--anm);
 }
 
-#menu:focus + label,
+#menu:focus + label::before,
 .marginpar-ctrl:focus + label {
-    outline: 1pt solid var(--ac);
+    color: var(--ac);
+    background: #8888;
+    border-radius: 3pt;
 }
 
 @media screen and (max-width: 640px) {
