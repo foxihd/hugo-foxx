@@ -301,9 +301,20 @@ nav details > summary::marker,
     color: orange;
 }
 
+#to-content,
+#menu {
+    position: absolute;
+    top: -100vh;
+}
+
 #to-content:focus {
-    position: relative;
+    display: grid;
     top: unset;
+    z-index: 1;
+    background: var(--bg);
+    width: 100%;
+    height: var(--vhead);
+    place-items: center;
 }
 
 #to-top {

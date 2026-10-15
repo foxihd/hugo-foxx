@@ -86,12 +86,10 @@ nav details[open] > ul,
             transform-origin: var(--tso);
 }
 
-.marginpar-ctrl,
-.marginpar-ctrl + label::before,
-#to-content,
-#menu {
+#menu,
+.marginpar-ctrl {
     position: absolute;
-    top: -100vh;
+    clip-path: circle(0);
 }
 
 li > article,
@@ -102,6 +100,7 @@ nav details[open] > ul,
             animation: var(--anm);
 }
 
+#menu:focus + label,
 .marginpar-ctrl:focus + label {
     outline: 1pt solid var(--ac);
 }
