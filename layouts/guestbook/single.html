@@ -35,9 +35,9 @@
                 </a>
             {{- end }}
         </nav>
-        <noscript><center id="comments-error" role="alert">{{ i18n "noScript" }} {{ i18n "noComment" }}</center></noscript>
+        <noscript><div id="comments-error" role="alert">{{ i18n "noScript" }} {{ i18n "noComment" }}</div></noscript>
         <br>
-        <center id="stats" class="stat" aria-live="polite"></center>
+        <div id="stats" class="stat" aria-live="polite"></div>
         {{ with $toot }}
             <ul id="mstd-comments" aria-busy="true" aria-label="{{ i18n "comments" }}"
                 data-url="{{ . }}"></ul>

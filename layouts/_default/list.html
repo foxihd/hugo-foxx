@@ -111,7 +111,7 @@
         {{- $pages =  where site.RegularPages "Type" (or "post" "articles") }}
     {{- end }}
     {{- if not $pages }}
-        <center style="margin: 1in 0;">
+        <section style="margin: 1in 0;text-align:center">
             <img src="https://i.pinimg.com/736x/bf/34/76/bf3476c1569c5af162779ecbb4134c3a.jpg"
                 alt="a cat that's unsure on what to do with his laptop and don't have five year goals"
                 title="a cat that's unsure on what to do with his laptop and don't have five year goals"
@@ -120,7 +120,7 @@
             <strong class="textssc" style="line-height:1;font-size:1.618pc">{{ i18n "noArticle" }}</strong>
             <br>
             <div style="max-width:320px">{{ i18n "noArticlePost" }}</div>
-        </center>
+        </section>
     {{- end }}
     {{- if .Sections }}
         {{- template "group_bySection" . }}

@@ -47,12 +47,12 @@
     <section id="index" class="hero {{ if $hasCover }}has-cover{{ end }}">
         {{- if .Content }}
             {{- if $hasCover }}
-            <center class="hero__image">
+            <section class="hero__image {{ if .Page.Params.keepAspectRatio }}auto{{ end }}">
                 <img src="{{ $hasCover }}"
                     alt="{{ with $alt }}{{ . }}{{ end }}"
                     loading="eager"
                     fetchpriority="high">
-            </center>
+            </section>
             {{- end }}
             <section class="hero__content">
                 <section class="content">

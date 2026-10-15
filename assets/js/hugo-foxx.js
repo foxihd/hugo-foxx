@@ -56,7 +56,7 @@ a11y.innerHTML = `
     </form>
   </div>
   <menu id="a11y-menu" class="hide" role="toolbar" aria-label="${i18nMenucontrols}" style="gap:5pt"></menu>
-  <center id="noLocalStorage" class="hide" role="alert">${i18nNolocalstorage}</center>
+  <div id="noLocalStorage" class="hide" role="alert">${i18nNolocalstorage}</div>
 </fieldset>
 <div role="presentation" aria-hidden="true" style="position:fixed;top:0;right:0;bottom:0;left:0;backdrop-filter:brightness(96%);" onclick="closeA11y()"></div>
 `;
