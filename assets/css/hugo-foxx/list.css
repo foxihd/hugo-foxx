@@ -25,7 +25,6 @@ section > .list-day {
     margin-bottom: 3.14rem;
 }
 
-.has-cover,
 #taxonomy section,
 #taxonomy > div > ul > li {
     display: grid;
@@ -65,8 +64,23 @@ article ul a {
     content: '#';
 }
 
-.has-cover {
-    grid-template-columns: auto auto;
+.hero.has-cover {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.618pc;
+}
+
+.hero__image img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero__image.auto img {
+    height: auto;
+}
+
+.hero__content {
+    font-size: var(--small);
+	line-height: 1.414;
 }
 
 #home-nav-alt ul a,
