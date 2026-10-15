@@ -202,7 +202,8 @@ li > article > a:hover {
 }
 
 .card > a:focus + header > a,
-.card > a:hover + header > a {
+.card > a:hover + header > a,
+.content a {
     color: var(--ac);
 }
 
