@@ -3,7 +3,7 @@
 {{- $force := eq $var "safeHTML" }}
 {{- $marginparID := print "marginpar-" .Ordinal }}
 <input id="{{ $marginparID }}" class="marginpar-ctrl" type="checkbox" aria-controls="the-{{ $marginparID }}">
-<label for="{{ $marginparID }}" tabindex="-1" aria-label="{{ i18n "marginpar" }}" aria-controls="the-{{ $marginparID }}"></label>
+<label for="{{ $marginparID }}" aria-label="{{ i18n "marginpar" }}" aria-controls="the-{{ $marginparID }}"></label>
 {{- if $abs }}
 <div id="the-{{ $marginparID }}" class="marginpar abs" role="note">{{ if $force }}{{ safeHTML .Inner }}{{ else }}{{ markdownify .Inner }}{{ end }}</div>
 {{- else }}
