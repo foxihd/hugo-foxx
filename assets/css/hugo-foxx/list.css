@@ -17,6 +17,7 @@ section > .list-day {
     padding-left: 6rem !important;
 }
 
+#comments-error,
 #feed > h1,
 #feed > hgroup,
 #taxonomy h1,
