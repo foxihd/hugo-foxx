@@ -31,4 +31,4 @@ Please feel free to ask or contribute as well!
 <span class=cta></span>
 [Get on GitHub](https://github.com/foxihd/hugo-foxx)
 <span class="cta s"></span>
-[Sponsors this project](https://github.com/sponsors/foxihd)
+[Support this project](https://github.com/sponsors/foxihd)
