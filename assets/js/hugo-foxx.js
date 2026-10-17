@@ -1,7 +1,6 @@
 const getElement = id => document.getElementById(id);
 const getElements = selector => document.querySelectorAll(selector);
 const a11y = getElement('has-a11y');
-const rootSty = document.styleSheets[1].cssRules[0].style;
 const bodySty = document.body;
 const a11ySty = document.createElement('style');
 a11ySty.textContent = `@font-face{font-family:'a11y-ui';src:url(data:font/woff2;base64,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)}
@@ -133,7 +132,7 @@ const setColor = () => {
 // Font size functions
 const setFontSize = () => {
     fontSizeState.value = fontSize.value;
-    rootSty.setProperty('--fontScale', fontSize.value / 10);
+    document.styleSheets[1].cssRules[0].style.setProperty('--fontScale', fontSize.value / 10);
 }
 
 // Read settings from localStorage
@@ -210,7 +209,7 @@ addEvent(document, 'DOMContentLoaded', () => {
 
 // Flash guard
 addEvent(document, 'DOMContentLoaded', () => {
-    setTimeout(() => rootSty.setProperty('--flashGuard', 'background 1s ease-in'), 99);
+    setTimeout(() => document.styleSheets[1].cssRules[0].style.setProperty('--flashGuard', 'background 1s ease-in'), 99);
 });
 
 {{ if site.Params.enableBionRead -}}
