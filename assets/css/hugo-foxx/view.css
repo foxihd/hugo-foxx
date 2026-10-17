@@ -51,11 +51,6 @@
 
 /* view_list */
 
-.has-list {
-    display: grid;
-    gap: 1pc;
-}
-
 .has-list > li {
     border-bottom: var(--border);
 }
@@ -96,6 +91,7 @@ li > article > a {
     z-index: 1;
 }
 
+.has-card > li:last-child::after,
 .list > a::before {
     content: '';
     border-bottom: var(--l);
@@ -115,10 +111,6 @@ li > article > a:hover {
 .list time::after {
     content: '\a0•\a0';
     color: #80808080;
-}
-
-.list ul.inline > li:first-child {
-    display: inline;
 }
 
 /* view_card */
@@ -170,10 +162,6 @@ li > article > a:hover {
     content: '…';
 }
 
-.has-card > li:last-child::after {
-    content: '';
-}
-
 .card {
     display: flex;
     position: relative;
@@ -187,7 +175,6 @@ li > article > a:hover {
     border-radius: 3pt;
     overflow: hidden;
 }
-
 
 .card > a {
     top: 3rem;
@@ -253,7 +240,6 @@ li > article > a:hover {
 .card time {
     margin-left: auto;
 }
-
 
 @media (max-width: 412px) {
 

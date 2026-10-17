@@ -10,6 +10,8 @@
         max-width: unset;
     }
 
+    #menu,
+    #i18n .emoji,
     body {
         display: unset;
     }
@@ -70,10 +72,6 @@
     #menu + label ~ *,
     #menu + label ~ #home-nav {
         display: none;
-    }
-
-    #i18n .emoji {
-        display: block;
     }
 
     #menu:checked + label ~ * {

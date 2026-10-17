@@ -56,7 +56,6 @@
     }
 }
 
-
 @keyframes expand {
     from {
         transform: scale(1 , 0);

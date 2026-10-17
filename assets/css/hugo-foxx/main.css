@@ -104,7 +104,6 @@ nav details > summary {
     list-style: none;
 }
 
-
 body > footer {
     display: flex;
     position: fixed;
@@ -215,6 +214,7 @@ a:focus {
     color: var(--ac);
 }
 
+.list ul.inline > li:first-child,
 ul.delimiter,
 ul.delimiter li,
 ul.inline,
@@ -285,6 +285,7 @@ nav details > summary::marker,
 #i18n .emoji,
 #i18n:hover .icon,
 #i18n:focus .icon,
+#menu,
 #menu + label {
     display: none
 }
@@ -310,6 +311,7 @@ nav details > summary::marker,
 #to-content:focus {
     display: grid;
     top: unset;
+    left: 0;
     z-index: 1;
     background: var(--bg);
     width: 100%;
@@ -493,8 +495,6 @@ h2.textssc > a::after,
 #home-nav-alt a::after {
     --tsf: rotate(90deg);
 }
-
-
 #main-article .content p:not(:first-of-type) {
     text-indent: 1.618pc;
 }
