@@ -312,7 +312,9 @@ nav details > summary::marker,
     display: grid;
     top: unset;
     left: 0;
+    transition: none;
     z-index: 1;
+    outline: none;
     background: var(--bg);
     width: 100%;
     height: var(--vhead);

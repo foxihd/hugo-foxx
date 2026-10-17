@@ -33,6 +33,7 @@
 #logo a:focus #logotype__text {
     --anm: none;
     outline-color: var(--off);
+    fill: var(--ac);
     stroke: none;
 }
 
