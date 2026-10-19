@@ -1,5 +1,5 @@
 baseURL = 'https://foxihd.github.io/hugo-foxx'
-title = 'example'
+title = 'ExampleSite'
 theme = 'hugo-foxx'
 enableGitInfo = true
 canonifyURLs = true

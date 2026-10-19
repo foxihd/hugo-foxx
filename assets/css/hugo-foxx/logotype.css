@@ -18,14 +18,16 @@
 
 #logo {
     overflow: hidden;
+    margin: 1in 0 1pc;
 }
 
 #logo #logotype__text {
     --anm: dash 30s infinite alternate;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 0.2ex;
-    font-size: 18pt;
+    font-size: 20pt;
     font-weight: 550;
+    font-style: italic;
     stroke: var(--off);
     stroke-width: 1px;
 }

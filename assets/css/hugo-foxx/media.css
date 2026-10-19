@@ -39,12 +39,12 @@
         margin-bottom: 2rem;
         border: none;
         padding: 1rem var(--void) !important;
-        width: 100%;
+        width: calc(100% - 1rem);
         height: unset;
         writing-mode: unset;
     }
 
-    body > footer > a {
+    #logo {
         margin: 0 0.8rem 0 0;
     }
 
