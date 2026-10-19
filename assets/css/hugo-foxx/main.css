@@ -329,6 +329,7 @@ nav details > summary::marker,
     transition: .3s;
     margin: 0;
     background: var(--bg);
+    font-size: var(--Large);
 }
 
 #to-top:hover,

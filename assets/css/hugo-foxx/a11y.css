@@ -134,7 +134,8 @@ menu > .has-aria-label {
 
 #has-a11y-summary::before {
     font-family: 'a11y-ui';
-    content: '\e900';
+    font-size: var(--large);
+    content: '◑;
 }
 
 #setContrast input + label::before {
