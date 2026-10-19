@@ -266,3 +266,7 @@ input:checked + #bionReadButton {
 #doc-panel button {
     padding: 4pt 1ex 1pt;
 }
+
+.article + #doc-panel {
+    width: unset;
+}
