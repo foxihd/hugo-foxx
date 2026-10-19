@@ -2,6 +2,7 @@ const getElement = id => document.getElementById(id);
 const getElements = selector => document.querySelectorAll(selector);
 const a11y = getElement('has-a11y');
 const bodySty = document.body;
+const docPanel = getElement('doc-panel');
 const a11ySty = document.createElement('style');
 a11ySty.textContent = `
 @font-face {font-family: 'a11y-ui';src: url(data:font/woff2;base64,d09GMgABAAAAAAdMAA8AAAAAEGQAAAbxAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGhgbIByCEgZgAIMwEQgKkCiMMAs+AAE2AiQDeAQgBYNUB4E2GykNUZRQ0tZQHwnV7auYNJJklbac44X/M3jc9O8lwRLqFCq0o+ak0HZzOlOoz0tlYp1K2DzZHNn6xZiZI1/cw8Pn7W1/N9l16wIKNIOA0hEGMgDcJdD1+7V6y7CYaQlEa+n9E3v/ELdkySwkPIuGZKL1IqLToeTOErsueWmMTxwKAAHg7er5I8Dn/xS9g3wTgBYQDRQyQA7PMkpFhnP2NKgxAMgygDqEVB0PDYAgqLPK0RuRY+J4J3QAMkkRwWD896JGnKOmZ9bXBPOttd0RBCMeK1o0DYUYCpFUNAiGnhonSqQYGgpqFCU9AxWWhoqWhpqRQoQosZPRxBkBR+NYSKIaJZ+FZMqa8M0HS6AROUuuuMiIkrLyZ1dQUokWI5ZOCjoekM0UQM38AMAmNBnywZI0gJDIjqls8JWOHiGPtLMksSmAIDybsABaZlQV7UMjbBFjI+yws9MAwqTVnFW+0sn/yTIATJwmLF9pqwHyp7J/ZVjR6SPlMrMBCBqLA2hFACJFiYZNvb84OvH0AIMEiQAgCQAkM0oBgFSARAi5PSobSwIM+CehqCq1BmAbtBsiezRijjgdnB+C/LJOLdWcXQHpQL1AC4oABoCSrIkxUgY00kHAn2KM4tIcuo6JbAJzuyyNJi7/bxaJNYFAZwOhNhi04aT6cNiGuOpCoagWF5PEMWKU4Iw4Li+nDUKoaQvSI0W915caTLk9dTGJPi5KS/xnsAhCwP4kwIqhqmch4gpXPw9zUrDMc9rge1l/LsSK1hOBjmdy9xQeCBhfhJDyUrDoYN7eTmeDZSc5qeJ0uMv5gv0lh8MdXiHEtY8V92BkS51X1LmF+FqPZBjvc+n9X2iRK/XlUPGh/H2dz4XKT82yw7pVm8HxNIjJ4h4gYoEnbxSfAMJTDkKQi5DChEjPCXE9Y6dHQDtWdOvc3Y4hCPDsiPd4OEnifLsNvna9dxcriq6S73yOz2eQcTWMT6ym2xm/826exxO/92pKw/Vn2AGPoBPccAvzK3oxkOveM2PWP/tE1i1ijsh0y/lvZXu9+lOh/H3Hklxe0iR424mv4mpnrAq3QxCwwTQYZoa7nA9v6nbeCJUeCnXeFyq/Fejvf5DrchGv+f68rEtk26RuFyF0vcCK3S8Rl6EJe+xxmZO6NbeLDHbQuANCgvM8N7a2xi3EeyRD/cHAhNF19QeFrObQERNABDSWNNGm5vqsuszlyzPrsuqbmzOCCElYIupMs3jJex8MSrYZKxsbK4225EFPBg0EE5rwRDYFOhQFi+2LuzY977azeKCud6eNW7oOc6jrWtXKuLwhs+UVuzo2jC8YQUG+urZOVcuFb9rQMLKtoSMZn2PvIvaySl2G2aWuFksXaRirK/WyXGXB0OgOv3Nty678sbUx3mp+682ajP7D5f9XrcqofmmDmd/wUnq1Z9X/8oCG6gxVBm9+8y21XYMsr1qZz+fEro3pdhjLDZIkZ+OFzAv3Mx4sW3Y+8/y+fRcy6Cx0c9hm4cu9SpYbBlSnc3iCpAM8NXd6U9RT1ZjtXURrL7GL3d6H97KS7drZk2DEZb1sqDhVYZD13/mL5aJ3i+TiiiKbrejUIKuoriCj/yn/Kbx/nhFs277vpNMo8xx52pv+6qeqvKq8I6NGDNd08jpKq4pQsjrNd+W5pkrTir5bQJPl6eyR6UeEWNdn65aDJ198cCOrm16Rr9DEsbSKVmqVlJJikpjZGT3b55u8SMNbP/xeedzGOxnQ0ebpNspMuZ1s7b3K8bpjdKV5k3LbZIqmKAM9fXmG0t70exK7+KBWET51gaG6dkKPXvMrHEZ/YBR35Ojgik+O5gxrv6lsy9CWDe3+z+C89qVzmOavN6/k9Jw24OeXMyAEf3tKrRm8BeJ5vldTVWfI3m/nS2t6U9V715Ty9sy9FjZkLYJt1JaWzMo8UMqypbkHepTgWqe/IOG9nPe6JgRhAJZkP77Y9+NvY6O6/oav5hhcaZsNcmN8SJsAqF0RQODKAwtjouwCBBikFuiTG4FMyWDAlMEuLIABsBLWhp3coOGlug16qfbRboFQcpWKTwKFuUCjDRhscFTgzHdUUnE7qrGOrc9K8otAigZEJDigMAFoNAOD/R0V9BodlSKtdFTTefF+WVYXOfF4CxSZYyI4L35B0ZyJQJVW480xhdNMeNPQzsC8keL91mk10ywTtZnGhFfMDHc09pAvNk/qf4BmbYZoo8WzyMSAp+1vpyRVEtBXXns2k/FaTVuSa6fZWrUM3mQB0zykeMi1zt1Uwjk28bglB6lAMqhEg9ZbH331098ggw01jEOVarXq1GtIDFEQJVERNdEQlnBEq5ozbaIZBEiBt+zTyWxGHi1oxV6KfTX5UrRIrQA=);}
@@ -216,70 +217,70 @@ addEvent(document, 'DOMContentLoaded', () => {
 
 {{ if site.Params.enableBionRead -}}
 // DocPanel
-const docPanel = getElement('doc-panel');
-const bionRead = () => {
-    const safeElements = getElements('[data-bionRead-safe]');
-    const mainContent = getElement('content');
-    if (mainContent) {
-        document.body.insertAdjacentHTML(
-            'beforeend',
-            '<div id="snapshot" class="hide" hidden></div>');
-    }
-    const snapshot = getElement('snapshot');
-    if (bionReadSwitch.checked) {
-        snapshot.innerHTML = mainContent.innerHTML;
-        safeElements.forEach(element => {
-            const targetElements = element.querySelectorAll('h1, h2, h3, h4, h5, p, a, li, blockquote');
-            targetElements.forEach(el => {
-                const textWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-                const textNodes = [];
-                let indexNode;
-                while (indexNode = textWalker.nextNode()) {
-                    textNodes.push(indexNode);
-                }
-                textNodes.forEach(textNode => {
-                    const fragment = document.createDocumentFragment();
-                    const scratch = document.createElement('span');
-                    const words = textNode.textContent.split(' ');
-                    scratch.innerHTML = words.map(word => {
-                        if (!word.trim())
-                            return;
-                        const len = word.length;
-                        const mid = Math.ceil(len / 2);
-                        if (len === 2)
-                            return `<b>${word}</b>`;
-                        return `<span><b>${word.slice(0, mid)}</b>${word.slice(mid)}</span>`;
-                    }).join(' ');
-                    while (scratch.firstChild) {
-                        fragment.appendChild(scratch.firstChild);
+if (docPanel) {
+    const bionRead = () => {
+        const safeElements = getElements('[data-bionRead-safe]');
+        const mainContent = getElement('content');
+        if (mainContent) {
+            document.body.insertAdjacentHTML(
+                'beforeend',
+                '<div id="snapshot" class="hide" hidden></div>');
+        }
+        const snapshot = getElement('snapshot');
+        if (bionReadSwitch.checked) {
+            snapshot.innerHTML = mainContent.innerHTML;
+            safeElements.forEach(element => {
+                const targetElements = element.querySelectorAll('h1, h2, h3, h4, h5, p, a, li, blockquote');
+                targetElements.forEach(el => {
+                    const textWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                    const textNodes = [];
+                    let indexNode;
+                    while (indexNode = textWalker.nextNode()) {
+                        textNodes.push(indexNode);
                     }
-                    textNode.parentNode.replaceChild(fragment, textNode);
+                    textNodes.forEach(textNode => {
+                        const fragment = document.createDocumentFragment();
+                        const scratch = document.createElement('span');
+                        const words = textNode.textContent.split(' ');
+                        scratch.innerHTML = words.map(word => {
+                            if (!word.trim())
+                                return;
+                            const len = word.length;
+                            const mid = Math.ceil(len / 2);
+                            if (len === 2)
+                                return `<b>${word}</b>`;
+                            return `<span><b>${word.slice(0, mid)}</b>${word.slice(mid)}</span>`;
+                        }).join(' ');
+                        while (scratch.firstChild) {
+                            fragment.appendChild(scratch.firstChild);
+                        }
+                        textNode.parentNode.replaceChild(fragment, textNode);
+                    });
                 });
             });
-        });
-    } else {
-        mainContent.innerHTML = snapshot.innerHTML;
-        snapshot.innerHTML = '';
+        } else {
+            mainContent.innerHTML = snapshot.innerHTML;
+            snapshot.innerHTML = '';
+        }
     }
-}
 
-// render docPanel
+    // render docPanel
 
-docPanel.innerHTML = `
+    docPanel.innerHTML = `
 <input id="bionReadSwitch" type="checkbox" onclick="bionRead()" aria-label="${i18nBionread}"><label id="bionReadButton" class="button textssc" for="bionReadSwitch"><b>bion</b>read</label>
 <button id="printButton" class="button has-aria-label" onclick="window.print()" aria-label="${i18nPrint}" style="margin-left:auto; display:none;"></button>
 <button id="shareButton" class="button has-aria-label" style="display:none;" onclick="navigator.share({title: document.title, url: window.location.href})" aria-label="${i18nShare}"></button>
 `
-docPanel.removeAttribute('style');
-bionReadSwitch.checked = false;
+    docPanel.removeAttribute('style');
+    bionReadSwitch.checked = false;
 
-// show when API supported
-if (window.print) {
-    getElement('printButton').style.removeProperty('display');
+    // show when API supported
+    if (window.print) {
+        getElement('printButton').style.removeProperty('display');
+    }
+
+    if (navigator.share && location.protocol === 'https:') {
+        getElement('shareButton').removeAttribute('style');
+    }
 }
-
-if (navigator.share && location.protocol === 'https:') {
-    getElement('shareButton').removeAttribute('style');
-}
-
 {{ end }}
