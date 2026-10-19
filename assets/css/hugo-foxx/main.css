@@ -497,6 +497,7 @@ h2.textssc > a::after,
 h2.textssc > a::after,
 #home-nav-alt a::after {
     --tsf: rotate(90deg);
+    margin-right: 1pt;
 }
 #main-article .content p:not(:first-of-type) {
     text-indent: 1.618pc;
