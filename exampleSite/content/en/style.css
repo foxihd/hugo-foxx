@@ -3,6 +3,7 @@
 }
 
 .cta + a {
+    --anm: none;
     --flashGuard: none;
     margin: 1ex;
     border: 2pt solid var(--fg);

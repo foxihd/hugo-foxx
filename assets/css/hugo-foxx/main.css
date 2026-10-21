@@ -209,7 +209,7 @@ nav details > summary:hover,
 nav details > summary:focus,
 a:hover,
 a:focus {
-    --anm: underline 127ms;
+    --anm: underline 0.2s ease-out;
     border-color: var(--ac);
     color: var(--ac);
 }

@@ -101,7 +101,9 @@ nav details[open] > ul,
 li > article,
 nav details[open] > ul,
 .marginpar-ctrl:checked + label + .marginpar,
-#logo #logotype__text {
+#logo #logotype__text,
+nav details > summary,
+a {
     -webkit-animation: var(--anm);
             animation: var(--anm);
 }
