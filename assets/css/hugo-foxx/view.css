@@ -82,6 +82,10 @@
     background: none !important;
 }
 
+.list > a:focus {
+    outline: none;
+}
+
 .list > a::before,
 li > article > a {
     position: absolute;
