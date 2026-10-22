@@ -256,9 +256,10 @@ ul.delimiter li:last-child:after {
     height: var(--vhead);
 }
 
+#breadcrumb a,
 #logo a {
-    display: flex;
-    border-bottom: unset;
+    display: inline-flex;
+    border-bottom: none;
 }
 
 #breadcrumb {
