@@ -6,7 +6,7 @@
     {{- end }}
     {{- if and .IsHome site.Taxonomies (not site.Params.home.disableListing) }}
         <hr class="hide">
-        <section id="taxonomy" {{ if $home }}class="target"{{ end }}>
+        <section id="taxonomy" class="target textwidth">
             <h1>{{ i18n "allTaxonomies" | title }} <a href="#{{ .Kind }}" class="hash">#</a></h1>
             {{ template "block_taxonomy" . }}
         </section>
