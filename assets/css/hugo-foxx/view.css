@@ -75,6 +75,7 @@
 }
 
 .list > a {
+    --anm: none;
     display: block;
     position: unset;
     grid-row-start: 1;
