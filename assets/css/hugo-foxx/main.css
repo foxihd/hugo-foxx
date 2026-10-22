@@ -430,6 +430,7 @@ p * {
 
 hgroup,
 h1,
+#index + #feed,
 #main-article > footer,
 #main-article > .content {
     margin-top: 3.14rem;
@@ -542,7 +543,7 @@ h2.textssc > a::after,
     font-size: 0.95em;
 }
 
-.hero__content .content p,
+.hero__image + .hero__content .content p,
 .content figure.fullwidth {
     clear: both;
     width: 100%;

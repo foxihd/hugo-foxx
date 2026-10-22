@@ -190,10 +190,10 @@
   pre        = 'bluesky'
 
 [[author-name]]
-  identifier = 'discord'
-  pageRef    = '/'
+  identifier = 'ko-fi'
+  url        = 'https://ko-fi.com/foxxink'
   weight     = 2
-  pre        = 'discord'
+  pre        = 'ko-fi'
 
 [[author-name]]
   name       = ''
