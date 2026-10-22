@@ -218,7 +218,7 @@ addEvent(document, 'DOMContentLoaded', () => {
 {{ if site.Params.enableBionRead -}}
 // DocPanel
 if (docPanel) {
-    const bionRead = () => {
+    function bionRead() {
         const safeElements = getElements('[data-bionRead-safe]');
         const mainContent = getElement('content');
         if (mainContent) {
