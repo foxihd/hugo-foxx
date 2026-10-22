@@ -193,6 +193,7 @@ header.article,
 
 nav details summary,
 a {
+    --anm: none;
     position: relative;
     border-bottom: 2pt solid transparent;
     text-decoration: none;
@@ -244,6 +245,7 @@ ul.delimiter li:last-child:after {
 }
 
 .has-desc {
+    --anm: none;
     display: inline-grid;
     margin: 1ex 0;
 }
