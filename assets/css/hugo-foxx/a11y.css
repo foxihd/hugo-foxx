@@ -59,10 +59,12 @@
     font-size: 1rem;
 }
 
+#has-a11y-summary,
 button,
 input,
 label {
     cursor: pointer;
+    top: unset;
 }
 
 #a11y-menu,
@@ -255,6 +257,8 @@ menu > .has-aria-label::after {
     padding: 0 1ex;
 }
 
+#has-a11y-summary:hover,
+#has-a11y-summary:focus,
 #doc-panel .button:hover,
 #doc-panel .button:focus,
 input:checked + #bionReadButton {
