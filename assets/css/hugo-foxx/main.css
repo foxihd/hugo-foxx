@@ -184,7 +184,7 @@ header.article,
 .list-year > strong,
 .has-aria-label-top::before,
 .textssc {
-    letter-spacing: .1em;
+    letter-spacing: 0.2em;
     font-weight: 400;
     font-variant-caps: all-small-caps;
     font-variant-numeric: oldstyle-nums;
@@ -265,6 +265,7 @@ ul.delimiter li:last-child:after {
     margin-top: auto;
     margin-right: auto;
     overflow-x: auto;
+    letter-spacing: 0.2em;
     white-space: nowrap;
     font-variant: all-small-caps;
     scrollbar-width: none;
