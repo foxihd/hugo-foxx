@@ -191,6 +191,11 @@ header.article,
     -webkit-text-stroke: 0.02ex;
 }
 
+.card .textssc,
+main > header {
+    letter-spacing: 0.1em;
+}
+
 nav details summary,
 a {
     --anm: none;
