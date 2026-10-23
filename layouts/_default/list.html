@@ -129,26 +129,20 @@
         {{ $card := eq (lower .Page.Params.view) "card" }}
         {{ $list := eq (lower .Page.Params.view) "list" }}
         {{- with $pages }}
-            {{- if $card }}
-                <ul class="has-card presentation">
+            {{- if or $card $list }}
+                <ul class="{{ if $card }}has-card{{ else if $list }}has-list{{ else }}list-day{{ end }} presentation">
                 {{- range . }}
                     {{- $stage := .GetTerms "stage" }}
                     {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
                     {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
-                    <li>{{ template "view_card" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
-                {{ end }}
-                </ul>
-            {{- else if $list }}
-                <ul class="has-list presentation">
-                {{- range . }}
-                    {{- $stage := .GetTerms "stage" }}
-                    {{- $desc := or .Params.Subtitle .Params.Description .Description .Summary }}
-                    {{- $hasCover := partial "page/cover.html" (dict "page" .) }}
-                    <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
-                {{ end }}
-                </ul>
+                    {{- if $card }}
+                        <li>{{ template "view_card" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
+                    {{- else if $list }}
+                        <li>{{ template "view_list" (dict "page" . "desc" $desc "stage" $stage "hasCover" $hasCover) }}</li>
+                    {{- end }}
+                {{- end }}
             {{- else }}
-                {{- template "group_byYear" (dict "pages" . ) }}
+                {{- template "group_byYear" (dict "pages" .) }}
             {{- end }}
         {{- end }}
     {{- end }}
@@ -310,7 +304,7 @@
 {{- end }}
 
 {{- define "view_li" -}}
-        <a class="has-pre" href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}" aria-description="{{ .date }}">
-            <h3>{{ .page.Title }}</h3>
-        </a>
+    <a class="has-pre" href="{{ .page.RelPermalink }}" aria-label="{{ .page.Title }}" aria-description="{{ .date }}">
+        <h3>{{ .page.Title }}</h3>
+    </a>
 {{- end }}
