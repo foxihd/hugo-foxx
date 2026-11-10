@@ -251,13 +251,13 @@ if (bskyRoot) {
     var bskyCommentsLoaded = false;
     var skeetURL = bskyRoot.dataset.url;
     const toBskyURL = (uri) => {
-    const splitUri = uri.split('/');
-    if (splitUri[0] === 'at:') {
-        return 'https://bsky.app/profile/' + splitUri[2] + '/post/' + splitUri[4];
-    } else {
-        return uri;
+        const splitUri = uri.split('/');
+        if (splitUri[0] === 'at:') {
+            return 'https://bsky.app/profile/' + splitUri[2] + '/post/' + splitUri[4];
+        } else {
+            return uri;
+        }
     }
-}
     const toAtProtoURI = (splitUrl) => `at://${splitUrl[4]}/app.bsky.feed.post/${splitUrl[6]}`;
     const ToBskyImgURL = (did, blobLink, thumb) => `https://cdn.bsky.app/img/${thumb ? 'feed_thumbnail' : 'feed_fullsize'}/plain/${did}/${blobLink}`;
     const bskyAPI = getURI(skeetURL, toAtProtoURI);
@@ -423,17 +423,17 @@ if (bskyRoot) {
 
     const renderSkeets = (thread) => {
         const node = document.createDocumentFragment();
-        const createElementFromHTML = (htmlString) => {
-            const li = document.createElement('li');
-            li.innerHTML = htmlString.trim();
+        const li = (htmlString) => {
+            const  li = document.createElement('li');
+                   li.innerHTML = htmlString.trim();
             return li.firstChild;
         }
         for (const comment of thread.replies) {
-            const skeet = createElementFromHTML(renderSkeet(comment));
-            if (comment.replies.length > 0 ) {
-                const reply = document.createElement('ul');
+            const skeet = li(renderSkeet(comment));
+            if (comment.replies) {
+                const ul = document.createElement('ul');
                 skeet
-                    .appendChild(reply)
+                    .appendChild(ul)
                     .appendChild(renderSkeets(comment));
             }
             node.appendChild(skeet);
