@@ -27,10 +27,10 @@ enableRobotsTXT = true
             license = 'hugo-foxx <i class="icon">copyleft</i> 2026'
 
     [languages.id]
-        title = 'contoh'
+        title = 'Sampel Situs'
         contentDir = 'content/id'
         disabled = false
-        description = 'contoh situs hugo-foxx'
+        description = 'Sampel situs hugo-foxx'
         # languageCode = 'id-ID'
         locale = 'id-ID'
         # languageDirection = 'ltr'

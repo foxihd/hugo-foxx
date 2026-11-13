@@ -7,8 +7,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 --- Lorem Ipsum
 
-<center id=get class=textssc>
-
-[Get on GitHub](https://github.com/foxihd/hugo-foxx)
-
-</center>
+<span class=cta></span>
+[Dapatkan di GitHub](https://github.com/foxihd/hugo-foxx)
+<span class="cta s"></span>
+[Beri Dukungan](https://github.com/sponsors/foxihd)
