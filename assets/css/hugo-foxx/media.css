@@ -30,7 +30,7 @@
         margin-top: 0;
         /* background: var(--bg); */
         border: none;
-        padding: 1ex var(--void);
+        padding: 0 var(--void);
         height: unset;
     }
 
@@ -53,7 +53,8 @@
     }
 
     .main {
-        margin: 1in 0;
+        margin: 3.14rem 0;
+        min-height: calc(100vh - 14.68rem);
     }
 
     #menu + label {
@@ -96,10 +97,6 @@
         --marginparwidth: 100% !important;
         --canonic: 86%;
         --golden-ratio: 100%;
-    }
-
-    .main {
-        margin: 3.14rem 0;
     }
 
     .katex-display {
