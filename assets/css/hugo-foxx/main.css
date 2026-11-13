@@ -239,7 +239,7 @@ nav details > summary:hover,
 nav details > summary:focus,
 a:hover,
 a:focus {
-    --anm: underline 0.2s ease-out;
+    --anm: underline 0.2s cubic-bezier(.95,.05,.8,.04);
     border-color: var(--ac);
     color: var(--ac);
 }
@@ -512,11 +512,14 @@ tbody tr:nth-child(2n) {
     background-color: #80808008;
 }
 
+a[target=_blank]::after,
 h2.textssc > a::after,
 #home-nav-alt a::after,
 .content a::after {
     --tsf: rotate(45deg);
     display: inline-block;
+    -webkit-transform: var(--tsf);
+            transform: var(--tsf);
     margin-top: .3em;
     margin-left: auto;
     font: .7em base-ui;
@@ -611,10 +614,7 @@ h2.textssc > a::after,
     padding: 0 0.8ex;
 }
 
-.content a::after,
 .marginpar-ctrl:checked + label + .marginpar,
-#home-nav-alt a::after,
-h2.textssc > a::after,
 #menu:checked + label ~ *,
 #to-top {
     -webkit-transform: var(--tsf);
