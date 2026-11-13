@@ -418,13 +418,13 @@ if (bskyRoot) {
 
     const renderSkeets = (thread) => {
         const node = document.createDocumentFragment();
-        const li = (htmlString) => {
+        const list = (htmlString) => {
             const  li = document.createElement('li');
                    li.innerHTML = htmlString.trim();
             return li.firstChild;
         }
         for (const comment of thread.replies) {
-            const skeet = li(renderSkeet(comment));
+            const skeet = list(renderSkeet(comment));
             if (comment.replies) {
                 const ul = document.createElement('ul');
                 skeet

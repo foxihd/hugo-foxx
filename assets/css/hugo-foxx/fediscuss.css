@@ -41,6 +41,7 @@
 }
 
 #join-discussion-bluesky {
+    --anm: none;
     margin-right: 1rem;
     border-right: 1pt dotted #80808080;
     border-bottom: none;
