@@ -301,12 +301,13 @@ ul.delimiter li:last-child:after {
     scrollbar-width: none;
 }
 
-#breadcrumb li::after {
+#breadcrumb li + li::before {
     display: inline-flex;
+    position: relative;
+    top: -1pt;
     -webkit-transform: scaleX(0.5);
             transform: scaleX(0.5);
-    margin: 0 1ex;
-    vertical-align: text-bottom;
+    padding: 2pt;
     content: '>';
 }
 
