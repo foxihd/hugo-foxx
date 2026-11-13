@@ -15,25 +15,22 @@
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s (RSS)" />` .Rel .MediaType.Type .Permalink $title | safeHTML }}
     {{ end -}}
-    {{- if site.Params.EnableAppearance }}
-        <script>
-            if (localStorage.getItem('scheme')) {
-                document.documentElement.classList.add(localStorage.scheme);
-                document.addEventListener('DOMContentLoaded', () => {
-                    document.documentElement.removeAttribute('class');
-                });
-            }
-        </script>
-        <style>
-            html.light body {
-                background: {{ or site.Params.style.light.bg "#f9f9f9" }};
-            }
-            html.dark body {
-                background: {{ or site.Params.style.dark.bg "#111" }};
-            }
-        </style>
-        {{- partialCached "head/js.html" . -}}
-    {{- end }}
+    <script>
+if (localStorage.getItem('lightSwitch')) {document.documentElement.classList.add('s')}
+    </script>
+    <style>
+html.s main::before {
+    --flashGuard: 0s;
+    background: {{ or site.Params.style.dark.bg "#111" }};
+}
+@media (prefers-color-scheme: dark) {
+    html.s main::before {
+        --flashGuard: 0s;
+        background: {{ or site.Params.style.light.bg "#f9f9f9" }};
+    }
+}
+    </style>
+    {{- partialCached "head/js.html" . -}}
     {{ partialCached "head/css.html" . -}}
     {{- with .Resources.GetMatch "*.css" }}
         <style>{{ .Content | safeCSS }}</style>

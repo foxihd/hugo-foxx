@@ -50,9 +50,12 @@
         {{- partial "page/title.html" . }}
     {{- end }}
 
-    {{ if site.Params.enableBionRead -}}
-        <menu id="doc-panel" style="display:none;"></menu>
-    {{- end }}
+    <menu id="doc-panel"
+        style="display:none;"
+        data-i18n-bionRead="{{ i18n "bionRead" }}"
+        data-i18n-print="{{ i18n "print" }}"
+        data-i18n-share="{{ i18n "share" }}"
+    ></menu>
 
     {{- partial "page/audio.html" . }}
 

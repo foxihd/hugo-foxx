@@ -18,11 +18,6 @@ const toISOString = (dateString) => {
     return new Date(dateString).toISOString()
 }
 
-{{ if not site.Params.EnableAppearance }}
-const getElement = id => document.getElementById(id);
-const getElements = selector => document.querySelectorAll(selector);
-{{ end }}
-
 const cmt = getElement('comments');
 const fedRoot = getElement('fed-comments');
 

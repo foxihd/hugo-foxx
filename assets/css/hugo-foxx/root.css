@@ -18,6 +18,20 @@
     --void: unset;
     --fontScale: 1;
     --border: 1pt solid #8881;
+    --size: 10pt;
+    --ray-size: calc(var(--size) * -0.4);
+    --offset-orthogonal: calc(var(--size) * 0.65);
+    --offset-diagonal: calc(var(--size) * 0.45);
+    --moon: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
+    --sun: inset 0 0 0 var(--size),
+            calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
+            var(--offset-orthogonal) 0 0 var(--ray-size),
+            0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size),
+            0 var(--offset-orthogonal) 0 var(--ray-size),
+            calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0 var(--ray-size),
+            var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size),
+            calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size),
+            var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
     --pencil: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAADwCAMAAAAdMkUEAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAABhQTFRFf39/R3BMf39/f39/f39/f39/f39/f39/7LcSVgAAAAh0Uk5TVAAfKDI+SmRRJIFoAAAA1klEQVR42lWSAQqEQAwDZ9sm+/8fH8SinBSZjmlFXM5him6mmKKaaaroii8qEPMnq+mOmdyftgMxaVGjYRpVIKVZOf+mnm2fYdYEGqXeWQ+K79nWO5iYyEge9XprgWYEAwa4BnFJQAAI/IEDJixsMNdccheXve5Na9IkEBzBXjtFjMwdDFdkZzgQg4lfuQxYu+SKfdvKmA2n+Hi8MZxK0gtIWMjv8m+/dxUeECKdIFMj7JQ2Y+F4GhnSovDzyc2I6u+XTUpD9x5LFWpq5XsCF+rhwDmc8wNw0QbdMAZVUwAAAABJRU5ErkJggg==");
     text-rendering: optimizeLegibility;
     font-kerning: auto;

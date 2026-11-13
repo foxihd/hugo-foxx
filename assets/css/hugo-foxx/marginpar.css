@@ -76,6 +76,7 @@ nav details[open] > summary::after,
 .list ul.inline::before,
 .marginpar-ctrl + label {
     display: none;
+    border-radius: 3pt;
 }
 
 .marginpar-ctrl + label.has-counter {
@@ -93,6 +94,8 @@ nav details[open] > ul,
 }
 
 #menu,
+#bionReadSwitch,
+body > input,
 .marginpar-ctrl {
     position: absolute;
     clip-path: circle(0);
@@ -108,11 +111,11 @@ a {
             animation: var(--anm);
 }
 
-#menu:focus + label::before,
+/* #menu:focus + label::before, */
+#lightSwitchIndicator:hover,
 .marginpar-ctrl:focus + label {
     color: var(--ac);
     background: #8888;
-    border-radius: 3pt;
 }
 
 @media screen and (max-width: 640px) {

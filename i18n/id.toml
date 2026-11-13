@@ -110,36 +110,8 @@
     other = "Langsung ke Konten Utama"
 [toTop]
     other = "Ke Atas Konten"
-[appearance]
-    other = "Tampilan"
-[colorSettings]
-    other = "Pengaturan Warna"
 [darkMode]
-    other = "Mode Gelap"
-[light]
-    other = "Terang"
-[dark]
-    other = "Gelap"
-[contrast]
-    other = "Kontras"
-[lessContrast]
-    other = "Rendah"
-[moreContrast]
-    other = "Tinggi"
-[defaultContrast]
-    other = "Bawaan"
-[fontSize]
-    other = "Ukuran Font"
-[menuControls]
-    other = "Kontrol Menu Tampilan"
-[save]
-    other = "Simpan"
-[reset]
-    other = "Reset"
-[close]
-    other = "Tutup"
-[noLocalStorage]
-    other = "LocalStorage tidak tersedia di browser Anda. Pengaturan tidak akan disimpan."
+    other = "Ganti Skema Warna"
 [bionRead]
     other = "Mode BionRead"
 [print]

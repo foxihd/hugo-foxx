@@ -1,35 +1,144 @@
 {{ $light := site.Params.style.light }}
 {{ $dark := site.Params.style.dark }}
 
-body {
+/* credit to @mrozilla on codepen https://codepen.io/mrozilla/pen/OJJNjRb */
+
+#menu + label,
+#lightSwitchIndicator {
+    --b: transparent;
+	border: 2pt solid var(--b);
+	border-radius: 1rem;
+}
+
+#lightSwitchIndicator {
+    display: flex;
+    position: fixed;
+    right: 1ex;
+    bottom: 3.3rem;
+    margin-right: 0;
+    margin-left: auto;
+    padding: 1ex;
+}
+
+#lightSwitchIndicator::before {
+    --tsf: scale(0.75);
+    display: block;
+    outline: none;
+    border-radius: 2em;
+    box-shadow: var(--sun);
+    width: var(--size);
+    height: var(--size);
+    color: var(--fg);
+    content: '';
+    transform: var(--tsf);
+    -webkit-transform: var(--tsf);
+    transition: 1s ease-in;
+}
+
+#lightSwitch:checked + main #lightSwitchIndicator::before {
+    --tsf: scale(1);
+    box-shadow: var(--moon);
+}
+
+#menu:focus + label,
+#lightSwitch:focus + main #lightSwitchIndicator {
+    --b: var(--fg);
+}
+
+main {
     --off: #000;
     --ac: {{ or $light.ac "#800000" }};
     --bg: {{ or $light.bg "#f9f9f9" }};
     --fg: {{ or $light.fg "#111" }};
     --mid:{{ or $light.mid "#545454" }};
+    --y6a: #68405a; --w8u: #3c530e; --s8i: #991438; --n8e: #3d4b76;
+    --m4i: #355240; --y4i: #921823; --f8a: #4b4587; --s4n: #005085;
+    --d3u: #604839; --r6a: #534b1a; --y4a: #13355b; --k8i: #7a3d00;
+    --y6i: #00556e; --o5a: #862d46; --c3u: #52495f; --s5o: #2f4f65;
+    --s5e: #493280; --y7i: #00546e; --i3i: #9e000d; --t9u: #014d1f;
+    color: var(--fg);
+}
+
+input:checked + main {
+        --off: #fff;
+        --ac: {{ or $dark.ac "#d5ad2a" }};
+        --bg: {{ or $dark.bg "#111" }};
+        --fg: {{ or $dark.fg "#f9f9f9" }};
+        --mid: {{ or $dark.mid "#9e9e9e"}};
+        --y6a: #bf97b4; --w8u: #81b31e; --s8i: #ee819e; --n8e: #93a1c8;
+        --m4i: #7fad90; --y4i: #ec838c; --f8a: #a19dcd; --s4n: #06abfe;
+        --d3u: #ba9d8c; --r6a: #b6a63a; --y4a: #75a7e1; --k8i: #f0870f;
+        --y6i: #00b3db; --o5a: #d98ca2; --c3u: #a9a0b6; --s5o: #81a7c5;
+        --s5e: #ab98d7; --y7i: #00b1dd; --i3i: #f57f8b; --t9u: #01bc4c;
+}
+
+@media (prefers-color-scheme: dark) {
+    main {
+        --off: #fff;
+        --ac: {{ or $dark.ac "#d5ad2a" }};
+        --bg: {{ or $dark.bg "#111" }};
+        --fg: {{ or $dark.fg "#f9f9f9" }};
+        --mid: {{ or $dark.mid "#9e9e9e"}};
+        --y6a: #bf97b4; --w8u: #81b31e; --s8i: #ee819e; --n8e: #93a1c8;
+        --m4i: #7fad90; --y4i: #ec838c; --f8a: #a19dcd; --s4n: #06abfe;
+        --d3u: #ba9d8c; --r6a: #b6a63a; --y4a: #75a7e1; --k8i: #f0870f;
+        --y6i: #00b3db; --o5a: #d98ca2; --c3u: #a9a0b6; --s5o: #81a7c5;
+        --s5e: #ab98d7; --y7i: #00b1dd; --i3i: #f57f8b; --t9u: #01bc4c;
+    }
+
+    input:checked + main {
+        --off: #000;
+        --ac: {{ or $light.ac "#800000" }};
+        --bg: {{ or $light.bg "#f9f9f9" }};
+        --fg: {{ or $light.fg "#111" }};
+        --mid:{{ or $light.mid "#545454" }};
+        --y6a: #68405a; --w8u: #3c530e; --s8i: #991438; --n8e: #3d4b76;
+        --m4i: #355240; --y4i: #921823; --f8a: #4b4587; --s4n: #005085;
+        --d3u: #604839; --r6a: #534b1a; --y4a: #13355b; --k8i: #7a3d00;
+        --y6i: #00556e; --o5a: #862d46; --c3u: #52495f; --s5o: #2f4f65;
+        --s5e: #493280; --y7i: #00546e; --i3i: #9e000d; --t9u: #014d1f;
+    }
+
+    #lightSwitchIndicator::before {
+        --tsf: scale(1);
+        box-shadow: var(--moon);
+        display: block;
+        outline: none;
+        border-radius: 2em;
+        width: var(--size);
+        height: var(--size);
+        color: var(--fg);
+        content: '';
+        transform: var(--tsf);
+        -webkit-transform: var(--tsf);
+        transition: 1s ease-in;
+    }
+
+    #lightSwitch:checked + main #lightSwitchIndicator::before {
+        --tsf: scale(0.75);
+        box-shadow: var(--sun);
+    }
 }
 
 @media (prefers-contrast: more) {
-    body {
+    main {
     --ac: {{ or $light.more.ac $light.ac "#800000" }};
     --bg: {{ or $light.more.bg "#fff" }};
     --fg: {{ or $light.more.fg "#000" }};
     --mid: {{ or $light.more.mid "#595959"}}
     }
 
+    main.switch,
+    input:checked + main {
+        --ac: {{ or $dark.more.ac $dark.ac "#d5ad2a" }};
+        --bg: {{ or $dark.more.bg "#000" }};
+        --fg: {{ or $dark.more.fg "#fff" }};
+        --mid: {{ or $dark.more.mid "#969696"}}
+    }
+
     pre > code,
     .chroma * {
         background: var(--bg) !important;
         color: var(--fg) !important;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        --off: #fff;
-        --ac: {{ or $dark.ac "#d5ad2a" }};
-        --bg: {{ or $dark.bg "#111" }};
-        --fg: {{ or $dark.fg "#f9f9f9" }};
-        --mid: {{ or $dark.mid "#9e9e9e"}}
     }
 }

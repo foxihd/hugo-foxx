@@ -229,15 +229,6 @@ ignoreFiles = [ '\.redacted', '\.old','\.bak', '\.tmp', '\.swp', '\.DS_Store']
         minimalUI = true
 ```
 
-## Additional Configs
-
-```
-[params]
-    // Enable Appearance Panel
-    enableAppearance = true
-    enableBionRead = true
-```
-
 ## Quick Command
 
 ### Install Theme as Submodule

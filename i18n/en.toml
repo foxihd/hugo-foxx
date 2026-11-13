@@ -120,36 +120,8 @@
     other = "Skip to Main Content"
 [toTop]
     other = "To Content Top"
-[appearance]
-    other = "Appearance"
-[colorSettings]
-    other = "Color Settings"
 [darkMode]
-    other = "Dark Mode"
-[light]
-    other = "Light"
-[dark]
-    other = "Dark"
-[contrast]
-    other = "Contrast"
-[lessContrast]
-    other = "Less"
-[moreContrast]
-    other = "More"
-[defaultContrast]
-    other = "Default"
-[fontSize]
-    other = "Font Size"
-[menuControls]
-    other = "Appearance Menu Controls"
-[save]
-    other = "Save"
-[reset]
-    other = "Reset"
-[close]
-    other = "Close"
-[noLocalStorage]
-    other = "LocalStorage is not available in your browser. Settings won't be saved."
+    other = "Toggle Color Scheme"
 [bionRead]
     other = "BionRead Mode"
 [print]

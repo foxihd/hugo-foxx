@@ -76,8 +76,6 @@ enableRobotsTXT = true
     # description = ''
     extMeta = true
     # images = ''
-    enableAppearance = true
-    enableBionRead = true
 
     [params.analytics]
         append = 'body'

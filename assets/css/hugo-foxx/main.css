@@ -9,52 +9,63 @@
     background: var(--ac);
 }
 
-@supports (scrollbar-width: auto) {
-    /* ::view-transition-old(slide) {
-        animation: 0.3s ease-out slide-out;
-    } */
+/* @supports (scrollbar-width: auto) { */
+    ::view-transition-old(main) {
+        -webkit-animation: 0.3s fade-out;
+                animation: 0.3s fade-out;
+    }
 
-    ::view-transition-new(slide) {
-        -webkit-animation: 0.3s ease-in slide-in;
-                animation: 0.3s ease-in slide-in;
+    ::view-transition-new(main) {
+        -webkit-animation: 0.3s slide-in;
+                animation: 0.3s slide-in;
     }
 
     @view-transition {
         navigation: auto;
     }
 
-    /* @keyframes slide-out {
-    to {
-        opacity: 0;
-        translate: 0 -100vh;
+    @keyframes fade-out {
+        to {
+            opacity: 0;
+        }
     }
-    } */
 
-    main {
-        view-transition-name: slide;
+    @-webkit-keyframes fade-out {
+        to {
+            opacity: 0;
+        }
     }
 
     @keyframes slide-in {
         from {
             opacity: 0;
-            translate: 0 38vh;
+            translate: 0 1in;
         }
     }
 
     @-webkit-keyframes slide-in {
         from {
             opacity: 0;
-            -webkit-transform: translateY(38vh);
+            -webkit-transform: translateY(1in);
         }
     }
 
-}
+    .main {
+        view-transition-name: main;
+    }
+
+/* } */
 
 body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+main {
     display: grid;
     grid-template-columns: calc(29.3% - 5rem)  calc(70.7% - 2rem) 3rem;
     margin: auto;
-    background: var(--bg);
     max-width: 1680px;
     line-height: 1.618;
     letter-spacing: 0.02em;
@@ -65,7 +76,20 @@ body {
     scrollbar-gutter: stable;
 }
 
-body > header {
+main:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: var(--bg);
+    content: '';
+    -webkit-transition: 1s ease-in;
+            transition: 1s ease-in;
+}
+
+main > header {
     display: flex;
     position: sticky;
     top: 0;
@@ -77,12 +101,12 @@ body > header {
     overflow-y: auto;
 }
 
-body > header nav {
+main > header nav {
     margin: 1pc 0;
     max-width: 21rem;
 }
 
-main {
+.main {
     margin: 1in 0 1in 6.18vw;
     padding-right: var(--void);
     padding-left: var(--void);
@@ -90,13 +114,13 @@ main {
     min-height: calc(100vh - 2in - var(--vhead));
 }
 
-main > header,
+.main > header,
 .textwidth {
     max-width: var(--golden-ratio);
 }
 
 h2 > a,
-main > header,
+.main > header,
 details.presentation > summary,
 nav details > summary {
     display: flex;
@@ -104,7 +128,7 @@ nav details > summary {
     list-style: none;
 }
 
-body > footer {
+main > footer {
     display: flex;
     position: fixed;
     bottom: 0;
@@ -116,20 +140,20 @@ body > footer {
 
 @supports (writing-mode: sideways-lr) {
 
-    body > header {
+    main > header {
         border-right: 1pt solid;
         border-image: var(--pencil) 1;
         padding: 2rem 1rem 2rem 2rem;
     }
 
-    body > footer {
+    main > footer {
         right: 0;
         grid-column: unset;
         align-items: center;
         align-self: end;
         border-left: 1pt solid;
         border-image: var(--pencil) 1 repeat;
-        padding: 1rem 1ex 3rem;
+        padding: 1rem 1ex 6.5rem;
         width: unset;
         height: 100vh;
         text-align: right;
@@ -138,7 +162,7 @@ body > footer {
 }
 
 #has-a11y-summary,
-body > footer > a {
+main > footer > a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -179,7 +203,7 @@ nav ul li {
 }
 
 nav strong,
-main > header,
+.main > header,
 header.article,
 .list-year > strong,
 .has-aria-label-top::before,
@@ -192,7 +216,7 @@ header.article,
 }
 
 .card .textssc,
-main > header {
+.main > header {
     letter-spacing: 0.1em;
 }
 
@@ -334,7 +358,7 @@ nav details > summary::marker,
     --tsf: rotate(-45deg);
     position: fixed;
     right: 1ex;
-    bottom: 1ex;
+    bottom: 1rem;
     transition: .3s;
     margin: 0;
     background: var(--bg);
@@ -509,6 +533,7 @@ h2.textssc > a::after,
     --tsf: rotate(90deg);
     margin-right: 1pt;
 }
+
 #main-article .content p:not(:first-of-type) {
     text-indent: 1.618pc;
 }

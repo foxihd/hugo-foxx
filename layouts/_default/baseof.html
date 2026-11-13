@@ -11,18 +11,18 @@
 </head>
 {{- if not (or .Params.headless .Params.target .Params.alias) }}
 <body>
-    <header>
-        {{ partial "header.html" . }}
-    </header>
-    <main id="{{ .Kind }}">
-        {{ block "main" . }}{{ end }}
+    <input id="lightSwitch" type="checkbox" aria-label="{{ i18n "darkMode"}}">
+    <main>
+        <header>
+            {{ partial "header.html" . }}
+        </header>
+        <div class="main" id="{{ .Kind }}">
+            {{ block "main" . }}{{ end }}
+        </div>
+        <footer>
+            {{ partial "footer.html" . }}
+        </footer>
     </main>
-    <footer>
-        {{ partial "footer.html" . }}
-    </footer>
-    {{- if site.Params.EnableAppearance }}
-        {{ partialCached "a11y.html" . }}
-    {{- end }}
     {{- if eq (lower site.Params.analytics.append) "body" -}}
         {{ partialCached "analytics.html" . }}
     {{- end }}
