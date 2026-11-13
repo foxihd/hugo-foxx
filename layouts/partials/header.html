@@ -6,7 +6,7 @@
     {{ partial "header/logo.html" . }}
 {{- end }}
 
-<label id="lightSwitchIndicator" for="lightSwitch" aria-label="{{ i18n "darkMode"}}"></label>
+<label id="lightSwitchIndicator" for="lightSwitch" aria-label="{{ i18n "darkMode"}}" title="{{ i18n "darkMode"}}"></label>
 <input id="menu" type="checkbox" aria-label="{{ i18n "main" }}" aria-controls="main-menu">
 <label for="menu" class="icon menu" aria-controls="main-menu"><span class="hide">{{ i18n "main" }}</span>{{ if .Params.toc }}<span class="textssc">toc</span>{{ end }}</label>
 <br />
