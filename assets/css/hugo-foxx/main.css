@@ -302,13 +302,7 @@ ul.delimiter li:last-child:after {
 }
 
 #breadcrumb li + li::before {
-    display: inline-flex;
-    position: relative;
-    top: -1pt;
-    -webkit-transform: scaleX(0.5);
-            transform: scaleX(0.5);
-    padding: 2pt;
-    content: '>';
+    content: '\a0>\a0';
 }
 
 #i18n {
