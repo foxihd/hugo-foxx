@@ -22,15 +22,15 @@ Demosite: [https://foxihd.github.io/hugo-foxx/en/](https://foxihd.github.io/hugo
 >
 > Please feel free to contribute as well!
 
-![Home page with posts listing on 1080px viewport](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.png)
-***Figure 1.*** Home page with posts listing on 1080px viewport .
+![Article with complex elements/shortcodes](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/tn.jpg)
+***Figure 1.*** Article with complex elements/shortcodes.
 
 > [!TIP]
 > Always keep hugo-foxx up-to-date for better user experience, maximum performance and resource efficiency, by run the following command:  
 > `git submodule update --remote --merge themes/hugo-foxx`
 
-![Article with complex elements/shortcodes](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/screenshot.png)
-***Figure 2.*** Article with complex elements/shortcodes on 1500px viewport.
+![Comparison of color scheme and viewport width of article view.](https://raw.githubusercontent.com/foxihd/hugo-foxx/main/images/screenshot.png)
+***Figure 2.*** Comparison of color scheme and viewport width of article view.
 
 ## Feature Highlights
 
