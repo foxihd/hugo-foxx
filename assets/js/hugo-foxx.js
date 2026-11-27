@@ -56,10 +56,6 @@ addEvent(document, 'DOMContentLoaded', () => {
 if (doc) {
     // i18n
     const {
-        i18nDarkmode,
-        i18nLight,
-        i18nDark,
-        i18nFontsize,
         i18nBionread,
         i18nPrint,
         i18nShare
