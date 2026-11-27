@@ -17,16 +17,18 @@ body[data-flash=reduced]{--flashGuard: background 1s ease-in}
 `
 document.head.appendChild(sty);
 
-// scheme
-lightSwitch.checked = localStorage.lightSwitch == 'checked';
+if(localStorage) {
+    // scheme
+    lightSwitch.checked = localStorage.lightSwitch == 'checked';
 
-addEvent(lightSwitch, 'change', () => {
-    if (lightSwitch.checked) {
-        localStorage.setItem('lightSwitch', 'checked');
-    } else {
-        localStorage.removeItem('lightSwitch');
-    }
-});
+    addEvent(lightSwitch, 'change', () => {
+        if (lightSwitch.checked) {
+            localStorage.setItem('lightSwitch', 'checked');
+        } else {
+            localStorage.removeItem('lightSwitch');
+        }
+    });
+}
 
 addEvent(document, 'DOMContentLoaded', () => {
     // scheme
