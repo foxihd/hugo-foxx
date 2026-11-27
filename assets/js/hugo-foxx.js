@@ -61,58 +61,12 @@ addEvent(document, 'DOMContentLoaded', () => {
             i18nShare
         } = doc.dataset;
 
-        function bionRead() {
-            const safeElements = getElements('[data-bionRead-safe]');
-            const mainContent = getElement('content');
-            if (mainContent) {
-                document.body.insertAdjacentHTML(
-                    'beforeend',
-                    '<div id="snapshot" class="hide" hidden></div>');
-            }
-            const snapshot = getElement('snapshot');
-            if (bionReadSwitch.checked) {
-                snapshot.innerHTML = mainContent.innerHTML;
-                safeElements.forEach(element => {
-                    const targetElements = element.querySelectorAll('h1, h2, h3, h4, h5, p, a, li, blockquote');
-                    targetElements.forEach(el => {
-                        const textWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-                        const textNodes = [];
-                        let indexNode;
-                        while (indexNode = textWalker.nextNode()) {
-                            textNodes.push(indexNode);
-                        }
-                        textNodes.forEach(textNode => {
-                            const fragment = document.createDocumentFragment();
-                            const scratch = document.createElement('span');
-                            const words = textNode.textContent.split(' ');
-                            scratch.innerHTML = words.map(word => {
-                                if (!word.trim())
-                                    return;
-                                const len = word.length;
-                                const mid = Math.ceil(len / 2);
-                                if (len === 2)
-                                    return `<b>${word}</b>`;
-                                return `<span><b>${word.slice(0, mid)}</b>${word.slice(mid)}</span>`;
-                            }).join(' ');
-                            while (scratch.firstChild) {
-                                fragment.appendChild(scratch.firstChild);
-                            }
-                            textNode.parentNode.replaceChild(fragment, textNode);
-                        });
-                    });
-                });
-            } else {
-                mainContent.innerHTML = snapshot.innerHTML;
-                snapshot.innerHTML = '';
-            }
-        }
         // render doc
-
         doc.innerHTML = `
 <input id="bionReadSwitch" type="checkbox" onclick="bionRead()" aria-label="${i18nBionread}"><label id="bionReadButton" class="button textssc" for="bionReadSwitch"><b>bion</b>read</label>
 <button id="printButton" class="button has-aria-label" onclick="window.print()" aria-label="${i18nPrint}" style="margin-left:auto; display:none;"></button>
 <button id="shareButton" class="button has-aria-label" style="display:none;" onclick="navigator.share({title: document.title, url: window.location.href})" aria-label="${i18nShare}"></button>
-`
+    `
         doc.removeAttribute('style');
         bionReadSwitch.checked = false;
 
@@ -126,3 +80,50 @@ addEvent(document, 'DOMContentLoaded', () => {
         }
     }
 });
+
+// bionread
+function bionRead() {
+    const safeElements = getElements('[data-bionRead-safe]');
+    const mainContent = getElement('content');
+    if (mainContent) {
+        document.body.insertAdjacentHTML(
+            'beforeend',
+            '<div id="snapshot" class="hide" hidden></div>');
+    }
+    const snapshot = getElement('snapshot');
+    if (bionReadSwitch.checked) {
+        snapshot.innerHTML = mainContent.innerHTML;
+        safeElements.forEach(element => {
+            const targetElements = element.querySelectorAll('h1, h2, h3, h4, h5, p, a, li, blockquote');
+            targetElements.forEach(el => {
+                const textWalker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                const textNodes = [];
+                let indexNode;
+                while (indexNode = textWalker.nextNode()) {
+                    textNodes.push(indexNode);
+                }
+                textNodes.forEach(textNode => {
+                    const fragment = document.createDocumentFragment();
+                    const scratch = document.createElement('span');
+                    const words = textNode.textContent.split(' ');
+                    scratch.innerHTML = words.map(word => {
+                        if (!word.trim())
+                            return;
+                        const len = word.length;
+                        const mid = Math.ceil(len / 2);
+                        if (len === 2)
+                            return `<b>${word}</b>`;
+                        return `<span><b>${word.slice(0, mid)}</b>${word.slice(mid)}</span>`;
+                    }).join(' ');
+                    while (scratch.firstChild) {
+                        fragment.appendChild(scratch.firstChild);
+                    }
+                    textNode.parentNode.replaceChild(fragment, textNode);
+                });
+            });
+        });
+    } else {
+        mainContent.innerHTML = snapshot.innerHTML;
+        snapshot.innerHTML = '';
+    }
+}
